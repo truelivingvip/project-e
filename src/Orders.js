@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Breadcrumb,Table } from 'react-bootstrap'
+import { Col, Container, Row, Breadcrumb, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
 
@@ -1168,14 +1168,14 @@ const Orders = () => {
                                     <Table striped bordered hover>
                                         <thead>
                                             <tr>
-                                                <th>id</th>
+
                                                 <th>title</th>
-                                                <th>slug</th>
+                                                <th>category</th>
                                                 <th>price</th>
-                                                <th>description</th>
+
                                                 <th>images</th>
-                                                <th>creationAt</th>
-                                                <th>updatedAt</th>
+                                                <th>date</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1183,14 +1183,14 @@ const Orders = () => {
                                                 products.map((product, index) => {
                                                     return (
                                                         <tr key={index}>
-                                                            <td>{product.id}</td>
+
                                                             <td>{product.title}</td>
                                                             <td>{product.slug}</td>
                                                             <td>{product.price}</td>
-                                                            <td>{product.description}</td>
+
                                                             <td><img src={product.images} className='xyz' /></td>
                                                             <td>{product.creationAt}</td>
-                                                            <td>{product.updatedAt}</td>
+
                                                         </tr>
                                                     )
                                                 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Container, Row, Breadcrumb } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
-const Inventory = () => {
+const Categories = () => {
     return (
         <div>
             <section>
@@ -15,11 +15,11 @@ const Inventory = () => {
                         <Col md={9}>
                             <Row>
                                 <Col>
-                                    <h2>Inventory</h2>
+                                    <h2>Categories</h2>
                                     <Breadcrumb>
                                         <Breadcrumb.Item><Link to={'/Dashboard'}>Dashboard</Link></Breadcrumb.Item>
 
-                                        <Breadcrumb.Item active>Inventory</Breadcrumb.Item>
+                                        <Breadcrumb.Item active>Categories</Breadcrumb.Item>
                                     </Breadcrumb>
                                 </Col>
                             </Row>
@@ -31,4 +31,4 @@ const Inventory = () => {
     )
 }
 
-export default Inventory
+export default Categories

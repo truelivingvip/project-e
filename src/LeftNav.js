@@ -33,9 +33,9 @@ const LeftNav = () => {
                                     <li><Link to={'/orders'}><MdOutlineShoppingBag /> Orders</Link></li>
                                     <li><Link to={'/products'}><BiBasketball /> Products</Link></li>
                                     <li><Link to={'/offers'}><CiDiscount1 /> Offers</Link></li>
-                                    <li><Link to={'/inventory'}><MdOutlineInventory2 /> Inventory</Link></li>
                                     <li><Link to={'/sales'}><GrDocumentPerformance /> Sales</Link></li>
                                     <li><Link to={'/customers'}><MdOutlineContacts /> Customers</Link></li>
+                                    <li><Link to={'/categories'}><MdOutlineContacts /> Categories</Link></li>
                                     <li><Link to={'/settings'}><IoSettingsOutline />   Settings</Link></li>
                                 </ul>
                             </div>

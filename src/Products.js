@@ -1,10 +1,14 @@
 import React from 'react'
-import { Col, Container, Row, Breadcrumb, Card, Button } from 'react-bootstrap'
+import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
+import { FaRegEye } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+
 
 const Products = () => {
-    const items = [
+    const products = [
         {
             "id": 1,
             "title": "Essence Mascara Lash Princess",
@@ -1822,29 +1826,28 @@ const Products = () => {
 
                                         <Breadcrumb.Item active>Products</Breadcrumb.Item>
                                     </Breadcrumb>
+                                    <Table striped bordered hover>
+                                        <tbody>
+                                            {
+                                                products.map((product, index) => {
+                                                    return (
+                                                        <tr key={index}>
+
+                                                            <td><img src={product.thumbnail} className='xyz' /></td>
+                                                            <td>{product.title}</td>
+                                                            <td>{product.price}</td>
+                                                            <td><Link to={'/edit'}><Button variant="edit"><FaEdit /></Button></Link>
+                                                                <Link><Button variant="delete"><MdDeleteOutline /></Button></Link>
+                                                                <Link to={'/view'}><Button variant="view"><FaRegEye /></Button></Link></td>
+
+                                                        </tr>
+                                                    )
+                                                }
+                                                )
+                                            }
+                                        </tbody>
+                                    </Table>
                                 </Col>
-                            </Row>
-                            <Row>
-                                {
-                                    items.map((item, index) => {
-                                        return (
-                                            <Col key={index}>
-                                                <Card style={{ width: '18rem' }}>
-                                                    <Card.Img variant="top" src={item.thumbnail} />
-                                                    <Card.Body>
-                                                        <Card.Title>{item.title}</Card.Title>
-                                                        <Card.Text>
-                                                            <span>{item.id},{item.tags},{item.rating}</span>
-                                                            <p>{item.category},{item.price},{item.discountPercentage},{item.minimumOrderQuantity},{item.description}</p>
-                                                        </Card.Text>
-                                                        <Button variant="primary">Buy now</Button>
-                                                    </Card.Body>
-                                                </Card>
-                                            </Col>
-                                        )
-                                    }
-                                    )
-                                }
                             </Row>
                         </Col>
                     </Row>
