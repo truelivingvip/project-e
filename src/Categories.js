@@ -23,6 +23,35 @@ const Categories = () => {
                                     </Breadcrumb>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col>
+                                    <h1>Product Category Section</h1>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <div className='product'>
+                                    <Col>
+                                        <Row>
+                                            <div className='sofa'>
+                                                <Col>
+                                                    <h3>Home & Living</h3>
+                                                    <h1>SOFA</h1>
+                                                </Col>
+                                            </div>
+                                            <Col>
+
+                                            </Col>
+                                        </Row>
+
+                                    </Col>
+                                    <Col>
+
+                                    </Col>
+                                    <Col>
+
+                                    </Col>
+                                </div>
+                            </Row>
                         </Col>
                     </Row>
                 </Container>

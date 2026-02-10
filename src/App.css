@@ -28,3 +28,11 @@
   width:200px;
   height: 200px;
 }
+.product{
+  padding:200px;
+}
+.sofa{
+  padding:10px;
+  background: url(sofa.png) no-repeat;
+  background-size: 300px 500px;
+}
