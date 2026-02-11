@@ -1172,7 +1172,6 @@ const Orders = () => {
                                                 <th>title</th>
                                                 <th>category</th>
                                                 <th>price</th>
-
                                                 <th>images</th>
                                                 <th>date</th>
 

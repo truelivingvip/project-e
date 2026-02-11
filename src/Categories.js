@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
-import sofa from './sofa.webp';
+import { useFormik } from 'formik'
 const Categories = () => {
     const categories = [
         {
@@ -18,6 +18,15 @@ const Categories = () => {
             "image": "https://th.bing.com/th/id/OIP.WAJVvxoRwo1VeMY-VwNTOAHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
         },
     ]
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
     return (
         <div>
             <section>
@@ -62,6 +71,41 @@ const Categories = () => {
                                     }
                                     )
                                 }
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <form onSubmit={formik.handleSubmit}>
+                                        <Row>
+                                            <Col>
+                                                <label htmlFor="firstName">Category Name</label>
+                                                <input
+                                                    id="firstName"
+                                                    name="firstName"
+                                                    type="text"
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.firstName}
+                                                />
+                                                {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <label htmlFor="lastName">Image</label>
+                                                <input
+                                                    id="lastName"
+                                                    name="lastName"
+                                                    type="file"
+                                                    accept='image/*'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.lastName}
+                                                />
+                                                {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                                            </Col>
+                                        </Row>
+                                        <button type="submit">Add Category</button>
+                                    </form>
+
+                                </Col>
                             </Row>
                         </Col>
                     </Row>
