@@ -24,15 +24,7 @@
 .order ul li a:hover{
   color:#76E6CB
 }
-.xyz{
-  width:200px;
-  height: 200px;
+.pro{
+  margin-bottom: 100px;
 }
-.product{
-  padding:200px;
-}
-.sofa{
-  padding:10px;
-  background: url(sofa.png) no-repeat;
-  background-size: 300px 500px;
-}
+
