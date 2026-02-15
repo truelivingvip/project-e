@@ -5,8 +5,7 @@ import LeftNav from './LeftNav'
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-
-
+import { useFormik } from 'formik';
 const Products = () => {
     const products = [
         {
@@ -1808,6 +1807,15 @@ const Products = () => {
 
 
     ]
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
     return (
         <div>
             <section>
@@ -1817,7 +1825,7 @@ const Products = () => {
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={9}>
+                        <Col md={8}>
                             <Row>
                                 <Col>
                                     <h2>Products</h2>
@@ -1850,10 +1858,46 @@ const Products = () => {
                                 </Col>
                             </Row>
                         </Col>
+                        <Col md={1}>
+                            <div>
+                                <h3>Add Products</h3>
+                                <form onSubmit={formik.handleSubmit}>
+                                    <Row>
+                                        <Col>
+
+                                            <label htmlFor="firstName" className='category'>Categorie Name</label>
+                                            <input
+                                                id="firstName"
+                                                name="firstName"
+                                                type="text"
+                                                onChange={formik.handleChange}
+                                                value={formik.values.firstName}
+                                            />
+                                            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="lastName">Image</label>
+                                            <input
+                                                id="lastName"
+                                                name="lastName"
+                                                type="file"
+                                                accept='image/*'
+                                                onChange={formik.handleChange}
+                                                value={formik.values.lastName}
+                                            />
+                                            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <button type="submit">Add</button>
+                                </form>
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
             </section>
-        </div>
+        </div >
     )
 }
 

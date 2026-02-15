@@ -2,6 +2,8 @@ import React from 'react'
 import { Col, Container, Row, Breadcrumb, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 const Customers = () => {
     const customers = [
         {
@@ -103,6 +105,18 @@ const Customers = () => {
             "status": "Active"
         }
     ]
+    const SignupSchema = Yup.object().shape({
+        firstName: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        lastName: Yup.number()
+            .required('Number is required')
+            .min(1, 'Minimum value is 1')
+            .positive('Must be a positive number')
+            .integer('Must be an integer'),
+        email: Yup.string().email('Invalid email').required('Required'),
+    });
     return (
         <div>
             <section>
@@ -112,7 +126,7 @@ const Customers = () => {
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={9}>
+                        <Col md={8}>
                             <Row>
                                 <Col>
                                     <h2>Customers</h2>
@@ -150,6 +164,42 @@ const Customers = () => {
                                     </Table>
                                 </Col>
                             </Row>
+                        </Col>
+                        <Col md={1}>
+                            <div>
+                                <h3>Customers</h3>
+                                <Formik
+                                    initialValues={{
+                                        firstName: '',
+                                        lastName: '',
+                                        email: '',
+                                    }}
+                                    validationSchema={SignupSchema}
+                                    onSubmit={values => {
+                                        // same shape as initial values
+                                        console.log(values);
+                                    }}
+                                >
+                                    {({ errors, touched }) => (
+                                        <Form>
+                                            <label htmlFor='firstName'>Name</label>
+                                            <Field name="firstName" />
+                                            {errors.firstName && touched.firstName ? (
+                                                <div>{errors.firstName}</div>
+                                            ) : null}
+                                            <label htmlFor='lastName'>Mobile</label>
+                                            <Field name="lastName" />
+                                            {errors.lastName && touched.lastName ? (
+                                                <div>{errors.lastName}</div>
+                                            ) : null}
+                                            <label htmlFor='email'>Email</label>
+                                            <Field name="email" type="email" />
+                                            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                            <button type="submit">ADD</button>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
