@@ -31,7 +31,10 @@
   width:200px;
   height:200px;
 }
-.label{
-  padding: 100px;
+.category{
+  margin-top: 50px;
+}
+label{
+  padding:30px;
 }
 

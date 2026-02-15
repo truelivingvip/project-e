@@ -77,7 +77,7 @@ const Categories = () => {
                                     <form onSubmit={formik.handleSubmit}>
                                         <Row>
                                             <Col>
-                                                <label htmlFor="firstName">Category Name</label>
+                                                <label htmlFor="firstName" className='category'>Categorie Name</label>
                                                 <input
                                                     id="firstName"
                                                     name="firstName"
