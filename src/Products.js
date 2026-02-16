@@ -1860,12 +1860,11 @@ const Products = () => {
                         </Col>
                         <Col md={1}>
                             <div>
-                                <h3>Add Products</h3>
+                                <h5>Add Product</h5>
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
-
-                                            <label htmlFor="firstName" className='category'>Categorie Name</label>
+                                            <label htmlFor="firstName" className='category'>Products Name</label>
                                             <input
                                                 id="firstName"
                                                 name="firstName"
