@@ -36,7 +36,7 @@ const Categories = () => {
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={9}>
+                        <Col md={7}>
                             <Row>
                                 <Col>
                                     <h2>Categories</h2>
@@ -74,39 +74,45 @@ const Categories = () => {
                             </Row>
                             <Row>
                                 <Col>
-                                    <form onSubmit={formik.handleSubmit}>
-                                        <Row>
-                                            <Col>
-                                                <label htmlFor="firstName" className='category'>Categorie Name</label>
-                                                <input
-                                                    id="firstName"
-                                                    name="firstName"
-                                                    type="text"
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values.firstName}
-                                                />
-                                                {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <label htmlFor="lastName">Image</label>
-                                                <input
-                                                    id="lastName"
-                                                    name="lastName"
-                                                    type="file"
-                                                    accept='image/*'
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values.lastName}
-                                                />
-                                                {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
-                                            </Col>
-                                        </Row>
-                                        <button type="submit">Add Category</button>
-                                    </form>
+
 
                                 </Col>
                             </Row>
+                        </Col>
+                        <Col md={2}>
+                            <div className='add'>
+                                <h3>Add Categorie</h3>
+                                <form onSubmit={formik.handleSubmit}>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="firstName" className='category'>Categorie Name</label>
+                                            <input
+                                                id="firstName"
+                                                name="firstName"
+                                                type="text"
+                                                onChange={formik.handleChange}
+                                                value={formik.values.firstName}
+                                            />
+                                            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="lastName">Image</label>
+                                            <input
+                                                id="lastName"
+                                                name="lastName"
+                                                type="file"
+                                                accept='image/*'
+                                                onChange={formik.handleChange}
+                                                value={formik.values.lastName}
+                                            />
+                                            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <button type="submit">Add</button>
+                                </form>
+                            </div>
                         </Col>
                     </Row>
                 </Container>

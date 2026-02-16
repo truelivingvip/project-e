@@ -166,7 +166,7 @@ const Customers = () => {
                             </Row>
                         </Col>
                         <Col md={1}>
-                            <div>
+                            <div className='add'>
                                 <h3>Customers</h3>
                                 <Formik
                                     initialValues={{

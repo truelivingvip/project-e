@@ -1810,6 +1810,8 @@ const Products = () => {
     const formik = useFormik({
         initialValues: {
             firstName: '',
+            price: '',
+            categorie:'',
             lastName: '',
         },
         onSubmit: values => {
@@ -1825,7 +1827,7 @@ const Products = () => {
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={8}>
+                        <Col md={7}>
                             <Row>
                                 <Col>
                                     <h2>Products</h2>
@@ -1858,9 +1860,9 @@ const Products = () => {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={1}>
-                            <div>
-                                <h5>Add Product</h5>
+                        <Col md={2}>
+                            <div className='add'>
+                                <h2>Add Product</h2>
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
@@ -1873,6 +1875,32 @@ const Products = () => {
                                                 value={formik.values.firstName}
                                             />
                                             {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="price" className='category'>Price</label>
+                                            <input
+                                                id="price"
+                                                name="price"
+                                                type="number"
+                                                onChange={formik.handleChange}
+                                                value={formik.values.price}
+                                            />
+                                            {formik.errors.price ? <div>{formik.errors.price}</div> : null}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="categorie" className='category'>Categorie</label>
+                                            <input
+                                                id="categorie"
+                                                name="categorie"
+                                                type="text"
+                                                onChange={formik.handleChange}
+                                                value={formik.values.categorie}
+                                            />
+                                            {formik.errors.categorie ? <div>{formik.errors.categorie}</div> : null}
                                         </Col>
                                     </Row>
                                     <Row>
