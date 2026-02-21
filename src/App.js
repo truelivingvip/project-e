@@ -10,11 +10,13 @@ import Sales from './Sales';
 import Customers from './Customers';
 import Settings from './Settings';
 import Categories from './Categories';
+import Home from './Home';
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route path="/Home" element={<Home/>} />
         <Route path="/Dashboard" element={<AdminDashboard/>} />
         <Route path="/Orders" element={<Orders/>} />
         <Route path="/Products" element={<Products/>} />
@@ -23,7 +25,6 @@ function App() {
         <Route path="/Categories" element={<Categories/>} />
         <Route path="/Settings" element={<Settings/>} />
         <Route path="/Customers" element={<Customers/>} />
-        
       </Routes>
     </div>
   );

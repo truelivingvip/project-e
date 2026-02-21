@@ -43,4 +43,39 @@ label{
 .add{
   position: fixed;  
 }
-
+.free{
+  text-align: center;
+  background: #FFE7EA;
+}
+.free ul{
+  list-style: none;
+}
+.fre ul li{
+  float: left;
+  padding:15px;
+}
+.our ul li{
+  float: right;
+  padding:15px;
+}
+.our ul li a:link, .our ul li a:visited{
+  text-decoration: none;
+  color: black;
+}
+.snap{
+  padding:20px;
+}
+.bar{
+  width:500px;
+}
+.snap ul{
+  list-style: none;
+}
+.snap ul li{
+  float: right;
+  padding:10px;
+}
+.snap ul li a:link, .snap ul li a:visited{
+  text-decoration: none;
+  color: black;
+}
