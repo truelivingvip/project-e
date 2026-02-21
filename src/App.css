@@ -1,81 +1,143 @@
-.pix{
+.pix {
   background: #ECF0EF;
-  padding:120px 0;
+  padding: 120px 0;
   position: fixed;
 }
-.pix1{
+
+.pix1 {
   border-bottom: solid 1px #717674;
 }
-.pix img{
-  height:100px;
+
+.pix img {
+  height: 100px;
   margin-top: -180px;
 }
-.order ul{
+
+.order ul {
   list-style: none;
-  padding:20px;
+  padding: 20px;
 }
-.order ul li{
-  padding:20px;
+
+.order ul li {
+  padding: 20px;
 }
-.order ul li a:link, .order ul li a:visited{
+
+.order ul li a:link,
+.order ul li a:visited {
   text-decoration: none;
-  color:#717674;
+  color: #717674;
 }
-.order ul li a:hover{
-  color:#76E6CB
+
+.order ul li a:hover {
+  color: #76E6CB
 }
-.pro{
+
+.pro {
   margin-bottom: 50px;
 }
-.xyz{
-  width:200px;
-  height:200px;
+
+.xyz {
+  width: 200px;
+  height: 200px;
 }
-.category{
+
+.category {
   margin-top: 50px;
 }
-label{
-  padding:15px;
+
+label {
+  padding: 15px;
 }
-.category{
-  padding:10px;
+
+.category {
+  padding: 10px;
 }
-.add{
-  position: fixed;  
+
+.add {
+  position: fixed;
 }
-.free{
+
+.free {
   text-align: center;
   background: #FFE7EA;
 }
-.free ul{
+
+.free ul {
   list-style: none;
 }
-.fre ul li{
+
+.fre ul li {
   float: left;
-  padding:15px;
+  padding: 15px;
 }
-.our ul li{
+
+.our ul li {
   float: right;
-  padding:15px;
+  padding: 10px;
 }
-.our ul li a:link, .our ul li a:visited{
+
+.our ul li a:link,
+.our ul li a:visited {
   text-decoration: none;
   color: black;
 }
-.snap{
-  padding:20px;
+
+.snap {
+  padding: 20px;
 }
-.bar{
-  width:500px;
+
+.bar {
+  width: 500px;
 }
-.snap ul{
+
+.snap ul {
   list-style: none;
+  padding: 0;
 }
-.snap ul li{
+
+.snap ul li {
   float: right;
+
+}
+
+.snap ul li a:link,
+.snap ul li a:visited {
+  text-decoration: none;
+  padding: 15px;
+  color: black;
+}
+
+.app {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.app:hover{
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.cate{
+  text-align: center;
+}
+.cate ul{
+  list-style: none;
+  padding: 0;
+}
+.cate ul li{
+  float: left;
   padding:10px;
 }
-.snap ul li a:link, .snap ul li a:visited{
+.cate ul li a:link, .cate ul li a:visited{
   text-decoration: none;
   color: black;
+}
+.cate img{
+  width:40px;
+  height:40px;
 }
