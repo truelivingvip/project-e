@@ -27,9 +27,9 @@ const Header = () => {
             <Col>
               <div className='our'>
                 <ul>
-                  <li><a href='#'><RiShoppingBag3Line/> Sell on Snapdeal</a></li>
-                  <li><a href='#'><TfiHelpAlt/> Help Center</a></li>
-                  <li><a href='#'><TfiBasketball/> Our Blog</a></li>
+                  <li><a href='#'><RiShoppingBag3Line /> Sell on Snapdeal</a></li>
+                  <li><a href='#'><TfiHelpAlt /> Help Center</a></li>
+                  <li><a href='#'><TfiBasketball /> Our Blog</a></li>
                 </ul>
               </div>
             </Col>
@@ -53,13 +53,24 @@ const Header = () => {
               </Form>
             </Col>
             <Col>
-              <ul>
-                <li><a href='#'><BsCartDash/> My Cart</a></li>
-                <li><a href='#'><CgProfile/> Login</a></li>
-              </ul>
+              <div className='snap1'>
+                <ul>
+                  <li><a href='#'><BsCartDash /> My Cart</a></li>
+                  <li><a href='#'><CgProfile /> Login</a>
+                    <ul>
+                      <li><a href='#'>Register</a></li>
+                      <li><a href='#'>
+                        <Button className='del' variant="primary">
+                          Login
+                        </Button></a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
             </Col>
             <Col>
-              <Button className='app' variant="primary" size="lg"><MdArrowOutward/>
+              <Button className='app' variant="primary" size="lg"><MdArrowOutward />
                 Download App
               </Button>
             </Col>
