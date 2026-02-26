@@ -70,7 +70,7 @@ const Header = () => {
               </div>
             </Col>
             <Col>
-              <Button className='app' variant="primary" size="lg"><MdArrowOutward />
+              <Button className='app' variant="primary" size="lg" href='https://play.google.com/store/search?q=snapdeal&c=apps&pli=1'><MdArrowOutward />
                 Download App
               </Button>
             </Col>
