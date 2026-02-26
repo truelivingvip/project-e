@@ -7,8 +7,11 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 import { BsCartDash } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
+// import 'react-app-polyfill/ie11';
+// import * as React from 'react';
+import { Formik, Field} from 'formik';
 
-
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
   return (
     <div>
@@ -58,10 +61,43 @@ const Header = () => {
                   <li><a href='#'><BsCartDash /> My Cart</a></li>
                   <li><a href='#'><CgProfile /> Login</a>
                     <ul>
-                      <li><a href='#'>Register</a></li>
+                      <li><a href='#'>Register</a>
+                        <div>
+                          <h1>Register</h1>
+                          <Formik
+                            initialValues={{
+                              firstName: '',
+                              lastName: '',
+                              email: '',
+                            }}
+                            onSubmit={async (values) => {
+                              await sleep(500);
+                              alert(JSON.stringify(values, null, 2));
+                            }}
+                          >
+                            {({ isSubmitting }) => (
+                              <Form>
+                                <label htmlFor="firstName">First Name</label>
+                                <Field name="firstName" placeholder="Jane" />
+
+                                <label htmlFor="lastName">Last Name</label>
+                                <Field name="lastName" placeholder="Doe" />
+
+                                <label htmlFor="email">Email</label>
+                                <Field name="email" placeholder="jane@acme.com" type="email" />
+
+                                <button type="submit" disabled={isSubmitting}>
+                                  Submit
+                                </button>
+                              </Form>
+                            )}
+                          </Formik>
+                        </div>
+                      </li>
                       <li><a href='#'>
                         <Button className='del' variant="primary">
-                          Login
+                          <div>Login</div>
+
                         </Button></a>
                       </li>
                     </ul>
