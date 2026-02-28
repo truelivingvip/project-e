@@ -60,47 +60,7 @@ const Header = () => {
                 <ul>
                   <li><a href='#'><BsCartDash /> My Cart</a></li>
                   <li><a href='#'><CgProfile /> Login</a>
-                    <ul>
-                      <li><a href='#'>Register</a>
-                        <div>
-                          <h1>Register</h1>
-                          <Formik
-                            initialValues={{
-                              firstName: '',
-                              lastName: '',
-                              email: '',
-                            }}
-                            onSubmit={async (values) => {
-                              await sleep(500);
-                              alert(JSON.stringify(values, null, 2));
-                            }}
-                          >
-                            {({ isSubmitting }) => (
-                              <Form>
-                                <label htmlFor="firstName">First Name</label>
-                                <Field name="firstName" placeholder="Jane" />
-
-                                <label htmlFor="lastName">Last Name</label>
-                                <Field name="lastName" placeholder="Doe" />
-
-                                <label htmlFor="email">Email</label>
-                                <Field name="email" placeholder="jane@acme.com" type="email" />
-
-                                <button type="submit" disabled={isSubmitting}>
-                                  Submit
-                                </button>
-                              </Form>
-                            )}
-                          </Formik>
-                        </div>
-                      </li>
-                      <li><a href='#'>
-                        <Button className='del' variant="primary">
-                          <div>Login</div>
-
-                        </Button></a>
-                      </li>
-                    </ul>
+                    
                   </li>
                 </ul>
               </div>

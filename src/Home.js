@@ -14,7 +14,7 @@ const Home = () => {
         </Container>
       </section>
       <section>
-        <Container>
+        <Container fluid>
           <Row>
             <Col>
               <Carousel data-bs-theme="dark">
