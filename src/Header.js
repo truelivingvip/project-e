@@ -9,7 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
-import { Formik, Field} from 'formik';
+import { Formik, Field } from 'formik';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
@@ -60,7 +60,25 @@ const Header = () => {
                 <ul>
                   <li><a href='#'><BsCartDash /> My Cart</a></li>
                   <li><a href='#'><CgProfile /> Login</a>
-                    
+                    <Form>
+                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                        <Form.Label column sm="2">
+                          Email
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control plaintext readOnly defaultValue="email@example.com" />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                        <Form.Label column sm="2">
+                          Password
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control type="password" placeholder="Password" />
+                        </Col>
+                      </Form.Group>
+                    </Form>
                   </li>
                 </ul>
               </div>

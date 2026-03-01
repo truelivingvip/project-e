@@ -113,16 +113,16 @@ label {
 }
 .snap1 ul li ul{
   /* padding:20px; */
-  background-color: #FF2341;
+  /* background-color: #FF2341;
   display: none;
-  z-index: 1000;
+  z-index: 1000; */
 }
-.snap1 ul li:hover ul{
-  display: block;
-  position: absolute;
+.snap1 ul li:hover{
+  /* display: block;
+  position: absolute; */
 }
 .snap1 ul li:hover ul li{
-  float: none;
+  /* float: none; */
 }
 .app {
   background: linear-gradient(45deg, #ff416c, #ff4b2b);
