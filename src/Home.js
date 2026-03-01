@@ -52,7 +52,7 @@ const Home = () => {
         </Container>
       </section>
       <section className='delivery'>
-        <Container>
+        <Container fluid>
           <Row>
             <Col>
               <a href='#'><img src='https://g.sdlcdn.com/imgs/a/b/c/feedConfig/freedeliverystripwebupdated.jpg'/></a>

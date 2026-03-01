@@ -63,7 +63,7 @@ label {
 
 .free {
   text-align: center;
-  background: #FFE7EA;
+  background: #C9C0BB;
 }
 
 .free ul {
@@ -91,7 +91,7 @@ label {
 }
 
 .bar {
-  width: 500px;
+  width: 400px;
 }
 
 .snap ul {
@@ -101,7 +101,6 @@ label {
 
 .snap ul li {
   float: right;
-
 }
 
 .snap ul li a:link,
@@ -109,20 +108,21 @@ label {
   text-decoration: none;
   padding: 15px;
   color: black;
-  display: block;
 }
-.snap1 ul li ul{
-  /* padding:20px; */
-  /* background-color: #FF2341;
+.snap1 ul li form{
   display: none;
-  z-index: 1000; */
+  z-index: 1000;
 }
-.snap1 ul li:hover{
-  /* display: block;
-  position: absolute; */
+.snap1 ul li:hover form{
+  color: white;
+  display: block;
+  padding: 10px;
+  background: #C9C0BB;
+  border-radius: 20px;
+  position: absolute;
 }
-.snap1 ul li:hover ul li{
-  /* float: none; */
+.register{
+  padding: 10px;
 }
 .app {
   background: linear-gradient(45deg, #ff416c, #ff4b2b);

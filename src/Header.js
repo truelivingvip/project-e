@@ -61,23 +61,20 @@ const Header = () => {
                   <li><a href='#'><BsCartDash /> My Cart</a></li>
                   <li><a href='#'><CgProfile /> Login</a>
                     <Form>
-                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                        <Form.Label column sm="2">
-                          Email
-                        </Form.Label>
-                        <Col sm="10">
-                          <Form.Control plaintext readOnly defaultValue="email@example.com" />
-                        </Col>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" />
                       </Form.Group>
-
-                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                        <Form.Label column sm="2">
-                          Password
-                        </Form.Label>
-                        <Col sm="10">
-                          <Form.Control type="password" placeholder="Password" />
-                        </Col>
+                      <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" />
                       </Form.Group>
+                      <Button variant="primary" type="submit">
+                        Submit
+                      </Button>
+                      <p className='register'>
+                        Not Registered? <a href='register.html'>Register here</a> 
+                      </p>
                     </Form>
                   </li>
                 </ul>
@@ -92,7 +89,7 @@ const Header = () => {
         </Container>
       </section>
       <section className='cate'>
-        <Container>
+        <Container fluid>
           <Row>
             <Col>
               <ul>
