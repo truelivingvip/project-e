@@ -6,6 +6,9 @@ import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
+
+
 const Products = () => {
     const products = [
         {
@@ -1811,7 +1814,7 @@ const Products = () => {
         initialValues: {
             firstName: '',
             price: '',
-            categorie:'',
+            categorie: '',
             lastName: '',
         },
         onSubmit: values => {
@@ -1863,6 +1866,8 @@ const Products = () => {
                         <Col md={2}>
                             <div className='add'>
                                 <h2>Add Product</h2>
+
+                                {/* https://formik.org/docs/guides/validation */}
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
@@ -1893,13 +1898,13 @@ const Products = () => {
                                     <Row>
                                         <Col>
                                             <label htmlFor="categorie" className='category'>Categorie</label>
-                                            <input
-                                                id="categorie"
-                                                name="categorie"
-                                                type="text"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.categorie}
-                                            />
+                                            {/* <Field as="select" name="color">
+                                                <option value="red">Red</option>
+                                                <option value="green">Green</option>
+                                                <option value="blue">Blue</option>
+                                            </Field> */}
+
+
                                             {formik.errors.categorie ? <div>{formik.errors.categorie}</div> : null}
                                         </Col>
                                     </Row>

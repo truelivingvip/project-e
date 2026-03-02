@@ -11,6 +11,8 @@ import Customers from './Customers';
 import Settings from './Settings';
 import Categories from './Categories';
 import Home from './Home';
+import Cart from './Cart';
+import Category from './Category';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/Categories" element={<Categories/>} />
         <Route path="/Settings" element={<Settings/>} />
         <Route path="/Customers" element={<Customers/>} />
+        <Route path="/Cart" element={<Cart/>} />
+        <Route path="/Category/:categoryName" element={<Category/>} />
       </Routes>
     </div>
   );
