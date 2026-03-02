@@ -97,32 +97,32 @@ const Header = () => {
             <Col>
               <ul>
                 <li>
-                  <h6><a><Link to = {"/Category/Men's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/0/mensnavigationwebhome-92990.jpeg" />Men's Fashion</Link></a>
+                  <h6><Link to = {"/Category/Men's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/0/mensnavigationwebhome-92990.jpeg" />Men's Fashion</Link>
                   </h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Women's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/1/WoMen_sitenavne-d9da9.jpeg" />
-                    Women's Fashion</Link></a></h6>
+                  <h6><Link to = {"/Category/Women's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/1/WoMen_sitenavne-d9da9.jpeg" />
+                    Women's Fashion</Link></h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Home & Kitchen"}><img src="https://g.sdlcdn.com/imgs/l/c/1/homesiteiconne-d6c37.jpeg" />
-                    Home & Kitchen</Link></a></h6>
+                  <h6><Link to = {"/Category/Home & Kitchen"}><img src="https://g.sdlcdn.com/imgs/l/c/1/homesiteiconne-d6c37.jpeg" />
+                    Home & Kitchen</Link></h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Kid's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/1/kidshomeico-c52fa.jpeg" />
-                    Kid's Fashion</Link></a></h6>
+                  <h6><Link to = {"/Category/Kid's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/1/kidshomeico-c52fa.jpeg" />
+                    Kid's Fashion</Link></h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Beauty & Health"}><img src="https://g.sdlcdn.com/imgs/l/c/1/Beauty_Site_homene-162a5.jpeg" />
-                    Beauty & Health</Link></a></h6>
+                  <h6><Link to = {"/Category/Beauty & Health"}><img src="https://g.sdlcdn.com/imgs/l/c/1/Beauty_Site_homene-162a5.jpeg" />
+                    Beauty & Health</Link></h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Automotives"}><img src="https://g.sdlcdn.com/imgs/l/d/h/Automotive1-56b92.jpg" />
-                    Automotives</Link></a></h6>
+                  <h6><Link to = {"/Category/Automotives"}><img src="https://g.sdlcdn.com/imgs/l/d/h/Automotive1-56b92.jpg" />
+                    Automotives</Link></h6>
                 </li>
                 <li>
-                  <h6><a><Link to = {"/Category/Mobile Accessories"}><img src="https://g.sdlcdn.com/imgs/l/d/h/MobileAccessories1-32874.jpg" />
-                    Mobile Accessories</Link></a></h6>
+                  <h6><Link to = {"/Category/Mobile Accessories"}><img src="https://g.sdlcdn.com/imgs/l/d/h/MobileAccessories1-32874.jpg" />
+                    Mobile Accessories</Link></h6>
                 </li>
                 {/* <li>
                   <h6><img src="https://g.sdlcdn.com/imgs/l/d/h/elctronic1-cbb06.jpg" />

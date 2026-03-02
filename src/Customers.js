@@ -166,40 +166,7 @@ const Customers = () => {
                             </Row>
                         </Col>
                         <Col md={1}>
-                            <div className='add'>
-                                <h3>Customers</h3>
-                                <Formik
-                                    initialValues={{
-                                        firstName: '',
-                                        lastName: '',
-                                        email: '',
-                                    }}
-                                    validationSchema={SignupSchema}
-                                    onSubmit={values => {
-                                        // same shape as initial values
-                                        console.log(values);
-                                    }}
-                                >
-                                    {({ errors, touched }) => (
-                                        <Form>
-                                            <label htmlFor='firstName'>Name</label>
-                                            <Field name="firstName" />
-                                            {errors.firstName && touched.firstName ? (
-                                                <div>{errors.firstName}</div>
-                                            ) : null}
-                                            <label htmlFor='lastName'>Mobile</label>
-                                            <Field name="lastName" />
-                                            {errors.lastName && touched.lastName ? (
-                                                <div>{errors.lastName}</div>
-                                            ) : null}
-                                            <label htmlFor='email'>Email</label>
-                                            <Field name="email" type="email" />
-                                            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-                                            <button type="submit">ADD</button>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </div>
+                            
                         </Col>
                     </Row>
                 </Container>

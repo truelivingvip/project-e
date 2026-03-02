@@ -1812,10 +1812,11 @@ const Products = () => {
     ]
     const formik = useFormik({
         initialValues: {
-            firstName: '',
+            ProductName: '',
             price: '',
-            categorie: '',
-            lastName: '',
+            categories: '',
+            image: '',
+
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
@@ -1871,15 +1872,15 @@ const Products = () => {
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
-                                            <label htmlFor="firstName" className='category'>Products Name</label>
+                                            <label htmlFor="ProductName" className='category'>Products Name</label>
                                             <input
-                                                id="firstName"
-                                                name="firstName"
+                                                id="ProductName"
+                                                name="ProductName"
                                                 type="text"
                                                 onChange={formik.handleChange}
-                                                value={formik.values.firstName}
+                                                value={formik.values.ProductName}
                                             />
-                                            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                            {formik.errors.ProductName ? <div>{formik.errors.ProductName}</div> : null}
                                         </Col>
                                     </Row>
                                     <Row>
@@ -1897,29 +1898,34 @@ const Products = () => {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <label htmlFor="categorie" className='category'>Categorie</label>
-                                            {/* <Field as="select" name="color">
-                                                <option value="red">Red</option>
-                                                <option value="green">Green</option>
-                                                <option value="blue">Blue</option>
-                                            </Field> */}
+                                            <label htmlFor="categories" className='category'>Categorie</label>
+                                            <select id="categories" name='categories'
+                                                onChange={formik.handleChange}
+                                                value={formik.values.categories}>
+                                                <option value="">Select</option>
+                                                <option value="men'sFashion">Men's Fashion</option>
+                                                <option value="women'sFashion">Women's Fashion</option>
+                                                <option value="homeKitchen">Home & Kitchen</option>
+                                                <option value="kid'sFashion">Kid's Fashion</option>
+                                                <option value="beautyHeasth">Beauty & Health</option>
+                                                <option value="automotives">Automotives</option>
+                                                <option value="mobileAccessories">Mobile Accessories</option>
+                                            </select>
 
-
-                                            {formik.errors.categorie ? <div>{formik.errors.categorie}</div> : null}
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <label htmlFor="lastName">Image</label>
+                                            <label htmlFor="image">Image</label>
                                             <input
-                                                id="lastName"
-                                                name="lastName"
+                                                id="image"
+                                                name="image"
                                                 type="file"
                                                 accept='image/*'
                                                 onChange={formik.handleChange}
-                                                value={formik.values.lastName}
+                                                value={formik.values.image}
                                             />
-                                            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                                            {formik.errors.image ? <div>{formik.errors.image}</div> : null}
                                         </Col>
                                     </Row>
                                     <button type="submit">Add</button>

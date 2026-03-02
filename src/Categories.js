@@ -6,6 +6,18 @@ import { useFormik } from 'formik'
 const Categories = () => {
     const categories = [
         {
+            "title": "Men's Fashion",
+            "image": "https://tse4.mm.bing.net/th/id/OIP.knE7EgYQC-pcBGHZeLiVEgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+        },
+        {
+            "title": "Women's Fashion",
+            "image": "https://th.bing.com/th/id/OIP.IHrRasAUbKQrzDI1uDgexQHaLH?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+        },
+        {
+            "title": "Home & Kitchen",
+            "image": "https://tse3.mm.bing.net/th/id/OIP.AJ1jhYu23jZcW0-l7lRvJAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+        },
+        {  
             "title": "Home & Living",
             "image": "https://i5.walmartimages.com/asr/b38c79ec-09a3-4c23-b88d-9aa6eda2db4e.cca72575f78129850e104c54fa8206b7.jpeg"
         },
@@ -20,8 +32,8 @@ const Categories = () => {
     ]
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
+            categorieName: '',
+            image: '',
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
@@ -72,12 +84,6 @@ const Categories = () => {
                                     )
                                 }
                             </Row>
-                            <Row>
-                                <Col>
-
-
-                                </Col>
-                            </Row>
                         </Col>
                         <Col md={2}>
                             <div className='add'>
@@ -85,29 +91,29 @@ const Categories = () => {
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
-                                            <label htmlFor="firstName" className='category'>Categorie Name</label>
+                                            <label htmlFor="categorieName" className='category'>Categorie Name</label>
                                             <input
-                                                id="firstName"
-                                                name="firstName"
+                                                id="categorieName"
+                                                name="categorieName"
                                                 type="text"
                                                 onChange={formik.handleChange}
-                                                value={formik.values.firstName}
+                                                value={formik.values.categorieName}
                                             />
-                                            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                                            {formik.errors.categorieName ? <div>{formik.errors.categorieName}</div> : null}
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <label htmlFor="lastName">Image</label>
+                                            <label htmlFor="image">Image</label>
                                             <input
-                                                id="lastName"
-                                                name="lastName"
+                                                id="image"
+                                                name="image"
                                                 type="file"
                                                 accept='image/*'
                                                 onChange={formik.handleChange}
-                                                value={formik.values.lastName}
+                                                value={formik.values.image}
                                             />
-                                            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                                            {formik.errors.image ? <div>{formik.errors.image}</div> : null}
                                         </Col>
                                     </Row>
                                     <button type="submit">Add</button>
