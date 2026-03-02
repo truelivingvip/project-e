@@ -1867,8 +1867,6 @@ const Products = () => {
                         <Col md={2}>
                             <div className='add'>
                                 <h2>Add Product</h2>
-
-                                {/* https://formik.org/docs/guides/validation */}
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
