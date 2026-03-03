@@ -71,7 +71,7 @@ const Header = () => {
             <Col>
               <div className='snap1'>
                 <ul>
-                  <li><a href='#'><BsCartDash /> My Cart</a></li>
+                  <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   <li><a href='#'><CgProfile /> Login</a>
                     <Formik
                       initialValues={{ email: "", password: "" }}
