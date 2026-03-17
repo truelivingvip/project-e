@@ -1,4 +1,5 @@
 import React from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const success = () => {
   return (
@@ -7,7 +8,7 @@ const success = () => {
         <Container>
             <Row>
                 <Col>
-                    <h1>Order Placed</h1>
+                    <h1>Successfully order placed</h1>
                 </Col>
             </Row>
         </Container>

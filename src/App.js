@@ -13,6 +13,7 @@ import Categories from './Categories';
 import Home from './Home';
 import Cart from './Cart';
 import Category from './Category';
+import Success from './Success';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/Customers" element={<Customers/>} />
         <Route path="/Cart" element={<Cart/>} />
         <Route path="/Category/:categoryName" element={<Category/>} />
+        <Route path="/Success" element={<Success/>} />
       </Routes>
     </div>
   );
