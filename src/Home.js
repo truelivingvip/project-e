@@ -2,6 +2,26 @@ import React from 'react'
 import { Col, Row, Container, Carousel } from 'react-bootstrap'
 import Header from './Header'
 const Home = () => {
+  const deal = [
+    {
+      "title":"Watches",
+      "description":"MIN.50% OFF",
+      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Watches17thMar26DODytrew.jpg?q=40"
+    },
+    {
+      "title":"Sarees",
+      "description":"MIN.50% OFF",
+      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Sarees17thMar26DODytrew.jpg?q=40"
+    },
+    {
+      "title":"Salwar suits",
+      "description":"MIN.60% OFF",
+      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/SalwarSuits17thMar26DODytrew.jpg?q=40"
+    },
+    {
+      "title":"Designer"
+    }
+  ]
   return (
     <div>
       <section>
@@ -56,6 +76,20 @@ const Home = () => {
           <Row>
             <Col>
               <a href='#'><img src='https://g.sdlcdn.com/imgs/a/b/c/feedConfig/freedeliverystripwebupdated.jpg'/></a>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className='deal'>
+        <Container>
+          <Row>
+            <Col>
+              <h1>Deal Of The Day</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+
             </Col>
           </Row>
         </Container>
