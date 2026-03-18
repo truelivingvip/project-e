@@ -121,6 +121,9 @@ label {
   border-radius: 20px;
   position: absolute;
 }
+.snap1 p{
+  color:black;
+}
 .register{
   padding: 10px;
 }
@@ -167,5 +170,8 @@ label {
   padding:50px;
 }
 .deal{
+  text-align: center;
+}
+.total{
   text-align: center;
 }

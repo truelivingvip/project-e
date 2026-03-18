@@ -10,7 +10,7 @@ import { Formik, Form, Field } from 'formik';
 
 
 const Products = () => {
-    const products = [
+    const product = [
         {
             "id": 1,
             "title": "Essence Mascara Lash Princess",
@@ -1843,7 +1843,7 @@ const Products = () => {
                                     <Table striped bordered hover>
                                         <tbody>
                                             {
-                                                products.map((product, index) => {
+                                                product.map((product, index) => {
                                                     return (
                                                         <tr key={index}>
 

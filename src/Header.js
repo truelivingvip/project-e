@@ -72,7 +72,7 @@ const Header = () => {
               <div className='snap1'>
                 <ul>
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
-                  <li><a href='#'><CgProfile /> Login</a>
+                  <li><Link to={'/login'}><CgProfile /> Login</Link>
                     <Formik
                       initialValues={{ email: "", password: "" }}
                       validationSchema={LoginSchema}
@@ -121,7 +121,7 @@ const Header = () => {
                               {errors.password}
                             </Form.Control.Feedback>
                           </Form.Group>
-
+                          <p>No Account?<Link to={'/register'}>Register here</Link></p>
                           <Button variant="primary" type="submit">
                             Submit
                           </Button>
