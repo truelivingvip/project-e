@@ -1,25 +1,27 @@
 import React from 'react'
-import { Col, Row, Container, Carousel } from 'react-bootstrap'
+import { Col, Row, Container, Carousel, Card,} from 'react-bootstrap'
 import Header from './Header'
 const Home = () => {
   const deal = [
     {
-      "title":"Watches",
-      "description":"MIN.50% OFF",
-      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Watches17thMar26DODytrew.jpg?q=40"
+      "title": "Watches",
+      "description": "MIN.50% OFF",
+      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Watches17thMar26DODytrew.jpg?q=40"
     },
     {
-      "title":"Sarees",
-      "description":"MIN.50% OFF",
-      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Sarees17thMar26DODytrew.jpg?q=40"
+      "title": "Sarees",
+      "description": "MIN.50% OFF",
+      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Sarees17thMar26DODytrew.jpg?q=40"
     },
     {
-      "title":"Salwar suits",
-      "description":"MIN.60% OFF",
-      "images":"https://g.sdlcdn.com/imgs/a/b/c/feedConfig/SalwarSuits17thMar26DODytrew.jpg?q=40"
+      "title": "Salwar Suits",
+      "description": "MIN.60% OFF",
+      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/SalwarSuits17thMar26DODytrew.jpg?q=40"
     },
     {
-      "title":"Designer"
+      "title": "Designer Curtains",
+      "description": "UNDER $399",
+      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Curtains18thMarch26DODouhb.jpg?q=40"
     }
   ]
   return (
@@ -75,7 +77,7 @@ const Home = () => {
         <Container fluid>
           <Row>
             <Col>
-              <a href='#'><img src='https://g.sdlcdn.com/imgs/a/b/c/feedConfig/freedeliverystripwebupdated.jpg'/></a>
+              <a href='#'><img src='https://g.sdlcdn.com/imgs/a/b/c/feedConfig/freedeliverystripwebupdated.jpg' /></a>
             </Col>
           </Row>
         </Container>
@@ -88,9 +90,7 @@ const Home = () => {
             </Col>
           </Row>
           <Row>
-            <Col>
-
-            </Col>
+            <Col></Col>
           </Row>
         </Container>
       </section>
