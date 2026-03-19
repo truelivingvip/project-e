@@ -14,6 +14,7 @@ import Home from './Home';
 import Cart from './Cart';
 import Category from './Category';
 import Success from './Success';
+import Register from './Register';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/Settings" element={<Settings/>} />
         <Route path="/Customers" element={<Customers/>} />
         <Route path="/Cart" element={<Cart/>} />
+        <Route path="/Register" element={<Register/>} />
         <Route path="/Category/:categoryName" element={<Category/>} />
         <Route path="/Success" element={<Success/>} />
       </Routes>

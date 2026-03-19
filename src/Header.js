@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
-import snap from './snap.png'
+import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { RiShoppingBag3Line } from "react-icons/ri";
