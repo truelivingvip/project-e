@@ -3,7 +3,7 @@ body{
   padding: 0;
 }
 .pix {
-  background: #ECF0EF;
+  background: white;
   padding: 120px 0;
   position: fixed;
 }
@@ -13,8 +13,8 @@ body{
 }
 
 .pix img {
-  height: 100px;
-  margin-top: -180px;
+  height: 50px;
+  margin-top: -150px;
 }
 
 .order ul {
@@ -33,7 +33,7 @@ body{
 }
 
 .order ul li a:hover {
-  color: #76E6CB
+  color: #EE204E
 }
 
 .pro {

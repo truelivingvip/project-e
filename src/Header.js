@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
-import snap from './snap.png'
+import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { RiShoppingBag3Line } from "react-icons/ri";
@@ -11,7 +11,8 @@ import { Link } from 'react-router'
 
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
-import { Formik, Field } from 'formik';
+// import { Formik, Field } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Category from './Category';
 
@@ -26,6 +27,17 @@ const LoginSchema = Yup.object({
     .required("Password is required"),
 });
 const Header = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    
+    LoginSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <div>
       <section className='free'>
@@ -73,62 +85,44 @@ const Header = () => {
                 <ul>
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   <li><Link to={'/login'}><CgProfile /> Login</Link>
-                    <Formik
-                      initialValues={{ email: "", password: "" }}
-                      validationSchema={LoginSchema}
-                      onSubmit={(values) => {
-                        console.log(values);
-                        alert("Login Successful");
-                      }}
-                    >
-                      {({
-                        handleSubmit,
-                        handleChange,
-                        values,
-                        errors,
-                        touched,
-                      }) => (
-                        <Form noValidate onSubmit={handleSubmit}>
-
-                          {/* Email */}
-                          <Form.Group className="mb-3">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control
-                              type="email"
-                              name="email"
-                              placeholder="Enter email"
-                              value={values.email}
-                              onChange={handleChange}
-                              isInvalid={touched.email && errors.email}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              {errors.email}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-
-                          {/* Password */}
-                          <Form.Group className="mb-3">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                              type="password"
-                              name="password"
-                              placeholder="Password"
-                              value={values.password}
-                              onChange={handleChange}
-                              isInvalid={touched.password && errors.password}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              {errors.password}
-                            </Form.Control.Feedback>
-                          </Form.Group>
+                    <form onSubmit={formik.handleSubmit}>
+                      <Row>
+                        <Col>
+                          <label htmlFor="email">Email</label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
+                          />
+                          {formik.touched.email && formik.errors.email && (
+                            <p>{formik.errors.email}</p>
+                          )}
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <label htmlFor="password">Password</label>
+                          <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                          />
+                          {formik.touched.password && formik.errors.password && (
+                            <p>{formik.errors.password}</p>
+                          )}
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           <p>No Account?<Link to={'/register'}>Register here</Link></p>
-                          <Button variant="primary" type="submit">
-                            Submit
-                          </Button>
-
-                        </Form>
-                      )}
-                    </Formik>
+                        </Col>
+                      </Row>
+                      <button type="submit">Submit</button>
+                    </form>
                   </li>
                 </ul>
               </div>

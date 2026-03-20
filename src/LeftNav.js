@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row, Navbar, Nav } from 'react-bootstrap'
-import pixel from './pixel-logo.png'
+import snap from './snap.jpeg'
 import { Link } from 'react-router'
 import { CiHome } from "react-icons/ci";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -21,7 +21,7 @@ const LeftNav = () => {
                     <Row>
                         <Col>
                             <div className='pix1'>
-                                <img src={pixel} />
+                                <img src={snap} />
                             </div>
                         </Col>
                     </Row>
