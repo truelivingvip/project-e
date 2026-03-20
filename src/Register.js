@@ -1,25 +1,33 @@
-// import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useFormik } from 'formik';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { Col, Row, Button } from "react-bootstrap";
 
 import { register } from "./slices/auth";
 import { clearMessage } from "./slices/message";
 import { useDispatch, useSelector } from "react-redux";
+
+const SignupSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .min(8, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  username: Yup.string()
+    .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
+    .required("Mobile No. is Mandetory!"),
+});
+
 const Register = () => {
-    const formik = useFormik({
-            initialValues: {
-                firstName: '',
-                lastName: '',
-                username: '',
-                email: '',
-                password: '',
-            },
-            onSubmit: values => {
-                alert(JSON.stringify(values, null, 2));
-            },
-        });
-        const [successful, setSuccessful] = useState(false);
+  const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -48,15 +56,10 @@ const Register = () => {
         setSuccessful(false);
       });
   };
-    return (
-        <div>
-            <section>
-                <Container>
-                    <Row>
-                        <Col>
-                            <div style={{ width: "300px", margin: "auto" }}>
-                                <h2>Register Form</h2>
-{message && (
+  return (
+    <div className="text-center">
+      <h3>___Register___</h3>
+      {message && (
         <div
           className={`alert ${successful ? "alert-success" : "alert-danger"}`}
           role="alert"
@@ -64,81 +67,99 @@ const Register = () => {
           {message}
         </div>
       )}
-                                <form onSubmit={formik.handleSubmit}>
-                                    <Row>
-                                        <Col>
-                                            <label htmlFor="firstName">First Name</label>
-                                            <input
-                                                id="firstName"
-                                                name="firstName"
-                                                type="text"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.firstName}
-                                            />
-                                            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                            <label htmlFor="lastName">Last Name</label>
-                                            <input
-                                                id="lastName"
-                                                name="lastName"
-                                                type="text"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.lastName}
-                                            />
-                                            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                            <label htmlFor="username">User Name</label>
-                                            <input
-                                                id="username"
-                                                name="username"
-                                                type="number"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.username}
-                                            />
-                                            {formik.errors.username ? <div>{formik.errors.username}</div> : null}
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                            <label htmlFor="email">Email</label>
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.email}
-                                            />
-                                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                            <label htmlFor="password">Password</label>
-                                            <input
-                                                id="password"
-                                                name="password"
-                                                type="password"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.password}
-                                            />
-                                            {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-                                        </Col>
-                                    </Row>
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </div>
-    )
-}
+      <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          username: "",
+        }}
+        validationSchema={SignupSchema}
+        // onSubmit={values => {
+        // same shape as initial values
+        // console.log(values);
+        // }}
+        onSubmit={handleRegister}
+      >
+        {({ errors, touched }) => (
+          <Form>
+            <div className="registerform">
+              <Row>
+                <Col md={4}>
+                  <label>First Name : </label>
+                </Col>
+                <Col md={8}>
+                  <Field name="firstName" />
+                  {errors.firstName && touched.firstName ? (
+                    <div>{errors.firstName}</div>
+                  ) : null}
+                </Col>
+              </Row>
 
-export default Register
+              <Row>
+                <Col md={4}>
+                  <label>Last Name : </label>
+                </Col>
+                <Col md={8}>
+                  <Field name="lastName" />
+                  {errors.lastName && touched.lastName ? (
+                    <div>{errors.lastName}</div>
+                  ) : null}
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={4}>
+                  <label>Email : </label>
+                </Col>
+                <Col md={8}>
+                  <Field name="email" type="email" />
+                  {errors.email && touched.email ? (
+                    <div>{errors.email}</div>
+                  ) : null}
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={4}>
+                  <label>Password</label>
+                </Col>
+                <Col md={8}>
+                  <Field name="password" type="password" />
+                  {errors.password && touched.password ? (
+                    <div>{errors.password}</div>
+                  ) : null}
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={4}>
+                  <label>Mobile : </label>
+                </Col>
+                <Col md={8}>
+                  <Field name="username" type="number" />
+                  {errors.username && touched.username ? (
+                    <div>{errors.username}</div>
+                  ) : null}
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Button className="button" type="submit" align-items center>
+                    Sign up
+                  </Button>
+                  <p>
+                    if already register <a href="Login">login</a>
+                  </p>
+                </Col>
+              </Row>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
+
+export default Register;
