@@ -17,7 +17,8 @@ import * as Yup from 'yup';
 import Category from './Category';
 
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const LoginSchema = Yup.object({
+const Header = () => {
+  const LoginSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
@@ -26,7 +27,6 @@ const LoginSchema = Yup.object({
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
 });
-const Header = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
