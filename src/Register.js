@@ -3,6 +3,9 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useFormik } from 'formik';
 import React, { useState } from "react";
 
+import { register } from "./slices/auth";
+import { clearMessage } from "./slices/message";
+import { useDispatch, useSelector } from "react-redux";
 const Register = () => {
     const formik = useFormik({
             initialValues: {
@@ -16,6 +19,35 @@ const Register = () => {
                 alert(JSON.stringify(values, null, 2));
             },
         });
+        const [successful, setSuccessful] = useState(false);
+
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        dispatch(clearMessage());
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message, dispatch]);
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+  const handleRegister = (formValue) => {
+    console.log(formValue);
+    const { firstName, lastName, username, email, password } = formValue;
+    setSuccessful(false);
+    dispatch(register({ firstName, lastName, username, email, password }))
+      .unwrap()
+      .then(() => {
+        setSuccessful(true);
+      })
+      .catch(() => {
+        setSuccessful(false);
+      });
+  };
     return (
         <div>
             <section>
@@ -24,7 +56,14 @@ const Register = () => {
                         <Col>
                             <div style={{ width: "300px", margin: "auto" }}>
                                 <h2>Register Form</h2>
-
+{message && (
+        <div
+          className={`alert ${successful ? "alert-success" : "alert-danger"}`}
+          role="alert"
+        >
+          {message}
+        </div>
+      )}
                                 <form onSubmit={formik.handleSubmit}>
                                     <Row>
                                         <Col>
