@@ -1,15 +1,16 @@
 // import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useFormik } from 'formik';
 import React, { useState } from "react";
 
 const Register = () => {
     const formik = useFormik({
             initialValues: {
-                ProductName: '',
-                price: '',
-                categories: '',
-                image: '',
-    
+                firstName: '',
+                lastName: '',
+                username: '',
+                email: '',
+                password: '',
             },
             onSubmit: values => {
                 alert(JSON.stringify(values, null, 2));
@@ -59,7 +60,7 @@ const Register = () => {
                                                 name="username"
                                                 type="number"
                                                 onChange={formik.handleChange}
-                                                value={formik.values.lastName}
+                                                value={formik.values.username}
                                             />
                                             {formik.errors.username ? <div>{formik.errors.username}</div> : null}
                                         </Col>
