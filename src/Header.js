@@ -32,8 +32,10 @@ const Header = () => {
       email: '',
       password: '',
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    
+    LoginSchema,
+    onSubmit: (values) => {
+      console.log(values);
     },
   });
   return (
@@ -94,7 +96,9 @@ const Header = () => {
                             onChange={formik.handleChange}
                             value={formik.values.email}
                           />
-                          {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                          {formik.touched.email && formik.errors.email && (
+                            <p>{formik.errors.email}</p>
+                          )}
                         </Col>
                       </Row>
                       <Row>
@@ -107,7 +111,9 @@ const Header = () => {
                             onChange={formik.handleChange}
                             value={formik.values.password}
                           />
-                          {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                          {formik.touched.password && formik.errors.password && (
+                            <p>{formik.errors.password}</p>
+                          )}
                         </Col>
                       </Row>
                       <Row>
