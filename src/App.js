@@ -13,7 +13,7 @@ import Categories from './Categories';
 import Home from './Home';
 import Cart from './Cart';
 import Category from './Category';
-import Success from './Success';
+// import Success from './Success';
 import Register from './Register';
 import Account from './Account';
 import Address from './Address';
@@ -39,7 +39,7 @@ function App() {
         <Route path="/Register" element={<Register/>} />
         <Route path="/Login" element={<Login/>} />
         <Route path="/Category/:categoryName" element={<Category/>} />
-        <Route path="/Success" element={<Success/>} />
+        {/* <Route path="/Success" element={<Success/>} /> */}
         <Route path="/Account" element={<Account/>} />
         <Route path="/Address" element={<Address/>} />
         <Route path="/Wishlist" element={<Wishlist/>} />
