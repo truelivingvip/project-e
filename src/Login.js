@@ -1,72 +1,131 @@
-// import React from "react";
-import { useFormik } from "formik";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
+import { login } from "./slices/auth";
+import { clearMessage } from "./slices/message";
+import './Login.css';
+const LoginSchema = Yup.object().shape({
+  username: Yup.string()
+    .matches(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number')
+    .required('Mobile number is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+});
+
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const formik = useFormik({
-        initialValues: {
-            email: "",
-            password: ""
-        },
+  const [loading, setLoading] = useState(false); 
+   const [successful, setSuccessful] = useState(false);
+  
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state.message);
+useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        dispatch(clearMessage());
+      }, 3000);
 
-        validationSchema: Yup.object({
-            email: Yup.string()
-                .email("Invalid email format")
-                .required("Email is required"),
+      return () => clearTimeout(timer);
+    }
+  }, [message, dispatch]);
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
 
-            password: Yup.string()
-                .min(6, "Password must be at least 6 characters")
-                .required("Password is required")
-        }),
+  const handleLogin = (formValue) => {
+    const { username, password } = formValue;
+    setLoading(true);
 
-        onSubmit: (values) => {
-            console.log(formik.errors);
-            console.log(formik.values);
-            console.log("Login Data:", values);
-        }
-    });
+    dispatch(login({ username, password }))
+      .unwrap()
+      .then(() => {
+        navigate("/home");
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
 
-    return (
-        <div style={{ width: "300px", margin: "50px auto" }}>
-            <h2>Login Form</h2>
-
-            <form onSubmit={formik.handleSubmit}>
-
-                {/* Email */}
-                <div>
-                    <label>Email:</label><br />
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.email}
-                    />
-                    {formik.errors.email && formik.touched.email && (
-                        <p style={{ color: "red" }}>{formik.errors.email}</p>
-                    )}
-                </div>
-
-                {/* Password */}
-                <div>
-                    <label>Password:</label><br />
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.password}
-                    />
-                    {formik.errors.password && formik.touched.password && (
-                        <p style={{ color: "red" }}>{formik.errors.password}</p>
-                    )}
-                </div>
-
-                <br />
-                <button type="submit">Login</button>
-            </form>
+  if (isLoggedIn) {
+    return <Navigate to="/home" />;
+  }
+       return (
+              <div className='text-center'>
+                     <section>
+                            <Container>
+                                   <Row>
+                                          <Col>
+                                                 <h3>Login</h3>
+                                                  {message && (
+        <div
+          className={`alert ${successful ? "alert-success" : "alert-danger"}`}
+          role="alert"
+        >
+          {message}
         </div>
-    );
-};
-export default Login;
+      )}
+                                                 <Formik
+                                                        initialValues={{
+                                                               username: '',
+                                                               password: ''
+                                                        }}
+                                                        validationSchema={LoginSchema}
+                                                        onSubmit={handleLogin}
+                                                 >
+                                                        {({ errors, touched }) => (
+                                                               <Form>
+                                                                      <div className='loginform'>
+                                                                             <Row>
+                                                                                    <Col>
+                                                                                           <label>Mobile :- </label>
+                                                                                    </Col>
+                                                                                    <Col>
+                                                                                           <Field name="username" type="text" />
+                                                                                           {errors.username && touched.username ? <div>{errors.username}</div> : null}
+
+                                                                                    </Col>
+                                                                             </Row>
+
+                                                                             <Row>
+                                                                                    <Col>
+                                                                                           <label>Password :- </label>
+                                                                                    </Col>
+                                                                                    <Col>
+                                                                                           <Field name="password" type="password" />
+                                                                                           {errors.password && touched.password ? <div>{errors.password}</div> : null}
+
+                                                                                    </Col>
+                                                                             </Row>
+                                                                             <Row>
+
+                                                                                    <Col>
+                                                                                           <p>if not logged in then <a href='Register'>Register</a></p>
+
+                                                                                           <button className="btn btn-shine">Login</button>
+
+
+                                                                                    </Col>
+                                                                             </Row>
+                                                                      </div>
+
+
+                                                               </Form>
+                                                        )}
+                                                 </Formik>
+                                          </Col>
+                                   </Row>
+                            </Container>
+                     </section>
+              </div>
+       )
+}
+
+export default Login
