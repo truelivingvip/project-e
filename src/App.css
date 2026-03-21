@@ -99,8 +99,7 @@ label {
   padding: 0;
 }
 
-
-.snap1 ul li{
+.snap ul li{
   float: right;
 }
 .snap1 ul li a:link,
@@ -110,7 +109,7 @@ label {
   color: black;
 }
 .snap1 ul li ul li{
-  /* float: none; */
+  float: none;
   display: none;
 }
 .snap1 ul li:hover ul li{
