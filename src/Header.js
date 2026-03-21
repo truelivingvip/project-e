@@ -1,5 +1,6 @@
 import React from 'react'
-import { Col, Container, Row, Form, Button } from 'react-bootstrap'
+import { Col, Container, Row, Form, Button, Dropdown } from 'react-bootstrap'
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
 import { TfiHelpAlt } from "react-icons/tfi";
@@ -8,12 +9,22 @@ import { BsCartDash } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
 import { Link } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import{logout} from './slices/auth';
 
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
 // import { Formik, Field } from 'formik';
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
+  const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.auth)
+  console.log(currentUser)
+
+   const handleLogout=()=>{
+    dispatch(logout());
+    window.location.reload();
+   }
   return (
     <div>
       <section className='free'>
@@ -60,6 +71,22 @@ const Header = () => {
               <div className='snap1'>
                 <ul>
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
+                  {
+                    !currentUser ?
+                      <li><Link to={'/login'}><CgProfile /> Login</Link></li>
+                      :
+                      <li>
+                        <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                          <Dropdown.Item href="#/action-1">Account</Dropdown.Item>
+                          <Dropdown.Item href="#/action-2">Orders</Dropdown.Item>
+                          <Dropdown.Item href="#/action-2">Address</Dropdown.Item>
+                          <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                        </DropdownButton>
+
+                      </li>
+
+
+                  }
                   <li><Link to={'/login'}><CgProfile /> Login</Link>
                     <ul>
                       <li><Link to={'/Account'}>Your Account</Link></li>

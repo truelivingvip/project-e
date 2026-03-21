@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Row, Container, Carousel, Card,} from 'react-bootstrap'
 import Header from './Header'
+import { useSelector } from 'react-redux'
 const Home = () => {
   const deal = [
     {
@@ -24,6 +25,8 @@ const Home = () => {
       "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Curtains18thMarch26DODouhb.jpg?q=40"
     }
   ]
+  const { user: currentUser}=useSelector((state)=> state.auth)
+  console.log(currentUser)
   return (
     <div>
       <section>

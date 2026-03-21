@@ -103,10 +103,6 @@ label {
   float: right;
 }
 
-.snap1 ul li ul{
-  float: none;
-}
-
 .snap1 ul li a:link,
 .snap1 ul li a:visited {
   text-decoration: none;
@@ -115,19 +111,12 @@ label {
 }
 
 .snap1 ul li ul li{
+  float: none;
   display: none;
 }
-.snap1 ul li:hover ul li{
-  color: white;
-  display: block;
-  padding: 10px;
-  background: #3C3C3C;
-  border-radius: 20px;
-  position: absolute;
-}
-.snap1 ul li ul li a:link,
-.snap1 ul li ul li a:visited {
-  color: white;
+#dropdown-basic-button{
+  background-color: white;
+  color:black;
 }
 .register{
   padding: 10px;
