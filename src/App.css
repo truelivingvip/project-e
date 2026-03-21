@@ -102,14 +102,19 @@ label {
 .snap ul li{
   float: right;
 }
+
+.snap1 ul li ul{
+  float: none;
+}
+
 .snap1 ul li a:link,
 .snap1 ul li a:visited {
   text-decoration: none;
   padding: 15px;
   color: black;
 }
+
 .snap1 ul li ul li{
-  float: none;
   display: none;
 }
 .snap1 ul li:hover ul li{
