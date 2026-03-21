@@ -96,7 +96,6 @@ const Register = () => {
                   ) : null}
                 </Col>
               </Row>
-
               <Row>
                 <Col md={4}>
                   <label>Last Name : </label>
@@ -108,7 +107,6 @@ const Register = () => {
                   ) : null}
                 </Col>
               </Row>
-
               <Row>
                 <Col md={4}>
                   <label>Email : </label>
@@ -120,7 +118,6 @@ const Register = () => {
                   ) : null}
                 </Col>
               </Row>
-
               <Row>
                 <Col md={4}>
                   <label>Password</label>
@@ -132,7 +129,6 @@ const Register = () => {
                   ) : null}
                 </Col>
               </Row>
-
               <Row>
                 <Col md={4}>
                   <label>Mobile : </label>

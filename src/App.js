@@ -15,6 +15,10 @@ import Cart from './Cart';
 import Category from './Category';
 import Success from './Success';
 import Register from './Register';
+import Account from './Account';
+import Address from './Address';
+import Wishlist from './Wishlist';
+import Orders1 from './Orders1';
 
 function App() {
   return (
@@ -34,6 +38,10 @@ function App() {
         <Route path="/Register" element={<Register/>} />
         <Route path="/Category/:categoryName" element={<Category/>} />
         <Route path="/Success" element={<Success/>} />
+        <Route path="/Account" element={<Account/>} />
+        <Route path="/Address" element={<Address/>} />
+        <Route path="/Wishlist" element={<Wishlist/>} />
+        <Route path="/Orders1" element={<Orders1/>} />
       </Routes>
     </div>
   );

@@ -19,9 +19,9 @@ import Category from './Category';
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
   const LoginSchema = Yup.object({
-  email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
+  username: Yup.string()
+      .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
+      .required("Mobile No. is Mandetory!"),
 
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
@@ -55,9 +55,9 @@ const Header = () => {
             <Col>
               <div className='our'>
                 <ul>
-                  <li><a href='#'><RiShoppingBag3Line /> Sell on Snapdeal</a></li>
-                  <li><a href='#'><TfiHelpAlt /> Help Center</a></li>
-                  <li><a href='#'><TfiBasketball /> Our Blog</a></li>
+                  <li><Link to={'/sell_on_snapdeal'}><RiShoppingBag3Line /> Sell on Snapdeal</Link></li>
+                  <li><Link to={'/help_center'}><TfiHelpAlt /> Help Center</Link></li>
+                  <li><Link to={'/our_blog'}><TfiBasketball /> Our Blog</Link></li>
                 </ul>
               </div>
             </Col>
@@ -88,13 +88,13 @@ const Header = () => {
                     <form onSubmit={formik.handleSubmit}>
                       <Row>
                         <Col>
-                          <label htmlFor="email">Email</label>
+                          <label htmlFor="username">Mobile</label>
                           <input
-                            id="email"
-                            name="email"
-                            type="email"
+                            id="username"
+                            name="username"
+                            type="number"
                             onChange={formik.handleChange}
-                            value={formik.values.email}
+                            value={formik.values.username}
                           />
                           {formik.touched.email && formik.errors.email && (
                             <p>{formik.errors.email}</p>
