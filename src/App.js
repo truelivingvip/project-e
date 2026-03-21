@@ -15,11 +15,12 @@ import Cart from './Cart';
 import Category from './Category';
 import Success from './Success';
 import Register from './Register';
+import Login from './Login';
 import Account from './Account';
 import Address from './Address';
 import Wishlist from './Wishlist';
 import Orders1 from './Orders1';
-import Login from './Login';
+
 
 function App() {
   return (
