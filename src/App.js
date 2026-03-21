@@ -19,6 +19,7 @@ import Account from './Account';
 import Address from './Address';
 import Wishlist from './Wishlist';
 import Orders1 from './Orders1';
+import Login from './Login';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Customers" element={<Customers/>} />
         <Route path="/Cart" element={<Cart/>} />
         <Route path="/Register" element={<Register/>} />
+        <Route path="/Login" element={<Login/>} />
         <Route path="/Category/:categoryName" element={<Category/>} />
         <Route path="/Success" element={<Success/>} />
         <Route path="/Account" element={<Account/>} />

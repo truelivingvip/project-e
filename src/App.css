@@ -99,30 +99,31 @@ label {
   padding: 0;
 }
 
-.snap ul li {
+
+.snap1 ul li{
   float: right;
 }
-
-.snap ul li a:link,
-.snap ul li a:visited {
+.snap1 ul li a:link,
+.snap1 ul li a:visited {
   text-decoration: none;
   padding: 15px;
   color: black;
 }
-.snap1 ul li form{
+.snap1 ul li ul li{
+  /* float: none; */
   display: none;
-  z-index: 1000;
 }
-.snap1 ul li:hover form{
+.snap1 ul li:hover ul li{
   color: white;
   display: block;
   padding: 10px;
-  background: #C9C0BB;
+  background: #3C3C3C;
   border-radius: 20px;
   position: absolute;
 }
-.snap1 p{
-  color:black;
+.snap1 ul li ul li a:link,
+.snap1 ul li ul li a:visited {
+  color: white;
 }
 .register{
   padding: 10px;

@@ -12,32 +12,8 @@ import { Link } from 'react-router'
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
 // import { Formik, Field } from 'formik';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import Category from './Category';
-
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
-  const LoginSchema = Yup.object({
-  username: Yup.string()
-      .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
-      .required("Mobile No. is Mandetory!"),
-
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-});
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    
-    LoginSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
   return (
     <div>
       <section className='free'>
@@ -85,44 +61,12 @@ const Header = () => {
                 <ul>
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   <li><Link to={'/login'}><CgProfile /> Login</Link>
-                    <form onSubmit={formik.handleSubmit}>
-                      <Row>
-                        <Col>
-                          <label htmlFor="username">Mobile</label>
-                          <input
-                            id="username"
-                            name="username"
-                            type="number"
-                            onChange={formik.handleChange}
-                            value={formik.values.username}
-                          />
-                          {formik.touched.email && formik.errors.email && (
-                            <p>{formik.errors.email}</p>
-                          )}
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <label htmlFor="password">Password</label>
-                          <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            onChange={formik.handleChange}
-                            value={formik.values.password}
-                          />
-                          {formik.touched.password && formik.errors.password && (
-                            <p>{formik.errors.password}</p>
-                          )}
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <p>No Account?<Link to={'/register'}>Register here</Link></p>
-                        </Col>
-                      </Row>
-                      <button type="submit">Submit</button>
-                    </form>
+                    <ul>
+                      <li><Link to={'/Account'}>Your Account</Link></li>
+                      <li><Link to={'/Orders1'}>Your Orders </Link></li>
+                      <li><Link to={'/Login'}>Login</Link></li>
+                      <li><Link to={'/Register'}>Register</Link></li>
+                    </ul>
                   </li>
                 </ul>
               </div>
