@@ -73,13 +73,13 @@ const Header = () => {
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   {
                     !currentUser ?
-                      <li><CgProfile /><Link to={'/Login'}>Login
+                      <li><CgProfile /> Login
                         <ul>
                           <li><Link to={'/Login'}>Login</Link></li>
                           <li><p>New user?</p></li>
                           <li><Link to={'/Register'}>Register</Link></li>
                          </ul> 
-                      </Link></li>
+                      </li>
                       :
                       <li>
                         <DropdownButton id="dropdown-basic-button" title="Vipul">
