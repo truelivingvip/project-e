@@ -73,28 +73,24 @@ const Header = () => {
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   {
                     !currentUser ?
-                      <li><Link to={'/login'}><CgProfile /> Login</Link></li>
+                      <li><CgProfile /><Link to={'/Login'}>Login
+                        <ul>
+                          <li><Link to={'/Login'}>Login</Link></li>
+                          <li><p>New user?</p></li>
+                          <li><Link to={'/Register'}>Register</Link></li>
+                         </ul> 
+                      </Link></li>
                       :
                       <li>
-                        <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-                          <Dropdown.Item href="#/action-1">Account</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Orders</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Address</Dropdown.Item>
+                        <DropdownButton id="dropdown-basic-button" title="Vipul">
+                          <Dropdown.Item><Link to={'/Account'}>Account</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Orders1'}>Orders</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Address'}>Address</Link></Dropdown.Item>
                           <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                         </DropdownButton>
 
                       </li>
-
-
                   }
-                  <li><Link to={'/login'}><CgProfile /> Login</Link>
-                    <ul>
-                      <li><Link to={'/Account'}>Your Account</Link></li>
-                      <li><Link to={'/Orders1'}>Your Orders </Link></li>
-                      <li><Link to={'/Login'}>Login</Link></li>
-                      <li><Link to={'/Register'}>Register</Link></li>
-                    </ul>
-                  </li>
                 </ul>
               </div>
             </Col>

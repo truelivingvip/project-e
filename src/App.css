@@ -111,8 +111,14 @@ label {
 }
 
 .snap1 ul li ul li{
-  float: none;
   display: none;
+}
+.snap1 ul li:hover ul li{
+  position: absolute;
+  display: block;
+  padding: 10px;
+  background: #2F2F2F;
+  color: white;
 }
 #dropdown-basic-button{
   background-color: white;
