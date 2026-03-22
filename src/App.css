@@ -109,16 +109,21 @@ label {
   padding: 15px;
   color: black;
 }
-
-.snap1 ul li ul li{
-  display: none;
+.loginform{
+  padding:50px;
+  background: grey;
 }
-.snap1 ul li:hover ul li{
-  position: absolute;
-  display: block;
-  padding: 10px;
-  background: #2F2F2F;
-  color: white;
+
+.loginform p {
+  margin-top: 50px;
+}
+.loginform p a:link,
+.loginform p a:visited{
+  text-decoration: none;
+  color: black;
+}
+.loginform p a:hover{
+  color:#ff4b2b;
 }
 #dropdown-basic-button{
   background-color: white;

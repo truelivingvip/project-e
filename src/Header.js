@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Form, Button, Dropdown } from 'react-bootstrap'
+import { Col, Container, Row, Form, Button, Dropdown, DropdownMenu } from 'react-bootstrap'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
 import { Link } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import{logout} from './slices/auth';
+import { logout } from './slices/auth';
 
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
@@ -21,10 +21,10 @@ const Header = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
   console.log(currentUser)
 
-   const handleLogout=()=>{
+  const handleLogout = () => {
     dispatch(logout());
     window.location.reload();
-   }
+  }
   return (
     <div>
       <section className='free'>
@@ -73,13 +73,7 @@ const Header = () => {
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   {
                     !currentUser ?
-                      <li><CgProfile /> Login
-                        <ul>
-                          <li><Link to={'/Login'}>Login</Link></li>
-                          <li><p>New user?</p></li>
-                          <li><Link to={'/Register'}>Register</Link></li>
-                         </ul> 
-                      </li>
+                      <li><Link to={'/login'}><CgProfile/> Login</Link></li>
                       :
                       <li>
                         <DropdownButton id="dropdown-basic-button" title="Vipul">
