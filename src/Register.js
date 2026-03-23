@@ -58,7 +58,7 @@ const Register = () => {
   };
   return (
     <div className="text-center">
-      <h3>___Register___</h3>
+      <h3>Register</h3>
       {message && (
         <div
           className={`alert ${successful ? "alert-success" : "alert-danger"}`}
@@ -142,12 +142,13 @@ const Register = () => {
               </Row>
               <Row>
                 <Col>
+                  
+                  <p>
+                    Already Registered? <a href="Login">login</a>
+                  </p>
                   <Button className="button" type="submit" align-items center>
                     Sign up
                   </Button>
-                  <p>
-                    if already register <a href="Login">login</a>
-                  </p>
                 </Col>
               </Row>
             </div>

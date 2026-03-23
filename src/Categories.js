@@ -54,7 +54,6 @@ const Categories = () => {
                                     <h2>Categories</h2>
                                     <Breadcrumb>
                                         <Breadcrumb.Item><Link to={'/Dashboard'}>Dashboard</Link></Breadcrumb.Item>
-
                                         <Breadcrumb.Item active>Categories</Breadcrumb.Item>
                                     </Breadcrumb>
                                 </Col>

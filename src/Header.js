@@ -102,7 +102,7 @@ const Header = () => {
             <Col>
               <ul>
                 <li>
-                  <h6><Link to={"/Category/Men's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/0/mensnavigationwebhome-92990.jpeg" />Men's Fashion</Link>
+                  <h6><Link to={"/Category/Men's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/0/mensnavigationwebhome-92990.jpeg"/>Men's Fashion</Link>
                   </h6>
                 </li>
                 <li>

@@ -125,13 +125,26 @@ label {
 .loginform p a:hover{
   color:#ff4b2b;
 }
+
+.registerform{
+  text-align: center;
+  padding:50px;
+  background-color: grey;
+}
+.registerform p{
+  margin-top: 50px;
+}
+
+.registerform p a:link,
+.registerform p a:visited{
+  text-decoration: none;
+  color: black;
+}
 #dropdown-basic-button{
   background-color: white;
   color:black;
 }
-.register{
-  padding: 10px;
-}
+
 .app {
   background: linear-gradient(45deg, #ff416c, #ff4b2b);
   transition: 0.3s ease;
@@ -161,6 +174,7 @@ label {
 .cate img{
   width:40px;
   height:40px;
+  margin-right: 8px;
 }
 .delivery{
   padding:20px;

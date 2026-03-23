@@ -36,7 +36,7 @@ const LeftNav = () => {
                                     <li><Link to={'/sales'}><GrDocumentPerformance /> Sales</Link></li>
                                     <li><Link to={'/customers'}><MdOutlineContacts /> Customers</Link></li>
                                     <li><Link to={'/categories'}><MdOutlineContacts /> Categories</Link></li>
-                                    <li><Link to={'/settings'}><IoSettingsOutline />   Settings</Link></li>
+                                    <li><Link to={'/settings'}><IoSettingsOutline /> Settings</Link></li>
                                 </ul>
                             </div>
                         </Col>
