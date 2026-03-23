@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row, Form, Button, Dropdown, DropdownMenu } from 'react-bootstrap'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import snap from './snap.jpeg'
@@ -18,8 +18,11 @@ import { logout } from './slices/auth';
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.auth)
+     const { user: currentUser } = useSelector((state) => state.auth)
+  useEffect(()=>{
+ 
   console.log(currentUser)
+  },[])
 
   const handleLogout = () => {
     dispatch(logout());
@@ -76,8 +79,8 @@ const Header = () => {
                       <li><Link to={'/login'}><CgProfile/> Login</Link></li>
                       :
                       <li>
-                        <DropdownButton id="dropdown-basic-button" title="Vipul">
-                          <Dropdown.Item><Link to={'/Account'}>Account</Link></Dropdown.Item>
+                        <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName :" test"}>
+                          <Dropdown.Item><Link to={'/Account'}>Account { currentUser.firstName}</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Orders1'}>Orders</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Address'}>Address</Link></Dropdown.Item>
                           <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>

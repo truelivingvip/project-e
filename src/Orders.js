@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row, Breadcrumb, Table, Button } from 'react-bootstrap'
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import LeftNav from './LeftNav'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Orders = () => {
+    const dispatch = useDispatch();
+    let navigate=useNavigate();
+    const { user: currentUser } = useSelector((state) => state.auth)
+    console.log(currentUser)
+    useEffect(()=>{
+        currentUser && currentUser.roles[0]==="ROLE_ADMIN"?
+        console.log(currentUser)
+        :
+        navigate('/login');
+    },[currentUser]);
     const product = [
         {
             "image": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",

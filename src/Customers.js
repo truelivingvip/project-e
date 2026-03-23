@@ -1,10 +1,27 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router'
+
 import { Col, Container, Row, Breadcrumb, Table } from 'react-bootstrap'
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 import LeftNav from './LeftNav'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux'
+
+
+
 const Customers = () => {
+    const dispatch = useDispatch();
+    let navigate=useNavigate();
+    const { user: currentUser } = useSelector((state) => state.auth)
+    console.log(currentUser)
+    useEffect(()=>{
+        currentUser && currentUser.roles[0]==="ROLE_ADMIN"?
+        console.log(currentUser)
+        :
+        navigate('/login');
+    },[currentUser]);
     const customers = [
         {
             "id": 1,
@@ -166,7 +183,7 @@ const Customers = () => {
                             </Row>
                         </Col>
                         <Col md={1}>
-                            
+
                         </Col>
                     </Row>
                 </Container>

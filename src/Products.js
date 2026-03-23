@@ -7,9 +7,14 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { Formik, Form, Field } from 'formik';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Products = () => {
+    const dispatch = useDispatch();
+      const { user: currentUser } = useSelector((state) => state.auth)
+      console.log(currentUser)
+      
     const product = [
         {
             "id": 1,

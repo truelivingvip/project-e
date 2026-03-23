@@ -2,7 +2,13 @@ import React from 'react'
 import { Col, Container, Row, Breadcrumb } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LeftNav from './LeftNav'
+import { useDispatch, useSelector } from 'react-redux'
+
 const Settings = () => {
+    const dispatch = useDispatch();
+    const { user: currentUser } = useSelector((state) => state.auth)
+    console.log(currentUser)
+    
     return (
         <div>
             <section>

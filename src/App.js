@@ -20,6 +20,7 @@ import Account from './Account';
 import Address from './Address';
 import Wishlist from './Wishlist';
 import Orders1 from './Orders1';
+import Accounts1 from './Accounts1';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/Address" element={<Address/>} />
         <Route path="/Wishlist" element={<Wishlist/>} />
         <Route path="/Orders1" element={<Orders1/>} />
+        <Route path="/Accounts1" element={<Accounts1/>} />
       </Routes>
     </div>
   );
