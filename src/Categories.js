@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
-
+import axios from 'axios'
 import { Col, Container, Row, Breadcrumb, Card, Button } from 'react-bootstrap'
 // import { Link } from 'react-router'
 import LeftNav from './LeftNav'
@@ -19,6 +19,15 @@ const Categories = () => {
         :
         navigate('/login');
     },[currentUser]);
+    useEffect(()=>{
+        axios.get("http://localhost:8090/api/cats")
+            .then(res=>{
+                console.log(res.data);
+            })
+        .catch(error =>{
+            console.log("Error-fetching Data");
+        });
+    },[]);
     const categories = [
         {
             "title": "Men's Fashion",
