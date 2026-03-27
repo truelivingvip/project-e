@@ -7,7 +7,7 @@ import { Col, Container, Row, Breadcrumb, Card, Button } from 'react-bootstrap'
 import LeftNav from './LeftNav'
 // import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { color } from 'chart.js/helpers'
 
@@ -15,8 +15,6 @@ import { color } from 'chart.js/helpers'
 const Categories = () => {
     const CateSchema = Yup.object().shape({
         categorieName: Yup.string()
-            .min(2, "Too Short!")
-            .max(100, "Too Long!")
             .required("categorie_Name is required*"),
         image: Yup.mixed()
             .required("image is required*"),
@@ -116,46 +114,49 @@ const Categories = () => {
                                 <h3>Add Categorie</h3>
                                 <Formik
                                     initialValues={{
-                                        categorieName: '',
-                                        image: '',
+                                        categorieName: "",
+                                        image: null
                                     }}
                                     validationSchema={CateSchema}
-                                    onSubmit={value => {
+                                    onSubmit={(values) => {
                                         // same shape as initial values
-                                        console.log(value);
+                                        console.log("Form Data:", values);
                                     }}
                                 >
-                                    {({ errors, touched }) => (
+                                    {({ setFieldValue, values, errors, touched }) => (
                                         <Form>
                                             <Row>
                                                 <Col>
 
                                                     <label htmlFor="categorieName" className='category'>Categorie Name</label>
-                                                    <input
-                                                        id="categorieName"
-                                                        name="categorieName"
+                                                    <Field
                                                         type="text"
+                                                        name="categorieName"
+                                                        placeholder="Enter categorie name"
+
+
                                                     />
-                                                    {errors.categorieName && touched.categorieName ? (
-                                                        <div style={{color:"red"}}>{errors.categorieName}</div>
-                                                    ) : null}
+                                                    <ErrorMessage name="categorieName" component="p" style={{ color: "red" }} />
                                                 </Col>
                                             </Row>
                                             <Row>
                                                 <Col>
                                                     <label htmlFor="image">Image</label>
                                                     <input
-                                                        id="image"
                                                         name="image"
                                                         type="file"
-                                                        accept='image/*'
+                                                        onChange={(event) => {
+                                                            setFieldValue("image", event.currentTarget.files[0]);
+                                                        }}
                                                     />
-                                                    {errors.image && touched.image ? (
-                                                        <div style={{color:'red'}}>{errors.image}</div>
-                                                    ) : null}
+                                                    {errors.image && touched.image &&
+                                                        <div style={{ color: 'red' }}>{errors.image}</div>
+                                                    }
                                                 </Col>
                                             </Row>
                                             <button type="submit" className='button'>Add</button>
+                                            {console.log("Values:", values)}
+                                            {console.log("Errors:", errors)}
                                         </Form>
                                     )}
                                 </Formik>
