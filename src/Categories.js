@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
 import axios from 'axios'
@@ -13,6 +13,7 @@ import { color } from 'chart.js/helpers'
 
 
 const Categories = () => {
+    const [categories, setCategories] = useState();
     const CateSchema = Yup.object().shape({
         categorieName: Yup.string()
             .required("categorie_Name is required*"),
@@ -33,37 +34,38 @@ const Categories = () => {
         axios.get("http://localhost:8090/api/cats")
             .then(res => {
                 console.log(res.data);
+                setCategories(res.data);
             })
             .catch(error => {
                 console.log("Error-fetching Data");
             });
     }, []);
-    const categories = [
-        {
-            "title": "Men's Fashion",
-            "image": "https://tse4.mm.bing.net/th/id/OIP.knE7EgYQC-pcBGHZeLiVEgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
-        },
-        {
-            "title": "Women's Fashion",
-            "image": "https://th.bing.com/th/id/OIP.IHrRasAUbKQrzDI1uDgexQHaLH?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
-        },
-        {
-            "title": "Home & Kitchen",
-            "image": "https://tse3.mm.bing.net/th/id/OIP.AJ1jhYu23jZcW0-l7lRvJAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
-        },
-        {
-            "title": "Home & Living",
-            "image": "https://i5.walmartimages.com/asr/b38c79ec-09a3-4c23-b88d-9aa6eda2db4e.cca72575f78129850e104c54fa8206b7.jpeg"
-        },
-        {
-            "title": "Clothing & Shoes",
-            "image": "https://i5.walmartimages.com/seo/Kricely-Men-s-Trail-Running-Shoes-Fashion-Walking-Hiking-Sneakers-Men-Tennis-Cross-Training-Shoe-Outdoor-Snearker-Mens-Casual-Workout-Footwear-Tie-dy_b4edf81c-4a0e-494f-ab8f-5310ea0dc80d.102205b429f8869dc851a8dc5c548ced.jpeg"
-        },
-        {
-            "title": "Toys & Entertainment",
-            "image": "https://th.bing.com/th/id/OIP.WAJVvxoRwo1VeMY-VwNTOAHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
-        },
-    ]
+    // const categories = [
+    //     {
+    //         "title": "Men's Fashion",
+    //         "image": "https://tse4.mm.bing.net/th/id/OIP.knE7EgYQC-pcBGHZeLiVEgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+    //     },
+    //     {
+    //         "title": "Women's Fashion",
+    //         "image": "https://th.bing.com/th/id/OIP.IHrRasAUbKQrzDI1uDgexQHaLH?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+    //     },
+    //     {
+    //         "title": "Home & Kitchen",
+    //         "image": "https://tse3.mm.bing.net/th/id/OIP.AJ1jhYu23jZcW0-l7lRvJAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+    //     },
+    //     {
+    //         "title": "Home & Living",
+    //         "image": "https://i5.walmartimages.com/asr/b38c79ec-09a3-4c23-b88d-9aa6eda2db4e.cca72575f78129850e104c54fa8206b7.jpeg"
+    //     },
+    //     {
+    //         "title": "Clothing & Shoes",
+    //         "image": "https://i5.walmartimages.com/seo/Kricely-Men-s-Trail-Running-Shoes-Fashion-Walking-Hiking-Sneakers-Men-Tennis-Cross-Training-Shoe-Outdoor-Snearker-Mens-Casual-Workout-Footwear-Tie-dy_b4edf81c-4a0e-494f-ab8f-5310ea0dc80d.102205b429f8869dc851a8dc5c548ced.jpeg"
+    //     },
+    //     {
+    //         "title": "Toys & Entertainment",
+    //         "image": "https://th.bing.com/th/id/OIP.WAJVvxoRwo1VeMY-VwNTOAHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+    //     },
+    // ]
     return (
         <div>
             <section>
@@ -92,20 +94,22 @@ const Categories = () => {
                             </Row>
                             <Row>
                                 {
-                                    categories.map((categorie, index) => {
-                                        return (
-                                            <Col>
-                                                <Card style={{ width: '18rem' }}>
-                                                    <Card.Img variant="top" src={categorie.image} />
-                                                    <Card.Body>
-                                                        <Card.Title>{categorie.title}</Card.Title>
-                                                        <Button variant="primary">Shop Now</Button>
-                                                    </Card.Body>
-                                                </Card>
-                                            </Col>
+                                    categories ?
+                                        categories.map((categorie, index) => {
+                                            return (
+                                                <Col>
+                                                    <Card style={{ width: '18rem' }}>
+                                                        <Card.Img variant="top" src={`http://localhost:8090/upload/${categorie.image}`} />
+                                                        <Card.Body>
+                                                            <Card.Title>{categorie.name}</Card.Title>
+                                                            {/* <Button variant="primary">Shop Now</Button> */}
+                                                        </Card.Body>
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        }
                                         )
-                                    }
-                                    )
+                                        : "Data not found"
                                 }
                             </Row>
                         </Col>
