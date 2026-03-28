@@ -22,11 +22,11 @@ const Categories = () => {
   let navigate = useNavigate();
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser);
-//   useEffect(() => {
-//     currentUser && currentUser.roles[0] === "ROLE_ADMIN"
-//       ? console.log(currentUser)
-//       : navigate("/login");
-//   }, [currentUser]);
+  useEffect(() => {
+    currentUser && currentUser.roles[0] === "ROLE_ADMIN"
+      ? console.log(currentUser)
+      : navigate("/login");
+  }, [currentUser]);
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/cats")
