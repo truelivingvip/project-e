@@ -146,7 +146,7 @@ const Categories = () => {
                                                         name="image"
                                                         type="file"
                                                         onChange={(event) => {
-                                                            setFieldValue("image", event.currentTdarget.files[0]);
+                                                            setFieldValue("image", event.currentTarget.files[0]);
                                                         }}
                                                     />
                                                     {errors.image && touched.image &&
