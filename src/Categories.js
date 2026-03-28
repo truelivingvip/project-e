@@ -113,7 +113,7 @@ const Categories = () => {
                                             )
                                         }
                                         )
-                                        : "Data not found"
+                                    : "Data not found"
                                 }
                             </Row>
                         </Col>
