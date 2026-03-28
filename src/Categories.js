@@ -12,35 +12,35 @@ import * as Yup from "yup";
 import { color } from "chart.js/helpers";
 
 const Categories = () => {
-  const [categories, setCategories] = useState();
-  const [selectedImages, setSelectedImages] = useState([]);
-  const CateSchema = Yup.object().shape({
-    name: Yup.string().required("categori Name is required*"),
-    // image: Yup.mixed().required("image is required*"),
-  });
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
-  const { user: currentUser } = useSelector((state) => state.auth);
-  console.log(currentUser);
-  useEffect(() => {
-    currentUser && currentUser.roles[0] === "ROLE_ADMIN"
-      ? console.log(currentUser)
-      : navigate("/login");
-  }, [currentUser]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8090/api/cats")
-      .then((res) => {
-        console.log(res.data);
-        setCategories(res.data);
-      })
-      .catch((error) => {
-        console.log("Error-fetching Data");
-      });
-  }, []);
-  const handleFileChange = (e) => {
-    setSelectedImages(e.target.files);
-  };
+    const [categories, setCategories] = useState();
+    const [selectedImages, setSelectedImages] = useState([]);
+    const CateSchema = Yup.object().shape({
+        name: Yup.string().required("categori Name is required*"),
+        // image: Yup.mixed().required("image is required*"),
+    });
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser);
+    useEffect(() => {
+        currentUser && currentUser.roles[0] === "ROLE_ADMIN"
+            ? console.log(currentUser)
+            : navigate("/login");
+    }, [currentUser]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8090/api/cats")
+            .then((res) => {
+                console.log(res.data);
+                setCategories(res.data);
+            })
+            .catch((error) => {
+                console.log("Error-fetching Data");
+            });
+    }, []);
+    const handleFileChange = (e) => {
+        setSelectedImages(e.target.files);
+    };
     // const categories = [
     //     {
     //         "title": "Men's Fashion",
@@ -110,7 +110,7 @@ const Categories = () => {
                                             )
                                         }
                                         )
-                                    : "Data not found"
+                                        : "Data not found"
                                 }
                             </Row>
                         </Col>
@@ -124,85 +124,85 @@ const Categories = () => {
                                     }}
                                     validationSchema={CateSchema}
                                     onSubmit={async (values, { resetForm }) => {
-          const formData = new FormData();
+                                        const formData = new FormData();
 
-                    //   formData.append("userId", currentUser.id);
+                                        //   formData.append("userId", currentUser.id);
 
-                    Object.keys(values).forEach((key) => {
-                      formData.append(key, values[key]);
-                    });
+                                        Object.keys(values).forEach((key) => {
+                                            formData.append(key, values[key]);
+                                        });
 
-                    // for (let i = 0; i < selectedImages.length; i++) {
-                      formData.append("file", selectedImages[0]);
-                    // }
+                                        // for (let i = 0; i < selectedImages.length; i++) {
+                                        formData.append("file", selectedImages[0]);
+                                        // }
 
-                    try {
-                      const res = await axios.post(
-                        "http://localhost:8090/api/cats",
-                        formData,
-                        {
-                          headers: {
-                            "Content-Type": "multipart/form-data",
-                          },
-                        },
-                      );
-                      console.log("Upload success:", res.data);
-                      alert("Category added successfully!");
-                      resetForm();
-                      setSelectedImages([]);
-                    } catch (err) {
-                      console.error("Upload failed:", err);
-                      alert("Failed to add category");
-                    }
-                  }}
-                >
-                  {({ setFieldValue, values, errors, touched }) => (
-                    <Form>
-                      <Row>
-                        <Col>
-                          <label htmlFor="categorieName" className="category">
-                            Categorie Name
-                          </label>
-                          <Field
-                            type="text"
-                            name="name"
-                            placeholder="Enter categorie name"
-                          />
-                          <ErrorMessage
-                            name="name"
-                            component="p"
-                            style={{ color: "red" }}
-                          />
+                                        try {
+                                            const res = await axios.post(
+                                                "http://localhost:8090/api/cats",
+                                                formData,
+                                                {
+                                                    headers: {
+                                                        "Content-Type": "multipart/form-data",
+                                                    },
+                                                },
+                                            );
+                                            console.log("Upload success:", res.data);
+                                            alert("Category added successfully!");
+                                            resetForm();
+                                            setSelectedImages([]);
+                                        } catch (err) {
+                                            console.error("Upload failed:", err);
+                                            alert("Failed to add category");
+                                        }
+                                    }}
+                                >
+                                    {({ setFieldValue, values, errors, touched }) => (
+                                        <Form>
+                                            <Row>
+                                                <Col>
+                                                    <label htmlFor="categorieName" className="category">
+                                                        Categorie Name
+                                                    </label>
+                                                    <Field
+                                                        type="text"
+                                                        name="name"
+                                                        placeholder="Enter categorie name"
+                                                    />
+                                                    <ErrorMessage
+                                                        name="name"
+                                                        component="p"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                    <label htmlFor="image">Image</label>
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={handleFileChange}
+                                                    />
+                                                    {selectedImages.length > 0 && (
+                                                        <div>{selectedImages.length} image selected</div>
+                                                    )}
+                                                </Col>
+                                            </Row>
+                                            <button type="submit" className="button">
+                                                Add
+                                            </button>
+                                            {console.log("Values:", values)}
+                                            {console.log("Errors:", errors)}
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </div>
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <label htmlFor="image">Image</label>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                          />
-                          {selectedImages.length > 0 && (
-                            <div>{selectedImages.length} image selected</div>
-                          )}
-                        </Col>
-                      </Row>
-                      <button type="submit" className="button">
-                        Add
-                      </button>
-                      {console.log("Values:", values)}
-                      {console.log("Errors:", errors)}
-                    </Form>
-                  )}
-                </Formik>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </div>
-  );
+                    </Row>
+                </Container>
+            </section>
+        </div>
+    );
 };
 
 export default Categories;
