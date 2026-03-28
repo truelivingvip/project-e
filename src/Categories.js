@@ -14,6 +14,7 @@ import { color } from 'chart.js/helpers'
 
 const Categories = () => {
     const [categories, setCategories] = useState();
+  const [selectedImages, setSelectedImages] = useState([]);
     const CateSchema = Yup.object().shape({
         categorieName: Yup.string()
             .required("categorie_Name is required*"),
@@ -40,6 +41,9 @@ const Categories = () => {
                 console.log("Error-fetching Data");
             });
     }, []);
+    const handleFileChange = (e) => {
+    setSelectedImages(e.target.files);
+  };
     // const categories = [
     //     {
     //         "title": "Men's Fashion",
@@ -122,10 +126,38 @@ const Categories = () => {
                                         image: null
                                     }}
                                     validationSchema={CateSchema}
-                                    onSubmit={(values) => {
-                                        // same shape as initial values
-                                        console.log("Form Data:", values);
-                                    }}
+                                    onSubmit={async (values, { resetForm }) => {
+          const formData = new FormData();
+
+        //   formData.append("userId", currentUser.id);
+
+          Object.keys(values).forEach((key) => {
+            formData.append(key, values[key]);
+          });
+
+          for (let i = 0; i < selectedImages.length; i++) {
+            formData.append("images", selectedImages[i]);
+          }
+
+          try {
+            const res = await axios.post(
+              "http://localhost:8090/api/cats",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+            console.log("Upload success:", res.data);
+            alert("Product added successfully!");
+            resetForm();
+            setSelectedImages([]);
+          } catch (err) {
+            console.error("Upload failed:", err);
+            alert("Failed to add product");
+          }
+        }}
                                 >
                                     {({ setFieldValue, values, errors, touched }) => (
                                         <Form>
@@ -135,7 +167,7 @@ const Categories = () => {
                                                     <label htmlFor="categorieName" className='category'>Categorie Name</label>
                                                     <Field
                                                         type="text"
-                                                        name="categorieName"
+                                                        name="name"
                                                         placeholder="Enter categorie name"
 
 
@@ -146,16 +178,15 @@ const Categories = () => {
                                             <Row>
                                                 <Col>
                                                     <label htmlFor="image">Image</label>
-                                                    <input
-                                                        name="image"
-                                                        type="file"
-                                                        onChange={(event) => {
-                                                            setFieldValue("image", event.currentTarget.files[0]);
-                                                        }}
-                                                    />
-                                                    {errors.image && touched.image &&
-                                                        <div style={{ color: 'red' }}>{errors.image}</div>
-                                                    }
+                                                     <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                  {selectedImages.length > 0 && (
+                    <div>{selectedImages.length} image selected</div>
+                  )}
+                                                 
                                                 </Col>
                                             </Row>
                                             <button type="submit" className='button'>Add</button>
