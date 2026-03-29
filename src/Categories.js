@@ -9,13 +9,14 @@ import LeftNav from "./LeftNav";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { MdDeleteOutline } from "react-icons/md";
 import { color } from "chart.js/helpers";
 
 const Categories = () => {
     const [categories, setCategories] = useState();
     const [selectedImages, setSelectedImages] = useState([]);
     const CateSchema = Yup.object().shape({
-        name: Yup.string().required("categori Name is required*"),
+        name: Yup.string().required("categorie Name is required*"),
         // image: Yup.mixed().required("image is required*"),
     });
     const dispatch = useDispatch();
@@ -99,8 +100,9 @@ const Categories = () => {
                                         categories.map((categorie, index) => {
                                             return (
                                                 <Col>
-                                                    <Card style={{ width: '18rem' }}>
+                                                    <Card style={{ width: '18rem' }} className="img-container">
                                                         <Card.Img variant="top" src={`http://localhost:8090/upload/${categorie.image}`} />
+                                                        <Button variant="delete" className="delete-btn"><MdDeleteOutline color="pink" className="delete-icon"/></Button>
                                                         <Card.Body>
                                                             <Card.Title>{categorie.name}</Card.Title>
                                                             {/* <Button variant="primary">Shop Now</Button> */}

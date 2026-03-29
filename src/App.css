@@ -48,6 +48,22 @@ body{
 .category {
   margin-top: 50px;
 }
+.img-container{
+  position:relative;
+}
+.delete-btn{
+  position: absolute;
+  right:5px;
+  opacity:0 ;
+  transition: 0.3s;
+}
+.delete-icon{
+  width:25px;
+  height:25px;
+}
+.img-container:hover .delete-btn{
+  opacity: 1;
+}
 
 label {
   padding: 15px;
