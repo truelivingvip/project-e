@@ -14,12 +14,14 @@ import { Link, useNavigate } from 'react-router'
 import * as Yup from "yup";
 
 const Products = () => {
-    const [categories, setProducts] = useState();
+    const [categories, setCategories] = useState();
+    const [products, setProducts] = useState();
+    
         const [selectedImages, setSelectedImages] = useState([]);
     const ProductSchema = Yup.object().shape({
         name: Yup.string().required("name is required"),
         price: Yup.number().required("number is required"),
-        categories: Yup.string().required("at_least one option is required"),
+        // categories: Yup.string().required("at_least one option is required"),
     });
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -37,6 +39,17 @@ const Products = () => {
             .then((res) => {
                 console.log(res.data);
                 setProducts(res.data);
+            })
+            .catch((error) => {
+                console.log("Error-fetching Data");
+            });
+    }, []);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8090/api/cats")
+            .then((res) => {
+                console.log(res.data);
+                setCategories(res.data);
             })
             .catch((error) => {
                 console.log("Error-fetching Data");
@@ -169,12 +182,41 @@ const Products = () => {
                                     initialValues={{
                                         name: "",
                                         price: "",
-                                        categories: "",
+                                        category: "",
                                         image: null
                                     }}
                                     validationSchema={ProductSchema}
-                                    onSubmit={(values) => {
-                                        console.log("Form Data:", values);
+                                    onSubmit={async (values, { resetForm }) => {
+                                        const formData = new FormData();
+
+                                          formData.append("userId", currentUser.id);
+
+                                        Object.keys(values).forEach((key) => {
+                                            formData.append(key, values[key]);
+                                        });
+
+                                        // for (let i = 0; i < selectedImages.length; i++) {
+                                        formData.append("file", selectedImages[0]);
+                                        // }
+
+                                        try {
+                                            const res = await axios.post(
+                                                "http://localhost:8090/api/products",
+                                                formData,
+                                                {
+                                                    headers: {
+                                                        "Content-Type": "multipart/form-data",
+                                                    },
+                                                },
+                                            );
+                                            console.log("Upload success:", res.data);
+                                            alert("Product added successfully!");
+                                            resetForm();
+                                            setSelectedImages([]);
+                                        } catch (err) {
+                                            console.error("Upload failed:", err);
+                                            alert("Failed to add Product");
+                                        }
                                     }}
                                 >
 
@@ -218,9 +260,20 @@ const Products = () => {
                                                     <label htmlFor="categories" className='category'>
                                                         Categories
                                                     </label>
-                                                    <Field as="select" name="categories">
+                                                    <Field as="select" name="category">
                                                         <option value="">Select Category</option>
-                                                        <option value="men's fashion">Men's Fashion</option>
+                                                        {
+                                                            categories ?
+                                                                categories.map((category,index)=>
+                                                                {
+                                                                    return(
+                                                                        <option value={category.name} key={index}>{category.name}</option>
+                                                                    )
+                                                                })
+                                                            :
+
+                                                            "Not Available"
+                                                        }
                                                     </Field>
                                                 </Col>
                                             </Row>
