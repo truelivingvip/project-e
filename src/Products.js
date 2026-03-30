@@ -139,7 +139,7 @@ const Products = () => {
                                     <Table striped bordered hover>
                                         <tbody>
                                             {
-                                                products ?
+                                                product ?
                                                     product.map((product, index) => {
                                                         return (
                                                             <tr key={index}>
