@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-bootstrap'
 // import { Link } from 'react-router'
+import axios from 'axios';
 import LeftNav from './LeftNav'
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
@@ -13,6 +14,8 @@ import { Link, useNavigate } from 'react-router'
 import * as Yup from "yup";
 
 const Products = () => {
+    const [categories, setProducts] = useState();
+        const [selectedImages, setSelectedImages] = useState([]);
     const ProductSchema = Yup.object().shape({
         name: Yup.string().required("name is required"),
         price: Yup.number().required("number is required"),
@@ -28,7 +31,17 @@ const Products = () => {
             :
             navigate('/login');
     }, [currentUser]);
-
+    useEffect(() => {
+        axios
+            .get("http://localhost:8090/api/products")
+            .then((res) => {
+                console.log(res.data);
+                setProducts(res.data);
+            })
+            .catch((error) => {
+                console.log("Error-fetching Data");
+            });
+    }, []);
     const product = [
         {
             "id": 1,
@@ -126,21 +139,23 @@ const Products = () => {
                                     <Table striped bordered hover>
                                         <tbody>
                                             {
-                                                product.map((product, index) => {
-                                                    return (
-                                                        <tr key={index}>
+                                                products ?
+                                                    product.map((product, index) => {
+                                                        return (
+                                                            <tr key={index}>
 
-                                                            <td><img src={product.thumbnail} className='xyz' /></td>
-                                                            <td>{product.title}</td>
-                                                            <td>{product.price}</td>
-                                                            <td><Link to={'/edit'}><Button variant="edit"><FaEdit /></Button></Link>
-                                                                <Link><Button variant="delete"><MdDeleteOutline /></Button></Link>
-                                                                <Link to={'/view'}><Button variant="view"><FaRegEye /></Button></Link></td>
+                                                                <td><img src={product.thumbnail} className='xyz' /></td>
+                                                                <td>{product.title}</td>
+                                                                <td>{product.price}</td>
+                                                                <td><Link to={'/edit'}><Button variant="edit"><FaEdit /></Button></Link>
+                                                                    <Link><Button variant="delete"><MdDeleteOutline /></Button></Link>
+                                                                    <Link to={'/view'}><Button variant="view"><FaRegEye /></Button></Link></td>
 
-                                                        </tr>
+                                                            </tr>
+                                                        )
+                                                    }
                                                     )
-                                                }
-                                                )
+                                                    : "Data not found"
                                             }
                                         </tbody>
                                     </Table>
