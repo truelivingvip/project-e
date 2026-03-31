@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row, Form, Button, Dropdown, DropdownMenu } from 'react-bootstrap'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import snap from './snap.jpeg'
@@ -11,18 +11,28 @@ import { MdArrowOutward } from "react-icons/md";
 import { Link } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './slices/auth';
-
+import axios from 'axios';
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
 // import { Formik, Field } from 'formik';
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const Header = () => {
+  const [categories, setCategories] = useState();
+  const [headers, setHeaders] = useState();
   const dispatch = useDispatch();
-     const { user: currentUser } = useSelector((state) => state.auth)
-  useEffect(()=>{
- 
-  console.log(currentUser)
-  },[])
+  const { user: currentUser } = useSelector((state) => state.auth)
+  useEffect(() => {
+    axios
+      .get("http://localhost:8090/api/cats")
+      .then((res) => {
+        console.log(res.data);
+        setCategories(res.data);
+      })
+      .catch((error) => {
+        console.log("Error-fetching Data");
+      });
+    console.log(currentUser)
+  }, [])
 
   const handleLogout = () => {
     dispatch(logout());
@@ -76,11 +86,11 @@ const Header = () => {
                   <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
                   {
                     !currentUser ?
-                      <li><Link to={'/login'}><CgProfile/> Login</Link></li>
+                      <li><Link to={'/login'}><CgProfile /> Login</Link></li>
                       :
                       <li>
-                        <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName :" test"}>
-                          <Dropdown.Item><Link to={'/Account'}>Account { currentUser.firstName}</Link></Dropdown.Item>
+                        <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
+                          <Dropdown.Item><Link to={'/Account'}>Account {currentUser.firstName}</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Orders1'}>Orders</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Address'}>Address</Link></Dropdown.Item>
                           <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
@@ -104,7 +114,18 @@ const Header = () => {
           <Row>
             <Col>
               <ul>
-                <li>
+                {
+                  categories ?
+                    categories.map((category, index) => {
+                      return (
+                        <li key={index}><img src={`http://localhost:8090/upload/${category.image}`}/>{category.name}</li>
+                      )
+                    })
+                    :
+                    "Not Available"
+                }
+
+                {/* <li>
                   <h6><Link to={"/Category/Men's Fashion"}><img src="https://g.sdlcdn.com/imgs/l/c/0/mensnavigationwebhome-92990.jpeg"/>
                     Men's Fashion</Link></h6>
                 </li>
@@ -132,7 +153,7 @@ const Header = () => {
                   <h6><Link to={"/Category/Mobile Accessories"}><img src="https://g.sdlcdn.com/imgs/l/d/h/MobileAccessories1-32874.jpg" />
                     Mobile Accessories</Link></h6>
                 </li>
-                {/* <li>
+                 <li>
                   <h6><img src="https://g.sdlcdn.com/imgs/l/d/h/elctronic1-cbb06.jpg" />
                     Electronics</h6>
                 </li>
