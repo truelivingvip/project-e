@@ -3,28 +3,28 @@ import { Col, Row, Container, Carousel, Card,} from 'react-bootstrap'
 import Header from './Header'
 import { useSelector } from 'react-redux'
 const Home = () => {
-  const deal = [
-    {
-      "title": "Watches",
-      "description": "MIN.50% OFF",
-      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Watches17thMar26DODytrew.jpg?q=40"
-    },
-    {
-      "title": "Sarees",
-      "description": "MIN.50% OFF",
-      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Sarees17thMar26DODytrew.jpg?q=40"
-    },
-    {
-      "title": "Salwar Suits",
-      "description": "MIN.60% OFF",
-      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/SalwarSuits17thMar26DODytrew.jpg?q=40"
-    },
-    {
-      "title": "Designer Curtains",
-      "description": "UNDER $399",
-      "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Curtains18thMarch26DODouhb.jpg?q=40"
-    }
-  ]
+  // const deal = [
+  //   {
+  //     "title": "Watches",
+  //     "description": "MIN.50% OFF",
+  //     "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Watches17thMar26DODytrew.jpg?q=40"
+  //   },
+  //   {
+  //     "title": "Sarees",
+  //     "description": "MIN.50% OFF",
+  //     "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Sarees17thMar26DODytrew.jpg?q=40"
+  //   },
+  //   {
+  //     "title": "Salwar Suits",
+  //     "description": "MIN.60% OFF",
+  //     "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/SalwarSuits17thMar26DODytrew.jpg?q=40"
+  //   },
+  //   {
+  //     "title": "Designer Curtains",
+  //     "description": "UNDER $399",
+  //     "images": "https://g.sdlcdn.com/imgs/a/b/c/feedConfig/Curtains18thMarch26DODouhb.jpg?q=40"
+  //   }
+  // ]
   const { user: currentUser}=useSelector((state)=> state.auth)
   console.log(currentUser)
   return (

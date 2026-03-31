@@ -42,6 +42,18 @@ const Categories = () => {
     const handleFileChange = (e) => {
         setSelectedImages(e.target.files);
     };
+    const handleDelete = (id) => {
+        console.log(id)
+        axios
+            .delete(`http://localhost:8090/api/cats/${id}`)
+            .then((res) => {
+                console.log("Successfully deleted");
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.log("Error");
+            });
+    }  
     // const categories = [
     //     {
     //         "title": "Men's Fashion",
@@ -102,7 +114,7 @@ const Categories = () => {
                                                 <Col>
                                                     <Card style={{ width: '18rem' }} className="img-container">
                                                         <Card.Img variant="top" src={`http://localhost:8090/upload/${categorie.image}`} />
-                                                        <Button variant="delete" className="delete-btn"><MdDeleteOutline color="pink" className="delete-icon"/></Button>
+                                                        <Button onClick={() => handleDelete(categorie.id)} variant="delete" className="delete-btn"><MdDeleteOutline color="pink" className="delete-icon"/></Button>
                                                         <Card.Body>
                                                             <Card.Title>{categorie.name}</Card.Title>
                                                             {/* <Button variant="primary">Shop Now</Button> */}
