@@ -118,7 +118,7 @@ const Header = () => {
                   categories ?
                     categories.map((category, index) => {
                       return (
-                        <li key={index}><img src={`http://localhost:8090/upload/${category.image}`}/>{category.name}</li>
+                        <li key={index}><Link to={`/Categorywiseproducts/${category.name}`}><img src={`http://localhost:8090/upload/${category.image}`}/>{category.name}</Link></li>
                       )
                     })
                     :

@@ -58,6 +58,18 @@ const Products = () => {
     const handleFileChange = (e) => {
         setSelectedImages(e.target.files);
     };
+    const handleDelete = (id) => {
+        console.log(id)
+        axios
+            .delete(`http://localhost:8090/api/products/${id}`)
+            .then((res) => {
+                console.log("Successfully deleted");
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.log("Error");
+            });
+    }
     // const product = [
     //     {
     //         "id": 1,
@@ -164,7 +176,7 @@ const Products = () => {
                                                                 <td>{product.price}</td>
                                                                 <td>{product.category}</td>
                                                                 <td><Link to={'/edit'}><Button variant="edit"><FaEdit /></Button></Link>
-                                                                    <Link><Button variant="delete"><MdDeleteOutline /></Button></Link>
+                                                                    <Link><Button onClick={() => handleDelete(product.id)} variant="delete"><MdDeleteOutline /></Button></Link>
                                                                     <Link to={'/view'}><Button variant="view"><FaRegEye /></Button></Link>
                                                                 </td>
 
