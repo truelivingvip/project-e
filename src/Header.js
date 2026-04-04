@@ -30,6 +30,7 @@ const Header = () => {
       })
       .catch((error) => {
         console.log("Error-fetching Data");
+        
       });
     console.log(currentUser)
   }, [])
@@ -92,6 +93,7 @@ const Header = () => {
                         <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
                           <Dropdown.Item><Link to={'/Account'}>Account {currentUser.firstName}</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Orders1'}>Orders</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Wishlist'}>Wishlist</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Address'}>Address</Link></Dropdown.Item>
                           <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                         </DropdownButton>

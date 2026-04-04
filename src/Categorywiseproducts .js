@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-bootstrap'
 import { MdDeleteOutline } from "react-icons/md";
+import Header from './Header';
 
 
 // import { Col, Container, Row } from 'react-bootstrap';
@@ -41,10 +42,13 @@ const Categorywiseproducts = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <h1>{categoryName}</h1>
+                            <Header></Header>
                         </Col>
                     </Row>
-
+                </Container>
+            </section>
+            <section className='head'>
+                <Container>
                     <Row>
 
                         {
