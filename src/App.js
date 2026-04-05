@@ -22,6 +22,7 @@ import Wishlist from './Wishlist';
 import Orders1 from './Orders1';
 import Accounts1 from './Accounts1';
 import Categorywiseproducts from './Categorywiseproducts ';
+import Shop from './Shop';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/Wishlist" element={<Wishlist/>} />
         <Route path="/Orders1" element={<Orders1/>} />
         <Route path="/Accounts1" element={<Accounts1/>} />
+        <Route path="/Shop" element={<Shop/>} />
         <Route path="/Categorywiseproducts/:categoryName" element={<Categorywiseproducts/>}/>
       </Routes>
     </div>

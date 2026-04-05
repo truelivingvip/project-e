@@ -47,6 +47,7 @@ body{
 
 .category {
   margin-top: 50px;
+  padding: 10px;
 }
 .img-container{
   
@@ -70,9 +71,6 @@ label {
   padding: 15px;
 }
 
-.category {
-  padding: 10px;
-}
 .button{
   text-align: center;
   margin-top: 25px;
@@ -107,6 +105,10 @@ label {
 }
 
 .snap {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
   padding: 20px;
 }
 
@@ -214,10 +216,19 @@ label {
 .total{
   text-align: center;
 }
+
 .head{
+  width: 100%;
   margin-top: 50px;
 }
+
+.products-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 20px;
+}
 .custom-card{
+  
   border: 1px solid #eaeaea;
   border-radius: 10px;
   overflow: hidden;
@@ -264,11 +275,12 @@ label {
   transform: scale(1.1);
 }
 .cart-btn{
+  padding: 5px 90px;
   margin-top: 10px;
   background-color: white;
 }
 .cart-btn:hover{
-  background-color: #FF435F;
+  background-color: #dc0929;
   transform: translateY(-2px);
   transition: all 0.2s ease-in-out;
 }
@@ -288,11 +300,11 @@ label {
   border-radius: 6px;
   padding: 10px;
   border: none;
-  background-color: #2563eb;
+  background-color: #1d4ed8;
   margin-top: auto;
 }
 .shop-btn:hover{
-  background-color: #1d4ed8;
+  background-color: #253c7b;
   transform: translateY(-2px);
   transition: all 0.2s ease-in-out;
 }

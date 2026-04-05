@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import axios from 'axios';
 import { useEffect } from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-bootstrap'
@@ -79,30 +79,31 @@ const Categorywiseproducts = () => {
             <section className='head'>
                 <Container>
                     <Row>
+                        <div className='products-container'>
+                            {
+                                products ?
 
-                        {
-                            products ?
-                                products.map((product, index) => {
-                                    return (
-                                        <Col key={index} className="mb-4">
-                                            <Card className="custom-card h-100 shadow-sm">
-                                                <div className='image-wrapper'>
-                                                    <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
-                                                    <div onClick={() => addToWishlist(product._id)} className="wishlist-btn"><GoHeart color="red" size={20}/></div>
-                                                </div>
-                                                <Card.Body className='d-flex flex-column'>
-                                                    <Card.Title className='product-title'>{product.name}</Card.Title>
-                                                    <button variant="primary" className='mt-auto shop-btn'>Shop Now</button>
-                                                    <button className="cart-btn"><FaOpencart size={30}/></button>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
+                                    products.map((product, index) => {
+                                        return (
+                                            <Col key={index} className="mb-4">
+                                                <Card className="custom-card h-100 shadow-sm">
+                                                    <div className='image-wrapper'>
+                                                        <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
+                                                        <div onClick={() => addToWishlist(product._id)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
+                                                    </div>
+                                                    <Card.Body className='d-flex flex-column'>
+                                                        <Card.Title className='product-title'>{product.name}</Card.Title>
+                                                        <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
+                                                        <Link to={'/cart'}><button className="cart-btn"><FaOpencart size={30} /></button></Link>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    }
                                     )
-                                }
-                                )
-                                : "Data not found"
-                        }
-
+                                    : "Data not found"
+                            }
+                        </div>
 
                     </Row>
                 </Container>
