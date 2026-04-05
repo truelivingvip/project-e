@@ -49,6 +49,7 @@ body{
   margin-top: 50px;
 }
 .img-container{
+  
   position:relative;
 }
 .delete-btn{
@@ -215,4 +216,83 @@ label {
 }
 .head{
   margin-top: 50px;
+}
+.custom-card{
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+.image-wrapper{
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+.card-img-custom{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+.custom-card:hover .card-img-custom{
+  transform: scale(1.05);
+}
+.wishlist-btn{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+.wishlist-btn:hover{
+  transform: scale(1.1);
+}
+.cart-btn{
+  margin-top: 10px;
+  background-color: white;
+}
+.cart-btn:hover{
+  background-color: #FF435F;
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+.custom-card .product-title{
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.shop-btn{
+  width:100%;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px;
+  border: none;
+  background-color: #2563eb;
+  margin-top: auto;
+}
+.shop-btn:hover{
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
 }
