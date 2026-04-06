@@ -26,8 +26,7 @@ const Categorywiseproducts = () => {
                 console.log("Error-fetching Data");
             });
     }, []);
-    const [wishlist, setWishlist] = useState([]);
-    const user = JSON.parse(localStorage.getItem("user"));
+
     const addToWishlist = async (productid) => {
         try {
             const res = await
@@ -37,8 +36,7 @@ const Categorywiseproducts = () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        userid: user._id,
-                        productid: productid
+                       
                     })
                 });
             const data = await res.json();
@@ -93,6 +91,7 @@ const Categorywiseproducts = () => {
                                                     </div>
                                                     <Card.Body className='d-flex flex-column'>
                                                         <Card.Title className='product-title'>{product.name}</Card.Title>
+                                                        <div className='bold'>Rs.{product.price}</div>
                                                         <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
                                                         <Link to={'/cart'}><button className="cart-btn"><FaOpencart size={30} /></button></Link>
                                                     </Card.Body>
