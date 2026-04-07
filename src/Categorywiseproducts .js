@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { Link, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router'
+
+import { useParams } from 'react-router';
 import axios from 'axios';
 import { useEffect } from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-bootstrap'
@@ -13,6 +16,7 @@ import Header from './Header';
 
 
 const Categorywiseproducts = () => {
+
     const { categoryName } = useParams();
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -26,7 +30,16 @@ const Categorywiseproducts = () => {
                 console.log("Error-fetching Data");
             });
     }, []);
-
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+    const { user: currentUser } = useSelector((state) => state.auth)
+    console.log(currentUser)
+    useEffect(() => {
+        currentUser ?
+            console.log(currentUser)
+            :
+            navigate('/login');
+    }, [currentUser]);
     const addToWishlist = async (productid) => {
         try {
             const res = await
@@ -36,7 +49,7 @@ const Categorywiseproducts = () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                       
+
                     })
                 });
             const data = await res.json();
@@ -45,23 +58,27 @@ const Categorywiseproducts = () => {
             console.log(err);
         }
     };
-    // const exist = wishlist.find((item)=>item._id===product._id);
+    const handleCart = (product) => {
+        console.log(product);
+        const data = {
+            userId : currentUser.id,
+            items : [
+                {
+                "productId" : product.id,
+                "quantity" : 1,
+                "price" : product.price
+                }
+            ]
+        
+        }
+        console.log(data)
+        axios.post("http://localhost:8090/api/carts",data).then((response)=>{
+            console.log("Product-Add to Cart Successfully");
+            console.log(response)
+        }
 
-    // if(exist){
-    //     setWishlist(wishlist.filter((item) =>item._id!==product._id))
-    // } else{
-    //     setWishlist([...wishlist,product]);
-    // }
-    // console.log("Wishlist:",wishlist);
-    // axios
-    //     .post("http://localhost:8090/api/wishlist",{product})
-    // .then((res) => {
-    //     console.log("Successfully deleted");
-    //     window.location.reload()
-    // })
-    // .catch((error) => {
-    //     console.log("Error");
-    // });
+        )
+    }
 
     return (
         <div>
@@ -87,13 +104,13 @@ const Categorywiseproducts = () => {
                                                 <Card className="custom-card h-100 shadow-sm">
                                                     <div className='image-wrapper'>
                                                         <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
-                                                        <div onClick={() => addToWishlist(product._id)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
+                                                        <div onClick={() => addToWishlist(product.id)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
                                                     </div>
                                                     <Card.Body className='d-flex flex-column'>
                                                         <Card.Title className='product-title'>{product.name}</Card.Title>
                                                         <div className='bold'>Rs.{product.price}</div>
                                                         <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
-                                                        <Link to={'/cart'}><button className="cart-btn"><FaOpencart size={30} /></button></Link>
+                                                        <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
