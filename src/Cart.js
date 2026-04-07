@@ -24,7 +24,7 @@ const Cart = () => {
             .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
             .then((res) => {
                 console.log(res.data);
-                cartItems(res.data);
+                setcartItems(res.data.items);
             })
             .catch((error) => {
                 console.log("Error-fetching Data");
@@ -73,18 +73,11 @@ const Cart = () => {
                     cartItems.map((product, index) => {
                       return (
                         <tr key={index}>
-                          <td><img src={product.image} /></td>
-                          <td>{product.name}</td>
+                          <td><img src={`http://localhost:8090/uploads/${product.productId.image}`} /></td>
+                          <td>{product.productId}</td>
                           <td>{product.price}</td>
                           <td>
-                            <select>
-                              {product.quantity.map((qty, i) =>
-                                <option key={i} value={qty}>
-                                  {qty}
-                                </option>
-                              )
-                              }
-                            </select>
+                            {product.quantity}
                           </td>
                           <td>{product.total}</td>
                         </tr>

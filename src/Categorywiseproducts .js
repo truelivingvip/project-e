@@ -40,39 +40,39 @@ const Categorywiseproducts = () => {
             :
             navigate('/login');
     }, [currentUser]);
-    const addToWishlist = async (productid) => {
-        try {
-            const res = await
-                fetch("http://localhost:8090/api/wishlist", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-
-                    })
-                });
-            const data = await res.json();
-            console.log(data);
-        } catch (err) {
-            console.log(err);
+    const addToWishlist = (product) => {
+        console.log(product);
+        const data = {
+            userId: currentUser.id,
+            items: [
+                {
+                    "productId": product.id,
+                    "price": product.price
+                }
+            ]
         }
+        console.log(data)
+        axios.post("http://localhost:8090/api/wishlist", data).then((response) => {
+            console.log("Product-Add to wishlist success");
+            console.log(response)
+        }
+        )
     };
     const handleCart = (product) => {
         console.log(product);
         const data = {
-            userId : currentUser.id,
-            items : [
+            userId: currentUser.id,
+            items: [
                 {
-                "productId" : product.id,
-                "quantity" : 1,
-                "price" : product.price
+                    "productId": product.id,
+                    "quantity": 1,
+                    "price": product.price
                 }
             ]
-        
+
         }
         console.log(data)
-        axios.post("http://localhost:8090/api/carts",data).then((response)=>{
+        axios.post("http://localhost:8090/api/carts", data).then((response) => {
             console.log("Product-Add to Cart Successfully");
             console.log(response)
         }
@@ -104,7 +104,7 @@ const Categorywiseproducts = () => {
                                                 <Card className="custom-card h-100 shadow-sm">
                                                     <div className='image-wrapper'>
                                                         <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
-                                                        <div onClick={() => addToWishlist(product.id)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
+                                                        <div onClick={() => addToWishlist(product)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
                                                     </div>
                                                     <Card.Body className='d-flex flex-column'>
                                                         <Card.Title className='product-title'>{product.name}</Card.Title>
