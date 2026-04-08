@@ -78,7 +78,10 @@ label {
 .add {
   position: fixed;
 }
-
+.cart{
+  padding: 3px 0;
+  border: solid black 1px;
+}
 .free {
   text-align: center;
   background: #C9C0BB;
@@ -163,6 +166,8 @@ label {
   color: black;
 }
 #dropdown-basic-button{
+  margin-right: 50px;
+  /* margin-bottom: 15px; */
   background-color: white;
   color:black;
 }
@@ -300,12 +305,12 @@ label {
   border-radius: 6px;
   padding: 10px;
   border: none;
-  color: white;
-  background-color: #1d4ed8;
+  color: black;
+  background-color: #C9C0BB;
   margin-top: auto;
 }
 .shop-btn:hover{
-  background-color: #253c7b;
+  background-color: #dc0929;
   transform: translateY(-2px);
   transition: all 0.2s ease-in-out;
 }

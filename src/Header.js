@@ -5,7 +5,8 @@ import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { RiShoppingBag3Line } from "react-icons/ri";
-import { BsCartDash } from "react-icons/bs";
+import { FaOpencart } from "react-icons/fa";
+// import { BsCartDash } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
 import { Link } from 'react-router'
@@ -84,7 +85,7 @@ const Header = () => {
             <Col>
               <div className='snap1'>
                 <ul>
-                  <li><Link to={'/cart'}><BsCartDash /> My Cart</Link></li>
+                  <li><button className='cart'><Link to={'/cart'}><FaOpencart size={30} /></Link></button></li>
                   {
                     !currentUser ?
                       <li><Link to={'/login'}><CgProfile /> Login</Link></li>
