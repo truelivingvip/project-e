@@ -1,16 +1,89 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Card } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router'
+import axios from 'axios'
+import { FaOpencart } from "react-icons/fa";
+
 
 const Wishlist = () => {
-  
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const { user: currentUser } = useSelector((state) => state.auth)
+  console.log(currentUser)
+  useEffect(() => {
+    currentUser ?
+      console.log(currentUser)
+      :
+      navigate('/login');
+  }, [currentUser]);
+
+
+  const { categoryName } = useParams();
+  const [wishlists, setwishlists] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8090/api/wishlist/user/${currentUser.id}`)
+      .then((res) => {
+        console.log(res.data);
+        wishlists(res.data.items);
+      })
+      .catch((error) => {
+        console.log("Error-fetching Data");
+      });
+  }, []);
+
+  const handleCart = (product) => {
+    console.log(product);
+    const data = {
+      userId: currentUser.id,
+      items: [
+        {
+          "productId": product.id,
+          "quantity": 1,
+          "price": product.price
+        }
+      ]
+
+    }
+    console.log(data)
+    axios.post("http://localhost:8090/api/carts", data).then((response) => {
+      console.log("Product-Add to Cart Successfully");
+      console.log(response)
+    }
+
+    )
+  }
   return (
     <div>
       <section>
         <Container>
           <Row>
-            <Col>
-                
-            </Col>
+            <div className='products-container'>
+              {
+                wishlists ?
+
+                  wishlists.map((product, index) => {
+                    return (
+                      <Col key={index} className="mb-4">
+                        <Card className="custom-card h-100 shadow-sm">
+                          <div className='image-wrapper'>
+                            <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
+                          </div>
+                          <Card.Body className='d-flex flex-column'>
+                            <Card.Title className='product-title'>{product.productId}</Card.Title>
+                            <div className='bold'>Rs.{product.price}</div>
+                            <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
+                            <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    )
+                  }
+                  )
+                  : "Data not found"
+              }
+            </div>
           </Row>
         </Container>
       </section>

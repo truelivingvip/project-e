@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { Col, Container, Row, Table } from 'react-bootstrap'
@@ -7,29 +7,29 @@ import axios from 'axios';
 
 const Cart = () => {
   const dispatch = useDispatch();
-    let navigate = useNavigate();
-    const { user: currentUser } = useSelector((state) => state.auth)
-    console.log(currentUser)
-    useEffect(() => {
-        currentUser ?
-            console.log(currentUser)
-            :
-            navigate('/login');
-    }, [currentUser]);
+  let navigate = useNavigate();
+  const { user: currentUser } = useSelector((state) => state.auth)
+  console.log(currentUser)
+  useEffect(() => {
+    currentUser ?
+      console.log(currentUser)
+      :
+      navigate('/login');
+  }, [currentUser]);
 
-    const { categoryName } = useParams();
-    const [cartItems, setcartItems] = useState([]);
-    useEffect(() => {
-        axios
-            .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
-            .then((res) => {
-                console.log(res.data);
-                setcartItems(res.data.items);
-            })
-            .catch((error) => {
-                console.log("Error-fetching Data");
-            });
-    }, []);
+  const { categoryName } = useParams();
+  const [cartItems, setcartItems] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
+      .then((res) => {
+        console.log(res.data);
+        setcartItems(res.data.items);
+      })
+      .catch((error) => {
+        console.log("Error-fetching Data");
+      });
+  }, []);
   // const cart = [
   //   {
   //     "image": "https://g.sdlcdn.com/imgs/k/1/5/FABRIPPLE-Polyester-Regular-Fit-Printed-SDL291792790-1-cd425.jpg?w=130&h=152",
@@ -69,22 +69,22 @@ const Cart = () => {
                 </thead>
                 <tbody>
                   {
-                    cartItems?
-                    cartItems.map((product, index) => {
-                      return (
-                        <tr key={index}>
-                          <td><img src={`http://localhost:8090/uploads/${product.productId.image}`} /></td>
-                          <td>{product.productId}</td>
-                          <td>{product.price}</td>
-                          <td>
-                            {product.quantity}
-                          </td>
-                          <td>{product.total}</td>
-                        </tr>
+                    cartItems ?
+                      cartItems.map((product, index) => {
+                        return (
+                          <tr key={index}>
+                            <td><img src={`http://localhost:8090/uploads/${product.productId.image}`} /></td>
+                            <td>{product.name}</td>
+                            <td>{product.price}</td>
+                            <td>
+                              {product.quantity}
+                            </td>
+                            <td>{product.total}</td>
+                          </tr>
+                        )
+                      }
                       )
-                    }
-                    )
-                    :"Data Not Found"
+                      : "Data Not Found"
                   }
                 </tbody>
               </Table>

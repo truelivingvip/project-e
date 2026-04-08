@@ -40,16 +40,12 @@ const Categorywiseproducts = () => {
             :
             navigate('/login');
     }, [currentUser]);
+    
     const addToWishlist = (product) => {
         console.log(product);
         const data = {
             userId: currentUser.id,
-            items: [
-                {
-                    "productId": product.id,
-                    "price": product.price
-                }
-            ]
+            productId: product.id
         }
         console.log(data)
         axios.post("http://localhost:8090/api/wishlist", data).then((response) => {
@@ -58,6 +54,7 @@ const Categorywiseproducts = () => {
         }
         )
     };
+
     const handleCart = (product) => {
         console.log(product);
         const data = {
