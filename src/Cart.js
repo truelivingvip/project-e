@@ -30,6 +30,14 @@ const Cart = () => {
         console.log("Error-fetching Data");
       });
   }, []);
+  const calculateTotal = () => {
+    // console.log(products)
+    if(!Array.isArray(cartItems)) return 0;
+    return cartItems.reduce((total,product) =>{
+      return total + (product.quantity * product.price);
+    },0);
+  }
+  const subTotal = calculateTotal();
   // const cart = [
   //   {
   //     "image": "https://g.sdlcdn.com/imgs/k/1/5/FABRIPPLE-Polyester-Regular-Fit-Printed-SDL291792790-1-cd425.jpg?w=130&h=152",
@@ -62,7 +70,7 @@ const Cart = () => {
                   <tr>
                     <th>Image</th>
                     <th>Product_Name</th>
-                    <th>Unit Price</th>
+                    <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
                   </tr>
@@ -73,13 +81,13 @@ const Cart = () => {
                       cartItems.map((product, index) => {
                         return (
                           <tr key={index}>
-                            <td><img src={`http://localhost:8090/uploads/${product.image}`} /></td>
-                            <td>{product.productId}</td>
-                            <td>{product.price}</td>
+                            <td><img src={`http://localhost:8090/uploads/${product.productDetails.image}`} className='product-img' /></td>
+                            <td>{product.productDetails.name}</td>
+                            <td>Rs. {product.productDetails.price}</td>
                             <td>
                               {product.quantity}
                             </td>
-                            <td>{product.total}</td>
+                            <td>Rs. {product.productDetails.price * product.quantity}</td>
                           </tr>
                         )
                       }
@@ -96,7 +104,7 @@ const Cart = () => {
         <Container>
           <Row>
             <Col>
-              <h3>Grand Total : 795</h3>
+              <h3>Total Amount = {subTotal}</h3>
             </Col>
           </Row>
         </Container>

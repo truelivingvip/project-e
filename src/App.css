@@ -317,3 +317,7 @@ label {
 .bold{
   font-weight: bold;
 }
+.product-img{
+  width:100px;
+  height:100px;
+}
