@@ -104,7 +104,7 @@ const Categorywiseproducts = () => {
                                                         <div onClick={() => addToWishlist(product)} className="wishlist-btn"><GoHeart color="red" size={20} /></div>
                                                     </div>
                                                     <Card.Body className='d-flex flex-column'>
-                                                        <Card.Title className='product-title'>{product.id}</Card.Title>
+                                                        <Card.Title className='product-title'>{product.name}</Card.Title>
                                                         <div className='bold'>Rs.{product.price}</div>
                                                         <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
                                                         <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
