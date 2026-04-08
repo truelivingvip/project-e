@@ -73,8 +73,8 @@ const Cart = () => {
                       cartItems.map((product, index) => {
                         return (
                           <tr key={index}>
-                            <td><img src={`http://localhost:8090/uploads/${product.productId.image}`} /></td>
-                            <td>{product.name}</td>
+                            <td><img src={`http://localhost:8090/uploads/${product.image}`} /></td>
+                            <td>{product.productId}</td>
                             <td>{product.price}</td>
                             <td>
                               {product.quantity}

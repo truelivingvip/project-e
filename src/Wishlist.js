@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router'
 import axios from 'axios'
 import { FaOpencart } from "react-icons/fa";
+import Header from './Header'
 
 
 const Wishlist = () => {
@@ -19,14 +20,14 @@ const Wishlist = () => {
   }, [currentUser]);
 
 
-  const { categoryName } = useParams();
+  // const { categoryName } = useParams();
   const [wishlists, setwishlists] = useState([]);
   useEffect(() => {
     axios
       .get(`http://localhost:8090/api/wishlist/user/${currentUser.id}`)
       .then((res) => {
         console.log(res.data);
-        wishlists(res.data.items);
+        setwishlists(res.data.items || res.data);
       })
       .catch((error) => {
         console.log("Error-fetching Data");
@@ -37,13 +38,7 @@ const Wishlist = () => {
     console.log(product);
     const data = {
       userId: currentUser.id,
-      items: [
-        {
-          "productId": product.id,
-          "quantity": 1,
-          "price": product.price
-        }
-      ]
+      productId: product.id,
 
     }
     console.log(data)
@@ -59,11 +54,21 @@ const Wishlist = () => {
       <section>
         <Container>
           <Row>
+            <Col>
+            <Header></Header>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className='head'>
+        <Container>
+          <Row>
             <div className='products-container'>
               {
                 wishlists ?
 
                   wishlists.map((product, index) => {
+                    
                     return (
                       <Col key={index} className="mb-4">
                         <Card className="custom-card h-100 shadow-sm">
@@ -71,7 +76,7 @@ const Wishlist = () => {
                             <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
                           </div>
                           <Card.Body className='d-flex flex-column'>
-                            <Card.Title className='product-title'>{product.productId}</Card.Title>
+                            <Card.Title className='product-title'>{product.name}</Card.Title>
                             <div className='bold'>Rs.{product.price}</div>
                             <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
                             <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
@@ -82,6 +87,7 @@ const Wishlist = () => {
                   }
                   )
                   : "Data not found"
+
               }
             </div>
           </Row>
