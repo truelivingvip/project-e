@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { Col, Container, Row, Table } from 'react-bootstrap'
-import { useParams } from 'react-router';
+import { Col, Container, Row, Table, Button } from 'react-bootstrap'
+import { useParams, Link } from 'react-router';
 import axios from 'axios';
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineCurrencyRupee } from "react-icons/md";
+
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -32,12 +35,56 @@ const Cart = () => {
   }, []);
   const calculateTotal = () => {
     // console.log(products)
-    if(!Array.isArray(cartItems)) return 0;
-    return cartItems.reduce((total,product) =>{
+    if (!Array.isArray(cartItems)) return 0;
+    return cartItems.reduce((total, product) => {
       return total + (product.quantity * product.price);
-    },0);
+    }, 0);
   }
   const subTotal = calculateTotal();
+  const handleDelete = (productId) => {
+    console.log(productId)
+    axios
+      .delete(`http://localhost:8090/api/carts/user/${currentUser.id}/item/${productId}`)
+      .then((res) => {
+        console.log("Successfully deleted");
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.log("Error");
+      });
+  }
+  const [cart, setCart] = useState([])
+  const handleDecrease = (productId, currentQty) => {
+    if (currentQty <= 1) return;
+    try {
+      axios.put(`http://localhost:8090/api/carts/user/${currentUser.id}/item/${productId}`, {
+        quantity: currentQty - 1
+      }).then((response) => {
+        window.location.reload()
+      })
+
+      // setcartItems(res.data.items)
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const handleIncrease = (productId, currentQty) => {
+    try {
+      const res = axios.put(`http://localhost:8090/api/carts/user/${currentUser.id}/item/${productId}`, {
+        quantity: currentQty + 1
+      }).then((response) => {
+        window.location.reload()
+      })
+
+      console.log("API Updated:", res.data);
+
+      setcartItems(res.data.items)
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // const cart = [
   //   {
   //     "image": "https://g.sdlcdn.com/imgs/k/1/5/FABRIPPLE-Polyester-Regular-Fit-Printed-SDL291792790-1-cd425.jpg?w=130&h=152",
@@ -73,6 +120,7 @@ const Cart = () => {
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,11 +131,16 @@ const Cart = () => {
                           <tr key={index}>
                             <td><img src={`http://localhost:8090/uploads/${product.productDetails.image}`} className='product-img' /></td>
                             <td>{product.productDetails.name}</td>
-                            <td>Rs. {product.productDetails.price}</td>
+                            <td><MdOutlineCurrencyRupee />{product.productDetails.price}</td>
                             <td>
+                              <button onClick={() => handleDecrease(product.productId, product.quantity)}>-</button>
                               {product.quantity}
+                              <button onClick={() => handleIncrease(product.productId, product.quantity)}>+</button>
                             </td>
-                            <td>Rs. {product.productDetails.price * product.quantity}</td>
+                            <td><MdOutlineCurrencyRupee />{product.productDetails.price * product.quantity}</td>
+                            <td>
+                              <Button onClick={() => handleDelete(product.productId)} variant="delete"><MdDeleteOutline /></Button>
+                            </td>
                           </tr>
                         )
                       }
@@ -104,7 +157,16 @@ const Cart = () => {
         <Container>
           <Row>
             <Col>
-              <h3>Total Amount = {subTotal}</h3>
+              <h3>Total Amount = <MdOutlineCurrencyRupee />{subTotal}</h3>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className='next'>
+        <Container>
+          <Row>
+            <Col>
+                <button><Link to={'/Address1'}>Next</Link></button>
             </Col>
           </Row>
         </Container>

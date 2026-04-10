@@ -321,3 +321,7 @@ label {
   width:100px;
   height:100px;
 }
+.next{
+  text-align: right;
+  margin-top: 50px;
+}

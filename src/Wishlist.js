@@ -67,19 +67,19 @@ const Wishlist = () => {
               {
                 wishlists ?
 
-                  wishlists.map((item, index) => {
+                  wishlists.map((product, index) => {
                     
                     return (
                       <Col key={index} className="mb-4">
                         <Card className="custom-card h-100 shadow-sm">
                           <div className='image-wrapper'>
-                            <Card.Img variant="top" src={`http://localhost:8090/uploads/${item.productId.image}`} className='card-img-custom' />
+                            <Card.Img variant="top" src={`http://localhost:8090/uploads/${product.image}`} className='card-img-custom' />
                           </div>
                           <Card.Body className='d-flex flex-column'>
-                            <Card.Title className='product-title'>{item.productId.name}</Card.Title>
-                            <div className='bold'>Rs.{item.productId.price}</div>
+                            <Card.Title className='product-title'>{product.name}</Card.Title>
+                            <div className='bold'>Rs.{product.price}</div>
                             <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
-                            <button className="cart-btn" onClick={() => handleCart(item)}><FaOpencart size={30} /></button>
+                            <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
                           </Card.Body>
                         </Card>
                       </Col>
