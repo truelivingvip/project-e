@@ -70,7 +70,7 @@ const Categorywiseproducts = () => {
         }
         console.log(data)
         axios.post("http://localhost:8090/api/carts", data).then((response) => {
-            console.log("Product-Add to Cart Successfully");
+            alert("Added to Cart Successfully");
             console.log(response)
         }
 

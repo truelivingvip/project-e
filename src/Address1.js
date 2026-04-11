@@ -75,105 +75,99 @@ const Address1 = () => {
     },
   });
   return (
-    <div className="container">
-      <h2>Delivery Address</h2>
+    <div className="address-container">
+  <h2 className="title">Delivery Address</h2>
 
-      <form onSubmit={formik.handleSubmit}>
-        {/* Name */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          {...formik.getFieldProps("name")}
-        />
+  <form onSubmit={formik.handleSubmit} className="form">
+
+    {/* Row 1 */}
+    <div className="row">
+      <div className="form-group">
+        <label>Full Name</label>
+        <input {...formik.getFieldProps("name")} />
         {formik.touched.name && formik.errors.name && (
-          <p>{formik.errors.name}</p>
+          <span className="error">{formik.errors.name}</span>
         )}
+      </div>
 
-        {/* Phone */}
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone Number"
-          {...formik.getFieldProps("phone")}
-        />
+      <div className="form-group">
+        <label>Phone</label>
+        <input {...formik.getFieldProps("phone")} />
         {formik.touched.phone && formik.errors.phone && (
-          <p>{formik.errors.phone}</p>
+          <span className="error">{formik.errors.phone}</span>
         )}
+      </div>
+    </div>
 
-        {/* Pincode */}
-        <input
-          type="text"
-          name="pincode"
-          placeholder="Pincode"
-          {...formik.getFieldProps("pincode")}
-        />
+    {/* Row 2 */}
+    <div className="row">
+      <div className="form-group">
+        <label>Pincode</label>
+        <input {...formik.getFieldProps("pincode")} />
         {formik.touched.pincode && formik.errors.pincode && (
-          <p>{formik.errors.pincode}</p>
+          <span className="error">{formik.errors.pincode}</span>
         )}
+      </div>
 
-        {/* State */}
-        <input
-          type="text"
-          name="state"
-          placeholder="State"
-          {...formik.getFieldProps("state")}
-        />
+      <div className="form-group">
+        <label>State</label>
+        <input {...formik.getFieldProps("state")} />
         {formik.touched.state && formik.errors.state && (
-          <p>{formik.errors.state}</p>
+          <span className="error">{formik.errors.state}</span>
         )}
+      </div>
+    </div>
 
-        {/* City */}
-        <input
-          type="text"
-          name="city"
-          placeholder="City"
-          {...formik.getFieldProps("city")}
-        />
+    {/* Row 3 */}
+    <div className="row">
+      <div className="form-group">
+        <label>City</label>
+        <input {...formik.getFieldProps("city")} />
         {formik.touched.city && formik.errors.city && (
-          <p>{formik.errors.city}</p>
+          <span className="error">{formik.errors.city}</span>
         )}
+      </div>
 
-        {/* Address */}
-        <textarea
-          name="addressLine_1"
-          placeholder="addressLine_1"
-          {...formik.getFieldProps("addressLine_1")}
-        />
-        {formik.touched.addressLine_1 && formik.errors.addressLine_1 && (
-          <p>{formik.errors.addressLine_1}</p>
-        )}
-
-        <textarea
-          name="addressLine_2"
-          placeholder="addressLine_2"
-          {...formik.getFieldProps("addressLine_2")}
-        />
-        {formik.touched.addressLine_2 && formik.errors.addressLine_2 && (
-          <p>{formik.errors.addressLine_2}</p>
-        )}
-
-        {/* Landmark */}
-        <input
-          type="text"
-          name="landmark"
-          placeholder="Landmark (optional)"
-          {...formik.getFieldProps("landmark")}
-        />
-
-        {/* Address Type */}
-        <select name="addressType" {...formik.getFieldProps("addressType")}>
-          <option value="">Select Type</option>
+      <div className="form-group">
+        <label>Address Type</label>
+        <select {...formik.getFieldProps("addressType")}>
+          <option value="">Select</option>
           <option value="home">Home</option>
           <option value="work">Work</option>
         </select>
         {formik.touched.addressType && formik.errors.addressType && (
-          <p>{formik.errors.addressType}</p>
+          <span className="error">{formik.errors.addressType}</span>
         )}
-
-        <button type="submit">Save Address</button>
-      </form>
+      </div>
     </div>
+
+    
+    <div className="form-group">
+      <label>Address Line 1</label>
+      <textarea {...formik.getFieldProps("addressLine_1")} />
+      {formik.touched.addressLine_1 && formik.errors.addressLine_1 && (
+          <span className="error">{formik.errors.addressLine_1}</span>
+        )}
+    </div>
+
+    <div className="form-group">
+      <label>Address Line 2</label>
+      <textarea {...formik.getFieldProps("addressLine_2")} />
+      {formik.touched.addressLine_2 && formik.errors.addressLine_2 && (
+          <span className="error">{formik.errors.addressLine_2}</span>
+        )}
+    </div>
+
+    <div className="form-group">
+      <label>Landmark (Optional)</label>
+      <input {...formik.getFieldProps("landmark")} />
+    </div>
+
+    <button type="submit" className="stn">
+      Save Address
+    </button>
+  </form>
+</div>
   )
 }
 

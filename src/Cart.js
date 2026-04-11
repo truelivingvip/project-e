@@ -166,7 +166,7 @@ const Cart = () => {
         <Container>
           <Row>
             <Col>
-                <button><Link to={'/Address1'}>Next</Link></button>
+                <Link to={'/Address1'}><button>Next</button></Link>
             </Col>
           </Row>
         </Container>

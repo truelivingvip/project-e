@@ -285,7 +285,7 @@ label {
   background-color: white;
 }
 .cart-btn:hover{
-  background-color: #dc0929;
+  background: linear-gradient(45deg, #ffa200df, #ff0000d3);
   transform: translateY(-2px);
   transition: all 0.2s ease-in-out;
 }
@@ -310,7 +310,7 @@ label {
   margin-top: auto;
 }
 .shop-btn:hover{
-  background-color: #dc0929;
+  background: linear-gradient(45deg, #ffa200df, #ff0000d3);
   transform: translateY(-2px);
   transition: all 0.2s ease-in-out;
 }
@@ -325,18 +325,89 @@ label {
   text-align: right;
   margin-top: 50px;
 }
-.container {
-  max-width: 400px;
-  margin: auto;
+.address-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #444;
 }
 
 input, textarea, select {
-  width: 100%;
-  margin: 8px 0;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
-p {
+input:focus, textarea:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.error {
   color: red;
   font-size: 12px;
+  margin-top: 3px;
+}
+
+.stn {
+  margin-top: 10px;
+  padding: 12px;
+  background: linear-gradient(45deg, #ff0000, #ff6600);
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.stn:hover {
+  background: linear-gradient(45deg, #b35c00, #c70000);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
 }
