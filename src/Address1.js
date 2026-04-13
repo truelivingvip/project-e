@@ -47,9 +47,10 @@ const Address1 = () => {
 
     addressType: Yup.string().required("Select address type"),
   });
-  const data = {
-    userId: currentUser.id,
-  }
+  // const data = {
+  //   userId: currentUser.id,
+  // }
+  
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -63,10 +64,11 @@ const Address1 = () => {
       addressType: "",
     },
     validationSchema: addressSchema,
-    onSubmit: (values) => {
+    onSubmit: async(values) => {
       console.log("Form Data:", values);
       try {
-        const response = axios.post(`http://localhost:8090/api/addresses/user/${currentUser.id}`, data)
+        const dataToSend = {...values, userId:currentUser.id};
+        const response = await axios.post("http://localhost:8090/api/addresses", dataToSend);
         // console.log("Success:", response.data)
         alert("Address saved successfully!");
       } catch (error) {
