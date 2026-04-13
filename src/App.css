@@ -315,6 +315,8 @@ label {
   transition: all 0.2s ease-in-out;
 }
 .bold{
+  /* padding:5px; */
+  margin-bottom:15px;
   font-weight: bold;
 }
 .product-img{
@@ -410,4 +412,23 @@ textarea {
   .row {
     flex-direction: column;
   }
+}
+.del-btn{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+.del-icon{
+  width:20px;
+  height:20px;
+}
+.del-btn:hover{
+  transform: scale(1.1);
 }

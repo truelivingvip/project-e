@@ -10,6 +10,7 @@ import { Col, Container, Row, Breadcrumb, Card, Button, Table } from 'react-boot
 import { GoHeart } from "react-icons/go";
 import { FaOpencart } from "react-icons/fa";
 import Header from './Header';
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 
 // import { Col, Container, Row } from 'react-bootstrap';
@@ -105,7 +106,7 @@ const Categorywiseproducts = () => {
                                                     </div>
                                                     <Card.Body className='d-flex flex-column'>
                                                         <Card.Title className='product-title'>{product.name}</Card.Title>
-                                                        <div className='bold'>Rs.{product.price}</div>
+                                                        <div className='bold'><MdOutlineCurrencyRupee />{product.price}</div>
                                                         <Link to={'/Shop'}><button variant="primary" className='mt-auto shop-btn'>Shop Now</button></Link>
                                                         <button className="cart-btn" onClick={() => handleCart(product)}><FaOpencart size={30} /></button>
                                                     </Card.Body>
