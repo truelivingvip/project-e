@@ -5,7 +5,7 @@ import snap from './snap.jpeg'
 import { TfiBasketball } from "react-icons/tfi";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { RiShoppingBag3Line } from "react-icons/ri";
-import { FaOpencart } from "react-icons/fa";
+import { LiaOpencart } from "react-icons/lia";
 // import { BsCartDash } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { MdArrowOutward } from "react-icons/md";
@@ -13,6 +13,13 @@ import { Link } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './slices/auth';
 import axios from 'axios';
+import { FiUser } from "react-icons/fi";
+import { MdManageAccounts } from "react-icons/md";
+import { RiShoppingBasketLine } from "react-icons/ri";
+import { HiHeart } from "react-icons/hi";
+import { PiAddressBookFill } from "react-icons/pi";
+import { IoLogOut } from "react-icons/io5";
+
 // import 'react-app-polyfill/ie11';
 // import * as React from 'react';
 // import { Formik, Field } from 'formik';
@@ -85,20 +92,19 @@ const Header = () => {
             <Col>
               <div className='snap1'>
                 <ul>
-                  <li><button className='cart'><Link to={'/cart'}><FaOpencart size={30} /></Link></button></li>
+                  <li><Link to={'/cart'}><LiaOpencart size={30}/> Cart</Link></li>
                   {
                     !currentUser ?
                       <li><Link to={'/login'}><CgProfile /> Login</Link></li>
                       :
                       <li>
-                        <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
-                          <Dropdown.Item><Link to={'/Account'}>Account {currentUser.firstName}</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Orders1'}>Orders</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Wishlist'}>Wishlist</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Address'}>Address</Link></Dropdown.Item>
-                          <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                        <FiUser/> <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
+                          <Dropdown.Item><Link to={'/Account'}><MdManageAccounts/> Account</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Orders1'}><RiShoppingBasketLine/> Orders</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Wishlist'}><HiHeart/> Wishlist</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Address'}><PiAddressBookFill/> Address</Link></Dropdown.Item>
+                          <div onClick={handleLogout} className='log'><IoLogOut/> Logout</div>
                         </DropdownButton>
-
                       </li>
                   }
                 </ul>

@@ -23,15 +23,18 @@ const Cart = () => {
   const { categoryName } = useParams();
   const [cartItems, setcartItems] = useState([]);
   useEffect(() => {
-    axios
-      .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
-      .then((res) => {
-        console.log(res.data);
-        setcartItems(res.data.items);
-      })
-      .catch((error) => {
-        console.log("Error-fetching Data");
-      });
+    if (currentUser && currentUser.id) {
+      axios
+        .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
+        .then((res) => {
+          console.log(res.data);
+          setcartItems(res.data.items);
+        })
+        .catch((error) => {
+          console.log("Error-fetching Data");
+        });
+    }
+
   }, []);
   const calculateTotal = () => {
     // console.log(products)
@@ -166,7 +169,7 @@ const Cart = () => {
         <Container>
           <Row>
             <Col>
-                <Link to={'/Address1'}><button>Next</button></Link>
+              <Link to={'/Address1'}><button>Next</button></Link>
             </Col>
           </Row>
         </Container>
