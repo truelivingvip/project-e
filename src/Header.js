@@ -98,7 +98,7 @@ const Header = () => {
                       <li><Link to={'/login'}><CgProfile /> Login</Link></li>
                       :
                       <li>
-                        <FiUser/> <DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
+                        <FiUser/><DropdownButton id="dropdown-basic-button" title={currentUser ? currentUser.firstName : " test"}>
                           <Dropdown.Item><Link to={'/Account'}><MdManageAccounts/> Account</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Orders1'}><RiShoppingBasketLine/> Orders</Link></Dropdown.Item>
                           <Dropdown.Item><Link to={'/Wishlist'}><HiHeart/> Wishlist</Link></Dropdown.Item>
