@@ -1,4 +1,4 @@
-import React, {useState}  from 'react'
+import React, { useState } from 'react'
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from 'axios';
@@ -63,6 +63,7 @@ const Address1 = () => {
       addressLine_2: "",
       landmark: "",
       addressType: "",
+      selectedAddresses: []
     },
     validationSchema: addressSchema,
     onSubmit: async (values) => {
@@ -79,8 +80,23 @@ const Address1 = () => {
       }
     },
   });
-    const [addresses, setAddresses] = useState();
-  
+  const handleSelectAddress = (id) => {
+    const current = formik.values.selectedAddresses;
+
+    if (current.includes(id)) {
+      formik.setFieldValue(
+        "selectedAddresses",
+        current.filter(item => item !== id)
+      );
+    } else {
+      formik.setFieldValue(
+        "selectedAddresses",
+        [...current, id]
+      );
+    }
+  };
+  const [addresses, setAddresses] = useState();
+
   useEffect(() => {
     if (currentUser && currentUser.id) {
       axios
@@ -198,34 +214,49 @@ const Address1 = () => {
         </Row>
         <Row>
           <Col>
-              <Table striped bordered hover>
-                {/* <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Product_Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                  </tr>
-                </thead> */}
-                <tbody>
-                  {
-                    addresses ?
-                      addresses.map((addresses, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{addresses.name}</td>
-                            <td>{addresses.city}</td>
-                            <td>{addresses.addressType}</td>
-                          </tr>
-                        )
-                      }
-                      )
-                      : "Data Not Found"
-                  }
-                </tbody>
-              </Table>
+            <form onSubmit={formik.handleSubmit}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
+
+                {addresses && addresses.length > 0 ? (
+                  addresses.map((addr) => (
+                    <div
+                      key={addr._id}
+                      onClick={() => handleSelectAddress(addr._id)}
+                      style={{
+                        border: formik.values.selectedAddresses.includes(addr._id)
+                          ? "2px solid green"
+                          : "1px solid gray",
+                        padding: "15px",
+                        width: "250px",
+                        borderRadius: "10px",
+                        cursor: "pointer"
+                      }}
+                    >
+
+                      {/* Checkbox */}
+                      <input
+                        type="checkbox"
+                        checked={formik.values.selectedAddresses.includes(addr._id)}
+                        readOnly
+                      />
+
+                      <h5>{addr.name}</h5>
+                      <p>{addr.addressLine_1}</p>
+                      <p>{addr.city}, {addr.state}</p>
+                      <p>{addr.addressType}</p>
+
+                    </div>
+                  ))
+                ) : (
+                  <p>No Address Found</p>
+                )}
+
+              </div>
+
+              <button type="submit" style={{ marginTop: "20px" }}>
+                Continue
+              </button>
+            </form>
           </Col>
         </Row>
       </Container>
