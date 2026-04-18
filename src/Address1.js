@@ -87,21 +87,7 @@ const Address1 = () => {
       }
     },
   });
-  const handleSelectAddress = (id) => {
-    const current = formik.values.selectedAddresses;
 
-    if (current.includes(id)) {
-      formik.setFieldValue(
-        "selectedAddresses",
-        current.filter(item => item !== id)
-      );
-    } else {
-      formik.setFieldValue(
-        "selectedAddresses",
-        [...current, id]
-      );
-    }
-  };
   const [addresses, setAddresses] = useState([]);
 
   useEffect(() => {
@@ -221,11 +207,6 @@ const Address1 = () => {
         </Row>
         <Row>
           <Col>
-           
-          </Col>
-        </Row>
-        <Row>
-          <Col>
             <Formik
               initialValues={{
                 addressId: ''
@@ -241,7 +222,7 @@ const Address1 = () => {
                   {addresses && addresses.length ?
                     addresses.map((addr, index) => {
                       return(
-                        <div
+                        <div className="address-card"
                         key={index}
 
                         style={{
@@ -252,6 +233,7 @@ const Address1 = () => {
                           cursor: "pointer"
                         }}
                       >
+                        
                         <Field type="radio" name="addressId" value={addr.id} />
                         <h5>{addr.name}</h5>
                         <p>{addr.city}</p>
