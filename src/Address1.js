@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,12 @@ const Address1 = () => {
       :
       navigate('/login');
   }, [currentUser]);
+
+  const SignupSchema = Yup.object().shape({
+    addressId: Yup.string()
+      .required('Required'),
+
+  });
 
   const addressSchema = Yup.object({
     name: Yup.string()
@@ -95,7 +102,7 @@ const Address1 = () => {
       );
     }
   };
-  const [addresses, setAddresses] = useState();
+  const [addresses, setAddresses] = useState([]);
 
   useEffect(() => {
     if (currentUser && currentUser.id) {
@@ -214,49 +221,57 @@ const Address1 = () => {
         </Row>
         <Row>
           <Col>
-            <form onSubmit={formik.handleSubmit}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
+           
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Formik
+              initialValues={{
+                addressId: ''
+              }}
+              validationSchema={SignupSchema}
+              onSubmit={values => {
+                // same shape as initial values
+                console.log(values);
+              }}
+            >
+              {({ errors, touched }) => (
+                <Form>
+                  {addresses && addresses.length ?
+                    addresses.map((addr, index) => {
+                      return(
+                        <div
+                        key={index}
 
-                {addresses && addresses.length > 0 ? (
-                  addresses.map((addr) => (
-                    <div
-                      key={addr._id}
-                      onClick={() => handleSelectAddress(addr._id)}
-                      style={{
-                        border: formik.values.selectedAddresses.includes(addr._id)
-                          ? "2px solid green"
-                          : "1px solid gray",
-                        padding: "15px",
-                        width: "250px",
-                        borderRadius: "10px",
-                        cursor: "pointer"
-                      }}
-                    >
+                        style={{
+                          border: "1px solid gray",
+                          padding: "15px",
+                          width: "250px",
+                          borderRadius: "10px",
+                          cursor: "pointer"
+                        }}
+                      >
+                        <Field type="radio" name="addressId" value={addr.id} />
+                        <h5>{addr.name}</h5>
+                        <p>{addr.city}</p>
+                        <p>{addr.state}, {addr.state}</p>
+                        <p>{addr.addressType}</p>
+                      </div>
+                      )
 
-                      {/* Checkbox */}
-                      <input
-                        type="checkbox"
-                        checked={formik.values.selectedAddresses.includes(addr._id)}
-                        readOnly
-                      />
+                    }
+                    )
+                    : "Address Not Available"
 
-                      <h5>{addr.name}</h5>
-                      <p>{addr.addressLine_1}</p>
-                      <p>{addr.city}, {addr.state}</p>
-                      <p>{addr.addressType}</p>
+                  }
 
-                    </div>
-                  ))
-                ) : (
-                  <p>No Address Found</p>
-                )}
+               
 
-              </div>
-
-              <button type="submit" style={{ marginTop: "20px" }}>
-                Continue
-              </button>
-            </form>
+                    <button type="submit">Continue</button>
+                </Form>
+              )}
+            </Formik>
           </Col>
         </Row>
       </Container>
