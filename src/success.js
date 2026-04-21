@@ -1,20 +1,11 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
 
-const success = () => {
+const Success = () => {
   return (
     <div>
-      <section>
-        <Container>
-          <Row>
-            <Col>
-              <h1>Successfully order placed</h1>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      <h1>Successfully Order Placed</h1>
     </div>
   )
 }
 
-export default success
+export default Success

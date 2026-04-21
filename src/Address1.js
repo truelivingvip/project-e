@@ -7,9 +7,11 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { Col, Container, Row, Table } from 'react-bootstrap';
+import { useDispatch } from 'react-redux'
+
 
 const Address1 = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const { user: currentUser } = useSelector((state) => state.auth)
   console.log(currentUser)
@@ -97,6 +99,21 @@ const Address1 = () => {
         .then((res) => {
           console.log(res.data);
           setAddresses(res.data);
+        })
+        .catch((error) => {
+          console.log("Error-fetching Data");
+        });
+    }
+
+  }, []);
+  const [cartItems, setcartItems] = useState([]);
+  useEffect(() => {
+    if (currentUser && currentUser.id) {
+      axios
+        .get(`http://localhost:8090/api/carts/user/${currentUser.id}`)
+        .then((res) => {
+          console.log(res.data);
+          setcartItems(res.data);
         })
         .catch((error) => {
           console.log("Error-fetching Data");
@@ -215,42 +232,61 @@ const Address1 = () => {
               onSubmit={values => {
                 // same shape as initial values
                 console.log(values);
+                const data = {
+                  addressId: values.addressId,
+                  userId: currentUser.id,
+                  items: cartItems.items
+                }
+                console.log(data)
+                axios.post("http://localhost:8090/api/orders", data).then((response) => {
+                  console.log("Order Confirmed");
+                  console.log(response)
+                }
+                )
+                axios
+                  .delete(`http://localhost:8090/api/carts/user/${currentUser.id}`)
+                  .then((res) => {
+                    console.log("Successfully deleted");
+                    window.location.reload()
+                  })
+                  .catch((error) => {
+                    console.log("Error");
+                  });
+
+                  navigate('/success');
+
               }}
             >
               {({ errors, touched }) => (
                 <Form>
                   {addresses && addresses.length ?
                     addresses.map((addr, index) => {
-                      return(
+                      return (
                         <div className="address-card"
-                        key={index}
+                          key={index}
 
-                        style={{
-                          border: "1px solid gray",
-                          padding: "15px",
-                          width: "250px",
-                          borderRadius: "10px",
-                          cursor: "pointer"
-                        }}
-                      >
-                        
-                        <Field type="radio" name="addressId" value={addr.id} />
-                        <h5>{addr.name}</h5>
-                        <p>{addr.city}</p>
-                        <p>{addr.state}, {addr.state}</p>
-                        <p>{addr.addressType}</p>
-                      </div>
+                          style={{
+                            border: "1px solid gray",
+                            padding: "15px",
+                            width: "250px",
+                            borderRadius: "10px",
+                            cursor: "pointer"
+                          }}
+                        >
+
+                          <Field type="radio" name="addressId" value={addr.id} />
+                          <h5>{addr.name}</h5>
+                          <p>{addr.city}</p>
+                          <p>{addr.state}, {addr.state}</p>
+                          <p>{addr.addressType}</p>
+                        </div>
                       )
-
                     }
                     )
                     : "Address Not Available"
-
                   }
 
-               
-
-                    <button type="submit">Continue</button>
+                  <button type="submit">Continue</button>
                 </Form>
               )}
             </Formik>

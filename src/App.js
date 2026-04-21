@@ -13,7 +13,6 @@ import Categories from './Categories';
 import Home from './Home';
 import Cart from './Cart';
 import Category from './Category';
-// import Success from './Success';
 import Register from './Register';
 import Login from './Login';
 import Account from './Account';
@@ -24,6 +23,7 @@ import Accounts1 from './Accounts1';
 import Categorywiseproducts from './Categorywiseproducts ';
 import Shop from './Shop';
 import Address1 from './Address1';
+import Success from './Success';
 
 
 function App() {
@@ -52,6 +52,7 @@ function App() {
         <Route path="/Accounts1" element={<Accounts1/>} />
         <Route path="/Shop" element={<Shop/>} />
         <Route path="/Address1" element={<Address1/>} />
+        <Route path="/Success" element={<Success/>} />
         <Route path="/Categorywiseproducts/:categoryName" element={<Categorywiseproducts/>}/>
       </Routes>
     </div>
