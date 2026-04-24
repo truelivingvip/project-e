@@ -253,7 +253,7 @@ const Address1 = () => {
                     console.log("Error");
                   });
 
-                  navigate('/success');
+                  navigate('/Success');
 
               }}
             >

@@ -63,14 +63,16 @@ const Success = () => {
           {/* Order Details */}
           <div className="bg-gray-50 rounded-xl p-4 mb-6 text-sm text-left">
             {
+              orders?
               orders.map((order, index) => {
                 return (
                   <p key={index}>
                     <span className="font-semibold">{order.id}</span>{" "}
-                    <span className="font-semibold">{order.status}</span>
+                    {/* <span className="font-semibold">{order.status}</span> */}
                   </p>
                 );
               })
+              :"Not Found"
             }
           </div>
 
