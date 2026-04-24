@@ -20,7 +20,7 @@ const Cart = () => {
       navigate('/login');
   }, [currentUser]);
 
-  const { categoryName } = useParams();
+  // const { categoryName } = useParams();
   const [cartItems, setcartItems] = useState([]);
   useEffect(() => {
     if (currentUser && currentUser.id) {

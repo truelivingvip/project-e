@@ -49,21 +49,35 @@ const Orders1 = () => {
           </tr> */}
                 </thead>
                 <tbody>
-                  {
-                    orders ?
-                      orders.map((order, index) => {
-                        return (
+                  
+                    {
+                      orders?.length>0?(
+                      orders.map((order, index) => (
+                        <React.Fragment key={index}>
                           <tr key={index}>
                             {/* <td><img src={order.image} className='xyz' /></td> */}
-                            <td>{order.id}</td>
-                            <td>{order.totalAmount}</td>
-                            <td>{order.paymentStatus}</td>
+                            <td><h3>Order ID: </h3>{order.id}</td>
+                            <td><p>Total:</p>{order.totalAmount}</td>
+                            <td><p>Status:</p>{order.orderStatus}</td>
                           </tr>
-                        )
-                      }
-                      )
-                      : "NotFound"
-                  }
+                        
+                        {order.items?.map((item,i)=>(
+                          <tr key={i}>
+                            <td><img src={item?.productId?.image} alt="product" width="100"/><p>{item?.productId.name}</p></td>
+                            <td><p>Price: {item.price}</p></td>
+                            <td><p>Quantity: {item.quantity}</p></td>
+                          </tr>
+                        
+                      ))}
+                      </React.Fragment>
+                      ))
+                    ):(
+                      <tr>
+                        <td colSpan="4">No Orders Found</td>
+                      </tr>
+                    )
+                    }
+              
                 </tbody>
               </Table>
             </Col>
