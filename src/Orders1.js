@@ -55,7 +55,7 @@ const Orders1 = () => {
                       orders.map((order, index) => (
                         <React.Fragment key={index}>
                           <tr key={index}>
-                            {/* <td><img src={order.image} className='xyz' /></td> */}
+                            {/* <td><img src={`http://localhost:8090/upload/${order.productId.image}`} className='xyz' /></td> */}
                             <td><h3>Order ID: </h3>{order.id}</td>
                             <td><p>Total:</p>{order.totalAmount}</td>
                             <td><p>Status:</p>{order.orderStatus}</td>
@@ -63,7 +63,9 @@ const Orders1 = () => {
                         
                         {order.items?.map((item,i)=>(
                           <tr key={i}>
-                            <td><img src={item?.productId?.image} alt="product" width="100"/><p>{item?.productId.name}</p></td>
+                            <td>
+                              <img src={`http://localhost:8090/upload/${item.productId.image}`} alt="product" width="100"/>
+                            <p>{item?.productId.name}</p></td>
                             <td><p>Price: {item.price}</p></td>
                             <td><p>Quantity: {item.quantity}</p></td>
                           </tr>
