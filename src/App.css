@@ -76,7 +76,11 @@ label {
   margin-top: 25px;
 }
 .add {
+  padding:20px;
+  top: 10%;
+  /* right: 0%; */
   position: fixed;
+  
 }
 .cart{
   padding: 3px 0;

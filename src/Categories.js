@@ -89,7 +89,7 @@ const Categories = () => {
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={7}>
+                        <Col md={6}>
                             <Row>
                                 <Col>
                                     <h2>Categories</h2>
@@ -113,7 +113,7 @@ const Categories = () => {
                                             return (
                                                 <Col>
                                                     <Card style={{ width: '18rem' }} className="img-container">
-                                                        <Card.Img variant="top" src={`http://localhost:8090/upload/${categorie.image}`} />
+                                                        <Card.Img variant="top" src={`http://localhost:8090/uploads${categorie.image}`} />
                                                         <Button onClick={() => handleDelete(categorie.id)} variant="delete" className="delete-btn"><MdDeleteOutline color="black" className="delete-icon"/></Button>
                                                         <Card.Body>
                                                             <Card.Title>{categorie.name}</Card.Title>
