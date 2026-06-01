@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from 'react-bootstrap';
@@ -79,7 +79,7 @@ const Success = () => {
           {/* Buttons */}
           <div className="flex gap-3">
             <Button className="w-full">Track Order</Button>
-            <Button variant="outline" className="w-full">Continue Shopping</Button>
+            <Link to={'/Home'}><Button variant="outline" className="w-full">Continue Shopping</Button></Link>
           </div>
 
         </Card>
