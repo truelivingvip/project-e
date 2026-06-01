@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
 import { Link, useNavigate } from 'react-router'
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Container } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
+import Header from './Header';
+
 import { Card } from 'react-bootstrap';
 
 const Success = () => {
@@ -33,7 +35,9 @@ const Success = () => {
   }, []);
 
   return (
+
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
+      <Header></Header>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -61,20 +65,7 @@ const Success = () => {
           </p>
 
           {/* Order Details */}
-          <div className="bg-gray-50 rounded-xl p-4 mb-6 text-sm text-left">
-            {
-              orders?
-              orders.map((order, index) => {
-                return (
-                  <p key={index}>
-                    <span className="font-semibold">{order.id}</span>{" "}
-                    {/* <span className="font-semibold">{order.status}</span> */}
-                  </p>
-                );
-              })
-              :"Not Found"
-            }
-          </div>
+          
 
           {/* Buttons */}
           <div className="flex gap-3">
@@ -85,6 +76,7 @@ const Success = () => {
         </Card>
       </motion.div>
     </div>
+
   );
 
 }

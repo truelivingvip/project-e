@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
 import { useNavigate } from 'react-router'
 import { Container, Row, Col, Table } from "react-bootstrap";
+import Header from './Header';
 
 
 
@@ -32,6 +33,15 @@ const Orders1 = () => {
   }, []);
   return (
     <div>
+      <section>
+        <Container>
+          <Row>
+            <Col>
+              <Header></Header>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section>
         <Container>
           <Row>

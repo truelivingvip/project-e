@@ -151,11 +151,11 @@ const Products = () => {
             <section>
                 <Container>
                     <Row>
-                        <Col md={3}>
+                        <Col md={2}>
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={7}>
+                        <Col md={8}>
                             <Row>
                                 <Col>
                                     <h2>Products</h2>
