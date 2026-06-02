@@ -151,11 +151,11 @@ const Products = () => {
             <section>
                 <Container>
                     <Row>
-                        <Col md={2}>
+                        <Col md={3}>
                             <LeftNav></LeftNav>
 
                         </Col>
-                        <Col md={8}>
+                        <Col md={7}>
                             <Row>
                                 <Col>
                                     <h2>Products</h2>
@@ -191,7 +191,7 @@ const Products = () => {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={2}>
+                        <Col md={1}>
                             <div className='add'>
                                 <h2>Add Product</h2>
                                 <Formik
