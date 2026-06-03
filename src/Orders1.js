@@ -22,7 +22,7 @@ const Orders1 = () => {
   const [orders, setOrders] = useState();
   useEffect(() => {
     axios
-      .get("http://localhost:8090/api/orders")
+      .get(`http://localhost:8090/api/orders/user/${currentUser.id}`)
       .then((res) => {
         console.log(res.data);
         setOrders(res.data);
@@ -65,7 +65,6 @@ const Orders1 = () => {
                       orders.map((order, index) => (
                         <React.Fragment key={index}>
                           <tr key={index}>
-                            {/* <td><img src={`http://localhost:8090/upload/${order.productId.image}`} className='xyz' /></td> */}
                             <td><h3>Order ID: </h3>{order.id}</td>
                             <td><p>Total:</p>{order.totalAmount}</td>
                             <td><p>Status:</p>{order.orderStatus}</td>
@@ -74,8 +73,10 @@ const Orders1 = () => {
                         {order.items?.map((item,i)=>(
                           <tr key={i}>
                             <td>
-                              <img src={`http://localhost:8090/upload/${item.productId.image}`} alt="product" width="100"/>
-                            <p>{item?.productId.name}</p></td>
+                            {
+                              item.productId ? <img src={`http://localhost:8090/upload/${item.productId.image}`} alt="product" width="100"/> : " na"
+                            }  
+                            <p>{item.productId.name }</p></td>
                             <td><p>Price: {item.price}</p></td>
                             <td><p>Quantity: {item.quantity}</p></td>
                           </tr>
