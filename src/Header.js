@@ -1,52 +1,104 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row, Form, Button, Dropdown, DropdownMenu } from 'react-bootstrap'
+import { Col, Container, Row, Form, Button, Dropdown } from 'react-bootstrap'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import snap from './snap.jpeg'
-import { TfiBasketball } from "react-icons/tfi";
-import { TfiHelpAlt } from "react-icons/tfi";
-import { RiShoppingBag3Line } from "react-icons/ri";
+import { TfiBasketball, TfiHelpAlt } from "react-icons/tfi";
+import { RiShoppingBag3Line, RiShoppingBasketLine } from "react-icons/ri";
 import { LiaOpencart } from "react-icons/lia";
-// import { BsCartDash } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { MdArrowOutward } from "react-icons/md";
-import { Link } from 'react-router'
+import { MdArrowOutward, MdManageAccounts } from "react-icons/md";
+import { Link, useNavigate } from 'react-router'; // Imported useNavigate for redirecting
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './slices/auth';
 import axios from 'axios';
 import { FiUser } from "react-icons/fi";
-import { MdManageAccounts } from "react-icons/md";
-import { RiShoppingBasketLine } from "react-icons/ri";
 import { HiHeart } from "react-icons/hi";
 import { PiAddressBookFill } from "react-icons/pi";
 import { IoLogOut } from "react-icons/io5";
+import Autosuggest from 'react-autosuggest';
 
-// import 'react-app-polyfill/ie11';
-// import * as React from 'react';
-// import { Formik, Field } from 'formik';
-// const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// 1. Text assignment strategy targeting your backend data model properties (Assuming 'name' or 'title')
+const getSuggestionValue = suggestion => suggestion.name;
+
+// 2. Custom visual dropdown row blueprint featuring matching live layout data
+const renderSuggestion = suggestion => (
+  <div style={{ display: 'flex', alignItems: 'center', padding: '8px', cursor: 'pointer' }}>
+   
+    <div>
+      <div style={{ fontWeight: '500', fontSize: '14px' }}>{suggestion.name}</div>
+      {suggestion.price && <small style={{ color: '#888' }}>₹{suggestion.price}</small>}
+    </div>
+  </div>
+);
+
 const Header = () => {
-  const [categories, setCategories] = useState();
-  const [headers, setHeaders] = useState();
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]); // Filled via your useEffect hook
+  
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.auth)
+  const navigate = useNavigate(); // Used to redirect to selected products
+  const { user: currentUser } = useSelector((state) => state.auth);
+
+  const onChange = (event, { newValue }) => {
+    setValue(newValue); 
+  };
+
+  // 3. Filter criteria querying your cached state memory array safely
+  const getFilteredSuggestions = (inputValue) => {
+    const cleanQuery = inputValue.trim().toLowerCase();
+    console.log(cleanQuery)
+    if (cleanQuery.length === 0 || !products) return [];
+
+    return products.filter(product =>
+      product.name && product.name.toLowerCase().includes(cleanQuery)
+    
+      
+    );
+  };
+
+  // 4. Update dropdown options as the user enters characters
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getFilteredSuggestions(value));
+  };
+
+  // 5. Instantly clear suggestion overlay context elements
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const onSuggestionSelected = (event, { suggestion }) => {
+    navigate(`/Product/${suggestion.id}`);
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/cats")
       .then((res) => {
-        console.log(res.data);
         setCategories(res.data);
       })
       .catch((error) => {
-        console.log("Error-fetching Data");
-        
+        console.log("Error-fetching Categories", error);
       });
-    console.log(currentUser)
+  }, [])
+  
+  useEffect(() => {
+    axios
+      .get("http://localhost:8090/api/products")
+      .then((res) => {
+        setProducts(res.data); // Hydrates filtering matrix memory layout space
+      })
+      .catch((error) => {
+        console.log("Error-fetching Products", error);
+      });
   }, [])
 
   const handleLogout = () => {
     dispatch(logout());
     window.location.reload();
   }
+
   return (
     <div>
       <section className='free'>
@@ -80,31 +132,33 @@ const Header = () => {
               <img src={snap} />
             </Col>
             <Col>
-              <Form className="bar">
-                <Form.Control
-                  type="search"
-                  placeholder="Search for Brands & Products"
-                  className="me-2"
-                  aria-label="Search"
-                />
-              </Form>
+              <Autosuggest
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={onSuggestionsClearRequested}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={{ placeholder: 'Type...', value, onChange }}
+                onSuggestionSelected={onSuggestionSelected}
+              />
+
             </Col>
             <Col>
               <div className='snap1'>
                 <ul>
-                  <li><Link to={'/cart'}><LiaOpencart size={30}/> Cart</Link></li>
+                  <li><Link to={'/cart'}><LiaOpencart size={30} /> Cart</Link></li>
                   {
                     !currentUser ?
                       <li><Link to={'/login'}><CgProfile /> Login</Link></li>
                       :
-                      <li style={{display:'flex', alignItems:'center', whiteSpace:'nowrap'}}>
-                        <FiUser/> {currentUser?.firstName} 
+                      <li style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                        <FiUser /> {currentUser?.firstName}
                         <DropdownButton id="dropdown-basic-button">
-                          <Dropdown.Item><Link to={'/Account'}><MdManageAccounts/> Account</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Orders1'}><RiShoppingBasketLine/> Orders</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Wishlist'}><HiHeart/> Wishlist</Link></Dropdown.Item>
-                          <Dropdown.Item><Link to={'/Address'}><PiAddressBookFill/> Address</Link></Dropdown.Item>
-                          <div onClick={handleLogout} className='log'><IoLogOut/> Logout</div>
+                          <Dropdown.Item><Link to={'/Account'}><MdManageAccounts /> Account</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Orders1'}><RiShoppingBasketLine /> Orders</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Wishlist'}><HiHeart /> Wishlist</Link></Dropdown.Item>
+                          <Dropdown.Item><Link to={'/Address'}><PiAddressBookFill /> Address</Link></Dropdown.Item>
+                          <div onClick={handleLogout} className='log'><IoLogOut /> Logout</div>
                         </DropdownButton>
                       </li>
                   }
@@ -128,7 +182,7 @@ const Header = () => {
                   categories ?
                     categories.map((category, index) => {
                       return (
-                        <li key={index}><Link to={`/Categorywiseproducts/${category.name}`}><img src={`http://localhost:8090/upload/${category.image}`}/>{category.name}</Link></li>
+                        <li key={index}><Link to={`/Categorywiseproducts/${category.name}`}><img src={`http://localhost:8090/upload/${category.image}`} />{category.name}</Link></li>
                       )
                     })
                     :

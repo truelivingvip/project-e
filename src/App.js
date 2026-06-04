@@ -24,6 +24,7 @@ import Categorywiseproducts from './Categorywiseproducts ';
 import Shop from './Shop';
 import Address1 from './Address1';
 import Success from './Success';
+import Product from './Product';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="/Address1" element={<Address1/>} />
         <Route path="/Success" element={<Success/>} />
         <Route path="/Categorywiseproducts/:categoryName" element={<Categorywiseproducts/>}/>
+        <Route path="/Product/:productId" element={<Product/>}/>
       </Routes>
     </div>
   );
