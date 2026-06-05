@@ -30,33 +30,7 @@ const Orders = () => {
                 console.log("Error-fetching Data");
             });
     }, []);
-    // const product = [
-    //     {
-    //         "image": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",
-    //         "name": "Essence Mascara Lash Princess",
-    //         "quantity": [1, 2, 3, 4, 5],
-    //         "status": "Change Status"
-    //     },
-    //     {
-    //         "image": "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/thumbnail.webp",
-    //         "name": "Eyeshadow Palette with Mirror",
-    //         "quantity": [1, 2, 3, 4, 5],
-    //         "status": "Change Status"
-    //     },
-    //     {
-    //         "image": "https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp",
-    //         "name": "Powder Canister",
-    //         "quantity": [1, 2, 3, 4, 5],
-    //         "status": "Change Status"
-    //     },
-    //     {
-    //         "image": "https://cdn.dummyjson.com/product-images/beauty/red-lipstick/thumbnail.webp",
-    //         "name": "Red Lipstick",
-    //         "quantity": [1, 2, 3, 4, 5],
-    //         "status": "Change Status"
-    //     },
 
-    // ]
     return (
         <div>
             <section>
@@ -69,15 +43,9 @@ const Orders = () => {
                         <Col md={8}>
                             <Table striped bordered hover>
                                 <thead>
-                                    {/* <tr>
 
-            <th>Image</th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Status</th>
-            <th>Actions</th>
 
-          </tr> */}
+
                                 </thead>
                                 <tbody>
 
@@ -86,7 +54,6 @@ const Orders = () => {
                                             orders.map((order, index) => (
                                                 <React.Fragment key={index}>
                                                     <tr key={index}>
-                                                        {/*<td><img src={`http://localhost:8090/upload/${order.productId.image}`} className='xyz' /></td> */}
                                                         <td><h3>Order ID: </h3>{order.id}</td>
                                                         <td><p>Total:</p>{order.totalAmount}</td>
                                                         <td><p>Status:</p>{order.orderStatus}</td>

@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router';
 import axios from 'axios';
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
+import Header from './Header';
 
 
 const Cart = () => {
@@ -106,6 +107,15 @@ const Cart = () => {
   // ]
   return (
     <div>
+      <section>
+        <Container>
+          <Row>
+            <Col>
+              <Header></Header>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section className='tab'>
         <Container>
           <Row>

@@ -476,3 +476,129 @@ body {
 .del-btn:hover{
   transform: scale(1.1);
 }
+.account-page {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+.profile-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-icon {
+  font-size: 80px;
+  color: #e40046; /* Snapdeal Red */
+  margin-bottom: 15px;
+}
+
+.option-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.option-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+  font-size: 40px;
+  color: #e40046;
+  margin-bottom: 10px;
+}
+
+.account-link {
+  text-decoration: none;
+  color: black;
+}
+.orders-section {
+  background: #f8f9fa;
+  min-height: 100vh;
+  padding: 30px 0;
+}
+
+.order-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.status-badge {
+  padding: 8px 15px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+}
+
+.delivered {
+  background: #28a745;
+}
+
+.pending {
+  background: #ffc107;
+  color: black;
+}
+
+.processing {
+  background: #007bff;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+}
+
+.product-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f5f5f5;
+  padding: 10px;
+}
+
+.product-details h6 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.empty-orders {
+  background: white;
+  text-align: center;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}

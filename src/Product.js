@@ -14,7 +14,20 @@ import { Link, useNavigate, useParams } from 'react-router'
 import * as Yup from "yup";
 
 const Product = () => {
-    const {productId} =useParams()
+    const { productId } = useParams()
+    const [products, setProducts] = useState();
+    
+    useEffect(() => {
+        axios
+            .get("http://localhost:8090/api/products")
+            .then((res) => {
+                console.log(res.data);
+                setProducts(res.data);
+            })
+            .catch((error) => {
+                console.log("Error-fetching Data");
+            });
+    }, []);
     return (
         <div>
             <section>
@@ -26,8 +39,28 @@ const Product = () => {
                         </Col>
                         <Col md={7}>
                             <h1>{productId}</h1>
+                            {
+                                products ?
+                                    products.map((product, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <div><img src={`http://localhost:8090/uploads/${product.image}`} className='xyz' /></div>
+                                                <div>{product.name}</div>
+                                                <div>{product.price}</div>
+                                                <div>{product.category}</div>
+                                                {/* <td><Link to={'/edit'}><Button variant="edit"><FaEdit /></Button></Link> */}
+                                                    {/* <Link><Button onClick={() => handleDelete(product.id)} variant="delete"><MdDeleteOutline /></Button></Link> */}
+                                                    {/* <Link to={'/view'}><Button variant="view"><FaRegEye /></Button></Link> */}
+                                                {/* </td> */}
+
+                                            </div>
+                                        )
+                                    }
+                                    )
+                                    : "Data not found"
+                            }
                         </Col>
-                    </Row>      
+                    </Row>
                 </Container>
             </section>
         </div >

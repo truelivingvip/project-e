@@ -42,61 +42,57 @@ const Orders1 = () => {
           </Row>
         </Container>
       </section>
-      <section>
-        <Container>
-          <Row>
-            <Col>
-              <Table striped bordered hover>
-                <thead>
-                  {/* <tr>
+      <section className="orders-section">
+  <Container>
+    <h2 className="mb-4">My Orders</h2>
 
-            <th>Image</th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Status</th>
-            <th>Actions</th>
+    {orders?.length > 0 ? (
+      orders.map((order, index) => (
+        <div className="order-card" key={index}>
+          
+          <div className="order-header">
+            <div>
+              <h5>Order #{order.id}</h5>
+              <p>Total Amount: ₹{order.totalAmount}</p>
+            </div>
 
-          </tr> */}
-                </thead>
-                <tbody>
-                  
-                    {
-                      orders?.length>0?(
-                      orders.map((order, index) => (
-                        <React.Fragment key={index}>
-                          <tr key={index}>
-                            <td><h3>Order ID: </h3>{order.id}</td>
-                            <td><p>Total:</p>{order.totalAmount}</td>
-                            <td><p>Status:</p>{order.orderStatus}</td>
-                          </tr>
-                        
-                        {order.items?.map((item,i)=>(
-                          <tr key={i}>
-                            <td>
-                            {
-                              item.productId ? <img src={`http://localhost:8090/upload/${item.productId.image}`} alt="product" width="100"/> : " na"
-                            }  
-                            <p>{item.productId.name }</p></td>
-                            <td><p>Price: {item.price}</p></td>
-                            <td><p>Quantity: {item.quantity}</p></td>
-                          </tr>
-                        
-                      ))}
-                      </React.Fragment>
-                      ))
-                    ):(
-                      <tr>
-                        <td colSpan="4">No Orders Found</td>
-                      </tr>
-                    )
-                    }
-              
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+            <span
+              className={`status-badge ${
+                order.orderStatus === "Delivered"
+                  ? "delivered"
+                  : order.orderStatus === "Pending"
+                  ? "pending"
+                  : "processing"
+              }`}
+            >
+              {order.orderStatus}
+            </span>
+          </div>
+
+          {order.items?.map((item, i) => (
+            <div className="product-item" key={i}>
+              <img
+                src={`http://localhost:8090/upload/${item.productId.image}`}
+                alt={item.productId.name}
+                className="product-image"
+              />
+
+              <div className="product-details">
+                <h6>{item.productId.name}</h6>
+                <p>Price: ₹{item.price}</p>
+                <p>Quantity: {item.quantity}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))
+    ) : (
+      <div className="empty-orders">
+        <h4>No Orders Found 😔</h4>
+      </div>
+    )}
+  </Container>
+</section>
 
     </div>
   )
