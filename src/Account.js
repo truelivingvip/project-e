@@ -38,7 +38,7 @@ const Account = () => {
 
           <Row className="mt-4">
             <Col md={4}>
-              <Link to="/orders" className="account-link">
+              <Link to="/orders1" className="account-link">
                 <div className="option-card">
                   <FaBox className="card-icon" />
                   <h5>My Orders</h5>

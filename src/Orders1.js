@@ -43,56 +43,55 @@ const Orders1 = () => {
         </Container>
       </section>
       <section className="orders-section">
-  <Container>
-    <h2 className="mb-4">My Orders</h2>
+        <Container>
+          <h2 className="mb-4">My Orders</h2>
 
-    {orders?.length > 0 ? (
-      orders.map((order, index) => (
-        <div className="order-card" key={index}>
-          
-          <div className="order-header">
-            <div>
-              <h5>Order #{order.id}</h5>
-              <p>Total Amount: ₹{order.totalAmount}</p>
-            </div>
+          {orders?.length > 0 ? (
+            orders.map((order, index) => (
+              <div className="order-card" key={index}>
 
-            <span
-              className={`status-badge ${
-                order.orderStatus === "Delivered"
-                  ? "delivered"
-                  : order.orderStatus === "Pending"
-                  ? "pending"
-                  : "processing"
-              }`}
-            >
-              {order.orderStatus}
-            </span>
-          </div>
+                <div className="order-header">
+                  <div>
+                    <h5>Order #{order.id}</h5>
+                    <p>Total Amount: ₹{order.totalAmount}</p>
+                  </div>
 
-          {order.items?.map((item, i) => (
-            <div className="product-item" key={i}>
-              <img
-                src={`http://localhost:8090/upload/${item.productId.image}`}
-                alt={item.productId.name}
-                className="product-image"
-              />
+                  <span
+                    className={`status-badge ${order.orderStatus === "Delivered"
+                        ? "delivered"
+                        : order.orderStatus === "Pending"
+                          ? "pending"
+                          : "processing"
+                      }`}
+                  >
+                    {order.orderStatus}
+                  </span>
+                </div>
 
-              <div className="product-details">
-                <h6>{item.productId.name}</h6>
-                <p>Price: ₹{item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                {order.items?.map((item, i) => (
+                  <div className="product-item" key={i}>
+                    <img
+                      src={`http://localhost:8090/upload/${item.productId.image}`}
+                      alt={item.productId.name}
+                      className="product-image"
+                    />
+
+                    <div className="product-details">
+                      <h6>{item.productId.name}</h6>
+                      <p>Price: ₹{item.price}</p>
+                      <p>Quantity: {item.quantity}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
+            ))
+          ) : (
+            <div className="empty-orders">
+              <h4>No Orders Found 😔</h4>
             </div>
-          ))}
-        </div>
-      ))
-    ) : (
-      <div className="empty-orders">
-        <h4>No Orders Found 😔</h4>
-      </div>
-    )}
-  </Container>
-</section>
+          )}
+        </Container>
+      </section>
 
     </div>
   )
