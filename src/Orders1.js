@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Header from './Header';
 
@@ -31,6 +31,7 @@ const Orders1 = () => {
         console.log("Error-fetching Data");
       });
   }, []);
+  
   return (
     <div>
       <section>
@@ -55,17 +56,19 @@ const Orders1 = () => {
                     <h5>Order #{order.id}</h5>
                     <p>Total Amount: ₹{order.totalAmount}</p>
                   </div>
-
+                  <Link to={'/invoice'}><button className="invoice">Download Invoice</button></Link>
                   <span
                     className={`status-badge ${order.orderStatus === "Delivered"
-                        ? "delivered"
-                        : order.orderStatus === "Pending"
-                          ? "pending"
-                          : "processing"
+                      ? "delivered"
+                      : order.orderStatus === "Pending"
+                        ? "pending"
+                        : "processing"
                       }`}
                   >
                     {order.orderStatus}
+
                   </span>
+
                 </div>
 
                 {order.items?.map((item, i) => (

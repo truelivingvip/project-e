@@ -25,6 +25,7 @@ import Shop from './Shop';
 import Address1 from './Address1';
 import Success from './Success';
 import Product from './Product';
+import Invoice from './Invoice';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/Accounts1" element={<Accounts1/>} />
         <Route path="/Shop" element={<Shop/>} />
         <Route path="/Address1" element={<Address1/>} />
+        <Route path="/Invoice" element={<Invoice/>} />
         <Route path="/Success" element={<Success/>} />
         <Route path="/Categorywiseproducts/:categoryName" element={<Categorywiseproducts/>}/>
         <Route path="/Product/:productId" element={<Product/>}/>
