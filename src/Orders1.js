@@ -56,7 +56,7 @@ const Orders1 = () => {
                     <h5>Order #{order.id}</h5>
                     <p>Total Amount: ₹{order.totalAmount}</p>
                   </div>
-                  <Link to={'/invoice'}><button className="invoice">Download Invoice</button></Link>
+                  <Link to={`/Invoice/${order.id}`}><button className="invoice">Download Invoice</button></Link>
                   <span
                     className={`status-badge ${order.orderStatus === "Delivered"
                       ? "delivered"
