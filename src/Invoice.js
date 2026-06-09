@@ -35,24 +35,31 @@ const Invoice = () => {
         <div>
             <h2>Invoice</h2>
             {order ? (
-                
-                    <Row className="align-items-center">
 
-                        {/* Image Section */}
-                        
+                <Row className="align-items-center">
 
-                        {/* Product Info */}
-                        <Col>
 
-                            <h2>{order.id}</h2>
-                            <h2>
-                                {order.totalAmount}
-                            </h2>
+                    <Col>
 
-                        </Col>
+                        <h2>{order.id}</h2>
+                        <h2>
+                            {order.totalAmount}
+                        </h2>
 
-                    </Row>
-                
+                    </Col>
+                    {order.items?.map((item, i) => (
+
+
+                        <div className="product-details" key={i}>
+                            <h6>{item.productId.name}</h6>
+                            <p>Price: ₹{item.price}</p>
+                            <p>Quantity: {item.quantity}</p>
+                        </div>
+                    ))}
+
+                </Row>
+
+
             ) : (
                 <div className="text-center mt-5">
                     <h4>Loading Product...</h4>

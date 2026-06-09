@@ -90,7 +90,7 @@ const Orders1 = () => {
             ))
           ) : (
             <div className="empty-orders">
-              <h4>No Orders Found 😔</h4>
+              <h4>No Orders Found</h4>
             </div>
           )}
         </Container>
