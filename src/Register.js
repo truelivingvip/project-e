@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Col, Row, Button } from "react-bootstrap";
-
+import {Link} from 'react-router'
 import { register } from "./slices/auth";
 import { clearMessage } from "./slices/message";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +57,7 @@ const Register = () => {
       });
   };
   return (
-    <div className="text-center">
+    <div className="register-page">
       <h3>Register</h3>
       {message && (
         <div
@@ -84,13 +84,13 @@ const Register = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="registerform">
+            <div className="register-card">
               <Row>
                 <Col md={4}>
                   <label>First Name : </label>
                 </Col>
                 <Col md={8}>
-                  <Field name="firstName" />
+                  <Field name="firstName" placeholder="Enter First Name" />
                   {errors.firstName && touched.firstName ? (
                     <div>{errors.firstName}</div>
                   ) : null}
@@ -101,7 +101,7 @@ const Register = () => {
                   <label>Last Name : </label>
                 </Col>
                 <Col md={8}>
-                  <Field name="lastName" />
+                  <Field name="lastName" placeholder="Enter Last Name"/>
                   {errors.lastName && touched.lastName ? (
                     <div>{errors.lastName}</div>
                   ) : null}
@@ -112,7 +112,7 @@ const Register = () => {
                   <label>Email : </label>
                 </Col>
                 <Col md={8}>
-                  <Field name="email" type="email" />
+                  <Field name="email" type="email" placeholder="Enter Email"/>
                   {errors.email && touched.email ? (
                     <div>{errors.email}</div>
                   ) : null}
@@ -123,7 +123,7 @@ const Register = () => {
                   <label>Password</label>
                 </Col>
                 <Col md={8}>
-                  <Field name="password" type="password" />
+                  <Field name="password" type="password" placeholder="Enter Password"/>
                   {errors.password && touched.password ? (
                     <div>{errors.password}</div>
                   ) : null}
@@ -134,7 +134,7 @@ const Register = () => {
                   <label>Mobile : </label>
                 </Col>
                 <Col md={8}>
-                  <Field name="username" type="number" />
+                  <Field name="username" type="number" placeholder="Enter Mobile"/>
                   {errors.username && touched.username ? (
                     <div>{errors.username}</div>
                   ) : null}
@@ -144,7 +144,7 @@ const Register = () => {
                 <Col>
                   
                   <p>
-                    Already Registered? <a href="Login">login</a>
+                    Already Registered? <Link to={'/Login'}>login</Link>
                   </p>
                   <Button className="button" type="submit" align-items center>
                     Sign up

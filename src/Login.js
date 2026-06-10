@@ -58,66 +58,82 @@ const Login = () => {
               return <Navigate to="/home" />;
        }
        return (
-              <div className='text-center'>
-                     <section>
-                            <Container>
-                                   <Row>
-                                          <Col>
-                                                 <h3>Login</h3>
-                                                 {message && (
-                                                        <div
-                                                               className={`alert ${successful ? "alert-success" : "alert-danger"}`}
-                                                               role="alert"
-                                                        >
-                                                               {message}
+              <div className="login-container">
+                     <div className="login-card">
+
+                            <h3 className="login-title">Login to Snapdeal</h3>
+
+                            {message && (
+                                   <div
+                                          className={`alert ${successful ? "alert-success" : "alert-danger"
+                                                 }`}
+                                   >
+                                          {message}
+                                   </div>
+                            )}
+
+                            <Formik
+                                   initialValues={{
+                                          username: "",
+                                          password: "",
+                                   }}
+                                   validationSchema={LoginSchema}
+                                   onSubmit={handleLogin}
+                            >
+                                   {({ errors, touched }) => (
+                                          <Form>
+
+                                                 <label className="login-label">
+                                                        Mobile Number
+                                                 </label>
+
+                                                 <Field
+                                                        name="username"
+                                                        type="text"
+                                                        placeholder="Enter Mobile Number"
+                                                        className="login-input"
+                                                 />
+
+                                                 {errors.username && touched.username && (
+                                                        <div className="error-text">
+                                                               {errors.username}
                                                         </div>
                                                  )}
-                                                 <Formik
-                                                        initialValues={{
-                                                               username: '',
-                                                               password: ''
-                                                        }}
-                                                        validationSchema={LoginSchema}
-                                                        onSubmit={handleLogin}
+
+                                                 <label className="login-label">
+                                                        Password
+                                                 </label>
+
+                                                 <Field
+                                                        name="password"
+                                                        type="password"
+                                                        placeholder="Enter Password"
+                                                        className="login-input"
+                                                 />
+
+                                                 {errors.password && touched.password && (
+                                                        <div className="error-text">
+                                                               {errors.password}
+                                                        </div>
+                                                 )}
+
+                                                 <Button
+                                                        type="submit"
+                                                        className="login-btn"
+                                                        disabled={loading}
                                                  >
-                                                        {({ errors, touched }) => (
-                                                               <Form>
-                                                                      <div className='loginform'>
-                                                                             <Row>
-                                                                                    <Col>
-                                                                                           <label>Mobile :-</label>
-                                                                                           <Field name="username" placeholder="Enter Mobile" type="text" />
-                                                                                           {errors.username && touched.username ? <div>{errors.username}</div> : null}
+                                                        {loading ? "Logging in..." : "LOGIN"}
+                                                 </Button>
 
-                                                                                    </Col>
-                                                                             </Row>
+                                                 <div className="register-link">
+                                                        New User? <a href="/register">Register</a>
+                                                 </div>
 
-                                                                             <Row>
-                                                                                    <Col>
-                                                                                           <label>Password :-</label>
-                                                                                           <Field name="password" placeholder="Enter Password" type="password" />
-                                                                                           {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                                          </Form>
+                                   )}
+                            </Formik>
 
-                                                                                    </Col>
-                                                                             </Row>
-                                                                             <Row>
-
-                                                                                    <Col>
-                                                                                           <p>New user? <a href='Register'> Register</a></p>
-
-                                                                                           <Button className="but" type="submit">Login</Button>
-                                                                                    </Col>
-                                                                             </Row>
-                                                                      </div>
-
-
-                                                               </Form>
-                                                        )}
-                                                 </Formik>
-                                          </Col>
-                                   </Row>
-                            </Container>
-                     </section>
+                     </div>
               </div>
        )
 }

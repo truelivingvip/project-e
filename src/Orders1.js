@@ -31,7 +31,7 @@ const Orders1 = () => {
         console.log("Error-fetching Data");
       });
   }, []);
-  
+
   return (
     <div>
       <section>
@@ -56,7 +56,11 @@ const Orders1 = () => {
                     <h5>Order #{order.id}</h5>
                     <p>Total Amount: ₹{order.totalAmount}</p>
                   </div>
-                  <Link to={`/Invoice/${order.id}`}><button className="invoice">Download Invoice</button></Link>
+                  <Link to={`/Invoice/${order.id}`}>
+                    <button className="invoice-btn">
+                      Download Invoice
+                    </button>
+                  </Link>
                   <span
                     className={`status-badge ${order.orderStatus === "Delivered"
                       ? "delivered"

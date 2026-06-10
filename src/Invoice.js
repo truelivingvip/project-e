@@ -23,7 +23,7 @@ const Invoice = () => {
         axios
             .get(`http://localhost:8090/api/orders/${id}`)
             .then((res) => {
-                console.log(id);
+                console.log(res.data);
                 setOrder(res.data);
             })
             .catch((error) => {
@@ -32,39 +32,103 @@ const Invoice = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Invoice</h2>
-            {order ? (
+        <div className="py-5 bg-light min-vh-100">
+            <Container>
+                {order ? (
+                    <Card className="shadow border-0">
+                        <Card.Body className="p-5">
 
-                <Row className="align-items-center">
+                            {/* Header */}
+                            <div className="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h2 className="fw-bold text-primary">Invoice</h2>
+                                    <p className="text-muted mb-0">
+                                        Order ID: #{order.id}
+                                    </p>
+                                </div>
 
+                                <div className="text-end">
+                                    <h4 className="fw-bold">
+                                        ₹{order.totalAmount}
+                                    </h4>
+                                    <span className="badge bg-success">
+                                        Paid
+                                    </span>
+                                </div>
+                            </div>
 
-                    <Col>
+                            <hr />
 
-                        <h2>{order.id}</h2>
-                        <h2>
-                            {order.totalAmount}
-                        </h2>
+                            {/* Customer Info */}
+                            <Row className="mb-4">
+                                <Col md={6}>
+                                    <h5 className="fw-bold">Customer Details</h5>
+                                    <p className="mb-1">
+                                        {currentUser?.firstName}
+                                    </p>
+                                    <p className="text-muted">
+                                        {currentUser?.email}
+                                    </p>
+                                </Col>
 
-                    </Col>
-                    {order.items?.map((item, i) => (
+                                <Col md={6} className="text-md-end">
+                                    <h5 className="fw-bold">Order Summary</h5>
+                                    <p>Total Items: {order.items?.length}</p>
+                                </Col>
+                            </Row>
 
+                            {/* Products Table */}
+                            <Table striped bordered hover responsive>
+                                <thead className="table-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
 
-                        <div className="product-details" key={i}>
-                            <h6>{item.productId.name}</h6>
-                            <p>Price: ₹{item.price}</p>
-                            <p>Quantity: {item.quantity}</p>
-                        </div>
-                    ))}
+                                <tbody>
+                                    {order.items?.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{item.productId?.name}</td>
+                                            <td>₹{item.price}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>
+                                                ₹{item.price * item.quantity}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
 
-                </Row>
+                            {/* Grand Total */}
+                            <div className="text-end mt-4">
+                                <h3 className="fw-bold text-success">
+                                    Grand Total: ₹{order.totalAmount}
+                                </h3>
+                            </div>
 
+                            {/* Print Button */}
+                            <div className="text-center mt-4">
+                                <Button
+                                    variant="primary"
+                                    onClick={() => window.print()}
+                                >
+                                    Print Invoice
+                                </Button>
+                            </div>
 
-            ) : (
-                <div className="text-center mt-5">
-                    <h4>Loading Product...</h4>
-                </div>
-            )}
+                        </Card.Body>
+                    </Card>
+                ) : (
+                    <div className="text-center mt-5">
+                        <h4>Loading Invoice...</h4>
+                    </div>
+                )}
+            </Container>
         </div>
     )
 }
