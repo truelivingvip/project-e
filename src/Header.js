@@ -23,7 +23,7 @@ const getSuggestionValue = suggestion => suggestion.name;
 // 2. Custom visual dropdown row blueprint featuring matching live layout data
 const renderSuggestion = suggestion => (
   <div style={{ display: 'flex', alignItems: 'center', padding: '8px', cursor: 'pointer' }}>
-   
+
     <div>
       <div style={{ fontWeight: '500', fontSize: '14px' }}>{suggestion.name}</div>
       {suggestion.price && <small style={{ color: '#888' }}>₹{suggestion.price}</small>}
@@ -36,13 +36,13 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]); // Filled via your useEffect hook
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Used to redirect to selected products
   const { user: currentUser } = useSelector((state) => state.auth);
 
   const onChange = (event, { newValue }) => {
-    setValue(newValue); 
+    setValue(newValue);
   };
 
   // 3. Filter criteria querying your cached state memory array safely
@@ -53,8 +53,8 @@ const Header = () => {
 
     return products.filter(product =>
       product.name && product.name.toLowerCase().includes(cleanQuery)
-    
-      
+
+
     );
   };
 
@@ -75,6 +75,7 @@ const Header = () => {
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/cats")
+
       .then((res) => {
         setCategories(res.data);
       })
@@ -82,7 +83,7 @@ const Header = () => {
         console.log("Error-fetching Categories", error);
       });
   }, [])
-  
+
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/products")
@@ -182,8 +183,10 @@ const Header = () => {
                   categories ?
                     categories.map((category, index) => {
                       return (
-                        <li key={index}><Link to={`/Categorywiseproducts/${category.name}`}><img src={`http://localhost:8090/upload/${category.image}`} />{category.name}</Link></li>
+                        <li key={index}><Link to={`/Categorywiseproducts/${category.name}`}><img src={`http://localhost:8090/upload/${category.image}`}/>{category.name}{}</Link></li>
+                        
                       )
+
                     })
                     :
                     "Not Available"

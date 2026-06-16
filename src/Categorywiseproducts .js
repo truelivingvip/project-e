@@ -26,6 +26,7 @@ const Categorywiseproducts = () => {
             .then((res) => {
                 console.log(res.data);
                 setProducts(res.data);
+                
             })
             .catch((error) => {
                 console.log("Error-fetching Data");

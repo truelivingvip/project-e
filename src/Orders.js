@@ -13,9 +13,16 @@ import Modal from 'react-bootstrap/Modal';
 
 const Orders = () => {
     const [show, setShow] = useState(false);
+    const [orderId, setOrderId] = useState("");
+    const [order, setOrder] = useState();
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (order) => {
+        setShow(true);
+        setOrderId(order.id);
+        setOrder(order);
+
+    };
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const { user: currentUser } = useSelector((state) => state.auth)
@@ -66,7 +73,8 @@ const Orders = () => {
                                                         <td>
                                                             <Button
                                                                 className="status-btn"
-                                                                onClick={handleShow}
+                                                                // onClick={handleShow}
+                                                                onClick={() => handleShow(order)}
                                                             >
                                                                 <FaEdit className="me-2" />
                                                                 Update Status
@@ -91,8 +99,9 @@ const Orders = () => {
                                                                         }}
                                                                         onSubmit={(values) => {
                                                                             console.log(values);
-
-                                                                            axios.put("http://localhost:8090/api/orders", values);
+                                                                            order.orderStatus=values.status
+                                                                            axios.put(`http://localhost:8090/api/orders/${orderId}`, order);
+                                                                            window.location.reload();
                                                                         }}
                                                                     >
                                                                         {() => (
