@@ -5,7 +5,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from 'react-router'
 import LeftNav from './LeftNav'
 import axios from "axios";
+import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux'
+import { FaEdit } from "react-icons/fa";
 // import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -50,8 +52,6 @@ const Orders = () => {
                             <Table striped bordered hover>
                                 <thead>
 
-
-
                                 </thead>
                                 <tbody>
 
@@ -64,92 +64,76 @@ const Orders = () => {
                                                         <td><p>Total:</p>{order.totalAmount}</td>
                                                         <td><p>Status:</p>{order.orderStatus}</td>
                                                         <td>
-                                                            <Button variant="primary" onClick={handleShow}>
-                                                                Change Status
+                                                            <Button
+                                                                className="status-btn"
+                                                                onClick={handleShow}
+                                                            >
+                                                                <FaEdit className="me-2" />
+                                                                Update Status
                                                             </Button>
 
-                                                            <Modal show={show} onHide={handleClose}>
-                                                                <Modal.Header closeButton>
-                                                                    <Modal.Title>Modal heading</Modal.Title>
+                                                            <Modal
+                                                                show={show}
+                                                                onHide={handleClose}
+                                                                centered
+                                                                size="md"
+                                                            >
+                                                                <Modal.Header closeButton className="custom-modal-header">
+                                                                    <Modal.Title>Update Order Status</Modal.Title>
                                                                 </Modal.Header>
-                                                                <Modal.Body>
+
+                                                                <Modal.Body className="custom-modal-body">
 
                                                                     <Formik
                                                                         initialValues={{
-                                                                            productId: ''
+                                                                            productId: '',
+                                                                            status: ''
                                                                         }}
-                                                                        validationSchema={SignupSchema}
-                                                                        onSubmit={values => {
-                                                                            // same shape as initial values
+                                                                        onSubmit={(values) => {
                                                                             console.log(values);
-                                                                            const data = {
-                                                                                addressId: values.addressId,
-                                                                                userId: currentUser.id,
-                                                                                items: cartItems.items
-                                                                            }
-                                                                            console.log(data)
-                                                                            axios.post("http://localhost:8090/api/orders", data).then((response) => {
-                                                                                console.log("Order Confirmed");
-                                                                                console.log(response)
-                                                                            }
-                                                                            )
-                                                                            axios
-                                                                                .delete(`http://localhost:8090/api/carts/user/${currentUser.id}`)
-                                                                                .then((res) => {
-                                                                                    console.log("Successfully deleted");
-                                                                                    window.location.reload()
-                                                                                })
-                                                                                .catch((error) => {
-                                                                                    console.log("Error");
-                                                                                });
 
-                                                                            navigate('/Success');
-
+                                                                            axios.put("http://localhost:8090/api/orders", values);
                                                                         }}
                                                                     >
-                                                                        {({ errors, touched }) => (
+                                                                        {() => (
                                                                             <Form>
-                                                                                {addresses && addresses.length ?
-                                                                                    addresses.map((addr, index) => {
-                                                                                        return (
-                                                                                            <div className="address-card"
-                                                                                                key={index}
 
-                                                                                                style={{
-                                                                                                    border: "1px solid gray",
-                                                                                                    padding: "15px",
-                                                                                                    width: "250px",
-                                                                                                    borderRadius: "10px",
-                                                                                                    cursor: "pointer"
-                                                                                                }}
-                                                                                            >
+                                                                                <div className="status-container">
 
-                                                                                                <Field type="radio" name="addressId" value={addr.id} />
-                                                                                                <h5>{addr.name}</h5>
-                                                                                                <p>{addr.city}</p>
-                                                                                                <p>{addr.state}, {addr.state}</p>
-                                                                                                <p>{addr.addressType}</p>
-                                                                                            </div>
-                                                                                        )
-                                                                                    }
-                                                                                    )
-                                                                                    : "Address Not Available"
-                                                                                }
+                                                                                    <label className="status-card">
+                                                                                        <Field
+                                                                                            type="radio"
+                                                                                            name="status"
+                                                                                            value="Success"
+                                                                                        />
+                                                                                        <span>Success</span>
+                                                                                    </label>
 
-                                                                                <button type="submit">Continue</button>
+                                                                                    <label className="status-card reject">
+                                                                                        <Field
+                                                                                            type="radio"
+                                                                                            name="status"
+                                                                                            value="Rejected"
+                                                                                        />
+                                                                                        <span>Rejected</span>
+                                                                                    </label>
+
+                                                                                </div>
+
+                                                                                <div className="text-end mt-4">
+                                                                                    <button
+                                                                                        type="submit"
+                                                                                        className="btn btn-success px-4"
+                                                                                    >
+                                                                                        Update Status
+                                                                                    </button>
+                                                                                </div>
+
                                                                             </Form>
                                                                         )}
                                                                     </Formik>
 
                                                                 </Modal.Body>
-                                                                <Modal.Footer>
-                                                                    <Button variant="secondary" onClick={handleClose}>
-                                                                        Close
-                                                                    </Button>
-                                                                    <Button variant="primary" onClick={handleClose}>
-                                                                        Save Changes
-                                                                    </Button>
-                                                                </Modal.Footer>
                                                             </Modal>
                                                         </td>
                                                     </tr>
