@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {use, useState} from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
-
+import axios from 'axios';
 import { Col, Container, Row } from 'react-bootstrap'
 import LeftNav from './LeftNav'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,23 +38,6 @@ export const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [100,150,120,180],
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: [100,110,120,50],
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -68,6 +51,32 @@ const AdminDashboard = () => {
           navigate('/login');
       },[currentUser]);
 
+      const[Summary, setSummary] = useState();
+      const [chartData, setchartData] = useState();
+          useEffect(() => {
+              axios
+                  .get("http://localhost:8090/api/orders/chartdata")
+                  .then((res) => {
+                      console.log(res.data);
+                      setchartData(res.data);
+                  })
+                  .catch((error) => {
+                      console.log("Error-fetching Data");
+                  });
+          }, []);
+
+          useEffect(() => {
+              axios
+                  .get("http://localhost:8090/api/orders/reports/summary")
+                  .then((res) => {
+                      console.log(res.data);
+                      setSummary(res.data);
+                  })
+                  .catch((error) => {
+                      console.log("Error-fetching Data");
+                  });
+          }, []);
+          
   return (
     <div>
       <section>
@@ -76,8 +85,21 @@ const AdminDashboard = () => {
             <Col md={3}>
               <LeftNav></LeftNav>
             </Col>
-            <Col md={9}>
-              <Bar options={options} data={data} />
+            <Col>
+              {
+                Summary?
+                <h1>{Summary.totalOrders}{Summary.totalRevenue}</h1>
+                
+                :"Loading ..."
+              }
+            </Col>
+            <Col md={7}>
+              {
+                chartData ? 
+
+                <Bar options={options} data={chartData} />
+                : "Loading ..."
+              }
             </Col>
           </Row>
         </Container>
