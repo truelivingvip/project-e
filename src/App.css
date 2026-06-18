@@ -876,19 +876,15 @@ img:hover{
     box-shadow:0 8px 20px rgba(79,70,229,.35) !important;
 }
 
-.dashboard-bg{
+/* .dashboard-bg{
     background:#f5f6fa;
     min-height:100vh;
-}
+} */
 
-.sidebar-col{
+/* .sidebar-col{
     background:#232f3e;
-    min-height:100vh;
-}
-
-.dashboard-header{
-    margin-bottom:25px;
-}
+    min-height:50vh;
+} */
 
 .dashboard-header h2{
     font-weight:700;
