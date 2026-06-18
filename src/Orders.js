@@ -36,7 +36,7 @@ const Orders = () => {
     const [orders, setOrders] = useState();
     useEffect(() => {
         axios
-            .get("http://localhost:8090/api/orders")
+            .get(`http://localhost:8090/api/orders/user/${currentUser.id}`)
             .then((res) => {
                 console.log(res.data);
                 setOrders(res.data);
@@ -150,7 +150,7 @@ const Orders = () => {
                                                     {order.items?.map((item, i) => (
                                                         <tr key={i}>
                                                             <td>
-                                                                <img src={`http://localhost:8090/upload/${item.productId.image}`} alt="product" width="100" />
+                                                                <img src={`http://localhost:8090/uploads/${item.productId.image}`} alt="product" width="100" />
                                                                 <p>{item?.productId.name}</p></td>
                                                             <td><p>Price: {item.price}</p></td>
                                                             <td><p>Quantity: {item.quantity}</p></td>

@@ -78,7 +78,7 @@ const Orders1 = () => {
                 {order.items?.map((item, i) => (
                   <div className="product-item" key={i}>
                     <img
-                      src={`http://localhost:8090/upload/${item.productId.image}`}
+                      src={`http://localhost:8090/uploads/${item.productId.image}`}
                       alt={item.productId.name}
                       className="product-image"
                     />
