@@ -961,3 +961,73 @@ img:hover{
         margin-bottom:15px;
     }
 }
+.snapdeal-address-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 240px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.snapdeal-address-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.address-type {
+  display: inline-block;
+  background: #e40046;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.customer-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.address-details {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.address-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.deliver-btn {
+  flex: 1;
+  background: #e40046;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.deliver-btn:hover {
+  background: #c9003d;
+}
+
+.edit-btn {
+  flex: 1;
+  background: white;
+  border: 1px solid #d1d1d1;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.edit-btn:hover {
+  background: #f5f5f5;
+}

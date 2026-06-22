@@ -125,8 +125,8 @@ const Address1 = () => {
   return (
     <section>
       <Container>
-        <Row>
-          <Col>
+        <Row className='mt-4'>
+          <Col md={8}>
             <div className="address-container">
               <h2 className="title">Delivery Address</h2>
 
@@ -221,75 +221,89 @@ const Address1 = () => {
               </form>
             </div>
           </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Formik
-              initialValues={{
-                addressId: ''
-              }}
-              validationSchema={SignupSchema}
-              onSubmit={values => {
-                // same shape as initial values
-                console.log(values);
-                const data = {
-                  addressId: values.addressId,
-                  userId: currentUser.id,
-                  items: cartItems.items
-                }
-                console.log(data)
-                axios.post("http://localhost:8090/api/orders", data).then((response) => {
-                  console.log("Order Confirmed");
-                  console.log(response)
-                }
-                )
-                axios
-                  .delete(`http://localhost:8090/api/carts/user/${currentUser.id}`)
-                  .then((res) => {
-                    console.log("Successfully deleted");
-                    window.location.reload()
-                  })
-                  .catch((error) => {
-                    console.log("Error");
-                  });
+
+          <Col md={2}>
+            <div className="saved-address-section">
+
+              <h4 className="saved-title">
+                Saved Addresses
+              </h4>
+
+              <Formik
+                initialValues={{
+                  addressId: ''
+                }}
+                validationSchema={SignupSchema}
+                onSubmit={values => {
+                  // same shape as initial values
+                  console.log(values);
+                  const data = {
+                    addressId: values.addressId,
+                    userId: currentUser.id,
+                    items: cartItems.items
+                  }
+                  console.log(data)
+                  axios.post("http://localhost:8090/api/orders", data).then((response) => {
+                    console.log("Order Confirmed");
+                    console.log(response)
+                  }
+                  )
+                  axios
+                    .delete(`http://localhost:8090/api/carts/user/${currentUser.id}`)
+                    .then((res) => {
+                      console.log("Successfully deleted");
+                      window.location.reload()
+                    })
+                    .catch((error) => {
+                      console.log("Error");
+                    });
 
                   navigate('/Success');
 
-              }}
-            >
-              {({ errors, touched }) => (
-                <Form>
-                  {addresses && addresses.length ?
-                    addresses.map((addr, index) => {
-                      return (
-                        <div className="address-card"
+                }}
+              >
+                {({ errors, touched }) => (
+                  <Form>
+
+                    {addresses && addresses.length ?
+                      addresses.map((addr, index) => (
+                        <div
+                          className="address-card"
                           key={index}
-
-                          style={{
-                            border: "1px solid gray",
-                            padding: "15px",
-                            width: "250px",
-                            borderRadius: "10px",
-                            cursor: "pointer"
-                          }}
                         >
+                          <Field
+                            type="radio"
+                            name="addressId"
+                            value={String(addr.id)}
+                          />
 
-                          <Field type="radio" name="addressId" value={addr.id} />
                           <h5>{addr.name}</h5>
+
+                          <p>{addr.addressLine_1}</p>
+
                           <p>{addr.city}</p>
-                          <p>{addr.state}, {addr.state}</p>
+
+                          <p>{addr.state}</p>
+                          <p>{addr.pincode}</p>
                           <p>{addr.addressType}</p>
                         </div>
-                      )
+                      ))
+                      :
+                      "Address Not Available"
                     }
-                    )
-                    : "Address Not Available"
-                  }
 
-                  <button type="submit">Continue</button>
-                </Form>
-              )}
-            </Formik>
+                    <button
+                      type="submit"
+                      className="continue-btn"
+                    >
+                      Continue
+                    </button>
+
+                  </Form>
+                )}
+              </Formik>
+
+            </div>
           </Col>
         </Row>
       </Container>
