@@ -92,17 +92,17 @@ const AdminDashboard = () => {
 
               <div className="dashboard-header">
                 <h2>Admin Dashboard</h2>
-                <p>Welcome Back Admin 👋</p>
+                <p>Welcome Back Admin</p>
               </div>
 
               {Summary && (
                 <Row className="g-4 mb-4">
 
                   <Col md={4}>
-                    <div className="stat-card orders">
+                    <Link to={'/orders'}><div className="stat-card orders">
                       <h6>Total Orders</h6>
                       <h2>{Summary.totalOrders}</h2>
-                    </div>
+                    </div></Link>
                   </Col>
 
                   <Col md={4}>
