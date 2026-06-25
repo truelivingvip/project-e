@@ -26,6 +26,7 @@ import Address1 from './Address1';
 import Success from './Success';
 import Product from './Product';
 import Invoice from './Invoice';
+import Monthlyreports from './Monthlyreports';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         <Route path="/Success" element={<Success/>} />
         <Route path="/Categorywiseproducts/:categoryName" element={<Categorywiseproducts/>}/>
         <Route path="/Product/:productId" element={<Product/>}/>
+        <Route path="/Monthlyreports" element={<Monthlyreports/>}/>
       </Routes>
     </div>
   );
