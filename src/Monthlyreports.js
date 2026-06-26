@@ -7,6 +7,7 @@ const Monthlyreports = () => {
     let navigate = useNavigate();
 
     const { user: currentUser } = useSelector((state) => state.auth)
+    const[orders,setorders]=useState([])
     const [Monthlyreports, setMonthlyreports] = useState([]);
 
     useEffect(() => {
@@ -30,8 +31,22 @@ const Monthlyreports = () => {
 
     return (
         <div>
-
+            <h2>{Monthlyreports.month}</h2>
+            <h3>{Monthlyreports.totalAmount}</h3>
+            <h4>{Monthlyreports.year}</h4>
+            <h5>
+                {
+                    orders?
+                    orders.map((order,index)=>{
+                        return(
+                            <h2>{order.totalAmount}</h2>
+                        )
+                    })
+                    :"Data Not Found"
+                }
+            </h5>
         </div>
+        
     )
 }
 
